@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:learningapp/screen/home_page.dart';
+import 'package:learningapp/screen/home_screen.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_indecator.dart';
-import '../../../../screen/login_page.dart';
+import '../../../../screen/login_screen.dart';
 import 'custom_page_view.dart';
 
 

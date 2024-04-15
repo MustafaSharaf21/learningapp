@@ -2,9 +2,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'allcategory.dart';
+import 'allcategory_screen.dart';
 import 'profile/profile_screen.dart';
-import 'setting.dart';
+import 'setting_screen.dart';
 
 void main() => runApp(HomePage());
 

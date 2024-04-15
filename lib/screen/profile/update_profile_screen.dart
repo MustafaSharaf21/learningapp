@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 //import 'package:image_picker/image_picker.dart';
-//import 'package:learning_application/screens/login_page.dart';
+//import 'package:learning_application/screens/login_screen.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
 

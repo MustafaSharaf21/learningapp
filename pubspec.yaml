@@ -41,6 +41,25 @@ dev_dependencies:
     sdk: flutter
   get: ^4.6.6
   dots_indicator: ^3.0.0
+  cupertino_icons: ^1.0.2
+  youtube_player_flutter: ^9.0.1
+  flutter_riverpod: ^2.5.1 #for state management
+  font_awesome_flutter: ^10.7.0 #for Icons
+  miniplayer: ^1.0.1 #To display the video in small size
+  path_provider: ^2.1.2 #To save the video to the user's device
+  permission_handler: ^11.3.0 #To save the video to the user's device
+  timeago: ^3.6.1 #To display the date the video was published
+  youtube_explode_dart: ^2.1.0
+  intl: ^0.19.0
+  intl_phone_field: ^3.2.0 #for phone Textfield
+  curved_navigation_bar: ^1.0.3
+  lottie: ^3.1.0 #tfor animation
+  animated_text_kit: ^4.2.2  #To move texts
+  image_picker: ^1.0.7 #To add an image by the user
+  firebase_storage: ^11.7.0
+  google_sign_in: ^6.2.0
+  firebase_auth: ^4.19.0
+  firebase_core: ^2.28.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -83,17 +102,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

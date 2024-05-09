@@ -1,0 +1,32 @@
+
+{
+
+    "name":"تعليم",
+
+    "titleLogin":"تسجيل الدخول",
+    "email":"البريدالإلكتروني",
+    "enter_an_email":"أدخل البريد الإلكتروني",
+    "enter_a_valid_Email":"أدخل بريد إلكتروني متاح",
+    "password":"كلمة المرور",
+    "enter_a_password":"أدخل كلمة المرور",
+    "Password_characters":"كلمة المرور يجب أن تكون أكبر من ستة أحرف",
+    "Login_with_Facebook_or_Google":"تسجيل الدخول باستخدام الفيسبوك أو جوجل",
+    "If_you_dont_have_an_account":"إذا كنت لا تملك حساب",
+ 
+    "titleRegister":"سجل دخول",
+    "Teacher_or_Student":"هل تريد التسجيل كمدرس أو طالب؟",
+    "Choose_Teacher_or_Student":"اختر المعلم أو الطالب",
+    "Full_Name":"الاسم الكامل",
+    "Enter_a_name":"أدخل الاسم",
+    "Confirm_Password":"تأكيد كلمة المرور",
+    "Reenter_Password":"إعادة إدخال كلمة المرور",
+    "Enter_the_Password_Correctly":"أدخل كلمة المرور بشكل صحيح",
+    "Phone_Number":"رقم الهاتف",
+    "Country":"الجنسية                                            ",
+    "specialization":"التخصص",
+    "Favorite_specialization":"التخصص المفضل ",
+    "Date_of_birth":"تاريخ الميلاد",
+    "Gender":"الجنس",
+    "already_a_member":"أنا عضو بالفعل"
+ 
+}

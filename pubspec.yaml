@@ -31,10 +31,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  flutter_localizations:
+        sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -50,16 +51,17 @@ dev_dependencies:
   permission_handler: ^11.3.0 #To save the video to the user's device
   timeago: ^3.6.1 #To display the date the video was published
   youtube_explode_dart: ^2.1.0
-  intl: ^0.19.0
+  intl: ^0.18.1
   intl_phone_field: ^3.2.0 #for phone Textfield
   curved_navigation_bar: ^1.0.3
   lottie: ^3.1.0 #tfor animation
-  animated_text_kit: ^4.2.2  #To move texts
-  image_picker: ^1.0.7 #To add an image by the user
+  animated_text_kit: ^4.2.2 #To move texts
   firebase_storage: ^11.7.0
   google_sign_in: ^6.2.0
   firebase_auth: ^4.19.0
   firebase_core: ^2.28.0
+  image_picker: ^1.1.0
+  multi_select_flutter: ^4.1.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -70,7 +72,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -93,10 +94,8 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -109,6 +108,7 @@ flutter:
     - family: Pacifico
       fonts:
         - asset: assets/fonts/Pacifico-Regular.ttf
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

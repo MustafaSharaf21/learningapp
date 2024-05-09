@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import '../core/constants.dart';
+import '../generated/l10n.dart';
 import 'login_screen.dart';
 
 
@@ -57,7 +58,8 @@ class _SplashPageState extends State<SplashPage> {
                 child: AnimatedTextKit(
                   pause:const  Duration(seconds:4),
                   animatedTexts: [
-                    WavyAnimatedText('Learning'),
+                    WavyAnimatedText(S.of(context).name),
+
                   ],
                   isRepeatingAnimation: true,
                 ),

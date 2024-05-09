@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/home_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
 import 'package:learningapp/screen/register1_screen.dart';
 import 'package:learningapp/screen/register2_screen.dart';
 import 'package:learningapp/screen/splash_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+
 
 void main() {
-  runApp(const LearningApp());//
+  runApp(const LearningApp());
 }
 
 class LearningApp extends StatefulWidget {
@@ -32,11 +36,19 @@ class _LearningAppState extends State<LearningApp> {
         LoginPage.id: (context) => LoginPage(),
         HomePage.id:(context)=> HomePage(),
         SplashPage.id:(context)=> SplashPage(),
+      
       },
       initialRoute:SplashPage.id,
+      locale: Locale('ar'),
+      localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
 
 
     );
   }
 }
-//mmmmmmmmmmmmm

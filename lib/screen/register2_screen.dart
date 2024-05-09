@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import '../core/widgets/buildInputDecoration.dart';
 import '../core/widgets/header_painater.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 
 class RegisterPage2 extends StatefulWidget {
@@ -15,6 +16,7 @@ class RegisterPage2 extends StatefulWidget {
 }
 
 class _RegisterPage2State extends State<RegisterPage2> {
+  final GlobalKey<FormState>_formkey = GlobalKey<FormState>();
   TextEditingController phone = TextEditingController();
   TextEditingController country = TextEditingController();
   DateTime date=DateTime.now();
@@ -28,10 +30,38 @@ class _RegisterPage2State extends State<RegisterPage2> {
     ,' Canada',' Cayman Islands','Central African Republic',' Central American Federation*',' Chad',' Chile', 'China',' Colombia',
     'Comoros',' Congo Free State, The*','Costa Rica', 'Cote d’Ivoire ',' Croatia','Cuba','Cyprus','Czechia','Czechoslovakia'
   ];
-  String? selectedSpecialization;
-  List<String>SpecializationList=['Ui','Ux','Frontend Developer','Backend Developer'];
 
-  final GlobalKey<FormState>_formkey = GlobalKey<FormState>();
+  static List<Specialist> _Specialties = [
+    Specialist(id: 1, name: "Developer"),
+    Specialist(id: 2, name: "UI"),
+    Specialist(id: 3, name: "UX"),
+    Specialist(id: 4, name: "Front-end Flutter"),
+    Specialist(id: 5, name: "Front-end React"),
+    Specialist(id: 6, name: "Front-end AngularJs"),
+    Specialist(id: 7, name: "JavaScript"),
+    Specialist(id: 8, name: " CSS"),
+    Specialist(id: 9, name: "HTML"),
+    Specialist(id: 10, name: "Backend Python"),
+    Specialist(id: 11, name: "Backend Node.js"),
+    Specialist(id: 12, name: "Backend Laravel"),
+    Specialist(id: 13, name: "Backend Spring"),
+    Specialist(id: 14, name: "Backend PHP"),
+    Specialist(id: 15, name: "C++"),
+    Specialist(id: 16, name: "C#"),
+    Specialist(id: 17, name: "Java"),
+    Specialist(id: 18, name: "Dart"),
+  ];
+
+  final _items = _Specialties.map((specialist) => MultiSelectItem<Specialist>(specialist, specialist.name)).toList();
+  List<Specialist> _selectedSpecialist = [];
+
+  //final _multiSelectKey = GlobalKey<FormFieldState>();
+
+  @override
+  void initState() {
+    _selectedSpecialist = _Specialties;
+    super.initState();
+  }
 
 
 
@@ -54,7 +84,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FullHeaderPainter(HeaderText:"Register"),
+                    FullHeaderPainter(HeaderText:S.of(context).titleRegister),
                     const  SizedBox(height: 150,),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 15, left: 30, right: 30),
@@ -66,7 +96,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         onChanged: (value){
                           value.completeNumber;
                         },
-                        decoration:buildInputDecoration(Icons.phone,"Phone Number"),
+                        decoration:buildInputDecoration(Icons.phone,S.of(context).Phone_Number),
                       ),
                     ),
                     Container(
@@ -79,7 +109,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
                       child:Row(
                         children: [
                           const Padding(
-                            padding: EdgeInsets.only(left:8,top: 5),
+                            padding: EdgeInsets.only(left:10,top: 5),
                             child:Icon(Icons.location_city,color: Color(0xFF413F3F)) ,
                           ),
                           Padding(
@@ -88,10 +118,10 @@ class _RegisterPage2State extends State<RegisterPage2> {
                               borderRadius: BorderRadius.circular(30),
                               underline:const Divider( thickness:0,height:0),
                               icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
-                              dropdownColor: Kcolor,
-                              hint:const  Text(
-                                'Country                                            ',
-                                style: TextStyle(
+                              dropdownColor:Color(0xFFB2CCC8),
+                              hint:  Text(
+                                S.of(context).Country,
+                                style:const TextStyle(
                                     fontSize:15,
                                     color: Color(0xFF464241),
                                     fontFamily:'Cairo'),
@@ -118,6 +148,50 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 30,),
+                    Container(
+                      width: 325,
+                      height: 65,
+                      decoration:BoxDecoration(
+                        border: Border.all(color: Colors.grey,width: 1),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding:const EdgeInsets.only( left: 10, right: 5,top: 11) ,
+                        child: Row(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(right: 15,bottom: 10),
+                              child:Icon(Icons.school_sharp,color: Color(0xFF413F3F)) ,
+                            ),
+                          MultiSelectDialogField(
+                            chipDisplay: MultiSelectChipDisplay.none(),
+                            items: _items,
+                            title:  Text(S.of(context).specialization),
+                            searchable: true,
+                            selectedColor: Kcolor,
+                            buttonText: Text(
+                              S.of(context).Favorite_specialization,
+                              style:const TextStyle(
+                                  fontSize:15,
+                                  color: Color(0xFF464241),
+                                  fontFamily:'Cairo'),
+                            ),
+                            buttonIcon:const  Icon(
+                              Icons.arrow_drop_down,
+                              color: Color(0xFF464241),
+                              size: 30,
+                            ),
+                            onConfirm: (results) {
+                              //_selectedSpecialist = results;
+                            },
+                          ),
+
+                        ],),
+
+                      ),
+                    ),
+                    const SizedBox(height: 50),
                     const SizedBox(height: 20,),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10,right: 30,left: 30),
@@ -131,8 +205,8 @@ class _RegisterPage2State extends State<RegisterPage2> {
                                   _selectDate();
                                 } ,
                                 icon:const  Icon(Icons.calendar_month,color:Color(0xFF565555),),
-                                label:const Text('Date of birth',
-                                  style: TextStyle(
+                                label: Text(S.of(context).Date_of_birth,
+                                  style:const TextStyle(
                                     fontSize:15 ,
                                     color: Colors.white,
                                     fontFamily:'Cairo',
@@ -172,8 +246,8 @@ class _RegisterPage2State extends State<RegisterPage2> {
                                         underline:const Divider(color: Kcolor,),
                                         icon:const Icon(Icons.arrow_drop_down,color: Colors.white,),
                                         dropdownColor: Kcolor,
-                                        hint:const  Text('Gender',
-                                          style: TextStyle(
+                                        hint:  Text(S.of(context).Gender,
+                                          style:const TextStyle(
                                               fontSize:15,
                                               color: Colors.white,
                                               fontFamily:'Cairo'),
@@ -223,8 +297,8 @@ class _RegisterPage2State extends State<RegisterPage2> {
                                 color: Kcolor,
                                 borderRadius: BorderRadius.all(Radius.circular(30),)
                             ),
-                            child:const Center(child: Text("Register",
-                              style: TextStyle(color: Colors.white,
+                            child: Center(child: Text(S.of(context).titleRegister,
+                              style:const TextStyle(color: Colors.white,
                                 fontSize:25,
                                 fontWeight:FontWeight.w500,
                                 fontFamily: 'Cairo',
@@ -239,11 +313,11 @@ class _RegisterPage2State extends State<RegisterPage2> {
                         }));
 
                       },
-                      child:const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("I'm already a member",
-                              style: TextStyle(color: Colors.grey,
+                          Text(S.of(context).already_a_member,
+                              style:const TextStyle(color: Colors.grey,
                                 fontSize: 15,
                                 fontWeight:FontWeight.w700,
                                 fontFamily: 'Cairo',)),
@@ -251,8 +325,10 @@ class _RegisterPage2State extends State<RegisterPage2> {
                       ),
                     ),
                     const  SizedBox(height: 30,),
+
+
                   ])
-          ),
+            ),
           ],
         ),
       ),
@@ -273,5 +349,14 @@ class _RegisterPage2State extends State<RegisterPage2> {
   }
 }
 
+class Specialist {
+  final int id;
+  final String name;
+
+  Specialist({
+    required this.id,
+    required this.name,
+  });
+}
 
 

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,8 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-//import 'package:image_picker/image_picker.dart';
-//import 'package:learning_application/screens/login_screen.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class UpdateProfileScreen extends StatefulWidget {
 
@@ -42,6 +43,50 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     // //var image=ImagePicker.
     // }
    // Future _imageFromCamera(BuildContext context) async{}
+  late File imageFile;
+  final _picker = ImagePicker();
+  showOption(BuildContext context){
+    return showDialog(
+        context: context,
+        builder: (context)=>
+            AlertDialog(
+              title:const  Text("make a choice"),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading:const  Icon(Icons.image),
+                      title:const  Text("Gallery"),
+                      onTap:()=> _imageFromGallery(context),
+                    ),
+                    ListTile(
+                      leading:const  Icon(Icons.camera_alt_outlined),
+                      title:const  Text("Camera"),
+                      onTap:()=> _imageFromCamera(context),
+                    ),
+                  ],
+                ),
+              ),
+            )
+    );
+
+  }
+  Future _imageFromGallery(BuildContext context)async{
+    var image=await _picker.pickImage(source:ImageSource.gallery);
+    setState(() {
+      imageFile=image as File ;
+    });
+
+  }
+  Future _imageFromCamera(BuildContext context)async{
+    var image=await _picker.pickImage(source:ImageSource.camera);
+    setState(() {
+      imageFile=image as File;
+    });
+
+  }
+
+
   bool pass = true;
    GlobalKey<FormState> formstate = GlobalKey();
 
@@ -89,7 +134,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xFF399679),
                       ),
-                      child:  IconButton(icon:Icon(Icons.camera_alt_outlined,size: 15),onPressed: (){}),
+                      child:  IconButton(icon:Icon(Icons.camera_alt_outlined,size: 15),
+                          onPressed: (){
+                            showOption(context);
+                          }),
                     ),
                   )
                 ],

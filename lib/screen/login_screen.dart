@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,7 +7,9 @@ import 'package:learningapp/screen/register1_screen.dart';
 import '../core/constants.dart';
 import '../core/widgets/buildInputDecoration.dart';
 import '../core/widgets/header_painater.dart';
+import '../generated/l10n.dart';
 import 'home_screen.dart';
+
 
 class LoginPage extends StatefulWidget {
   static String id = " LoginPage";
@@ -20,29 +23,10 @@ class _LoginPageState extends State<LoginPage>{
   TextEditingController email = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
+
+ Future signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-/* Future signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -56,7 +40,12 @@ class _LoginPageState extends State<LoginPage>{
         MaterialPageRoute(builder: (context) {
           return HomePage();
         }));
-  }*/
+  }
+
+
+
+
+
 
 
   @override
@@ -79,21 +68,21 @@ class _LoginPageState extends State<LoginPage>{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FullHeaderPainter(HeaderText:"Login"),
+                  FullHeader(HeaderText:S.of(context).titleLogin),
                   const  SizedBox(height: 150,),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10,left:30,right:30),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: email,
-                      decoration:buildInputDecoration(Icons.email,"Email"),
+                      decoration:buildInputDecoration(Icons.email,S.of(context).email),
                       validator: ( value){
                         if(value!.isEmpty)
                         {
-                          return 'Enter an email';
+                          return S.of(context).enter_an_email;
                         }
                         if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
-                          return 'Enter a valid Email';
+                          return S.of(context).enter_a_valid_Email;
                         }
                         return null;
                       },
@@ -106,8 +95,8 @@ class _LoginPageState extends State<LoginPage>{
                       controller: password,
                       keyboardType: TextInputType.visiblePassword,
                       decoration:InputDecoration(
-                        labelText:"password",
-                        hintText: "Password",
+                        labelText:S.of(context).password,
+                        hintText: S.of(context).password,
                         suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -142,10 +131,10 @@ class _LoginPageState extends State<LoginPage>{
                       validator: ( value){
                         if(value!.isEmpty)
                         {
-                          return 'Enter a Password';
+                          return S.of(context).enter_a_password;
                         }
                         if(value.length<6){
-                          return 'Password must be greater than six characters';
+                          return S.of(context).Password_characters;
                         }
                         return null;
                       },
@@ -170,10 +159,10 @@ class _LoginPageState extends State<LoginPage>{
                             color:  Kcolor,
                             borderRadius: BorderRadius.all(Radius.circular(30),)
                         ),
-                        child:const Center(
-                          child: Text("Login",
-                            style: TextStyle(color: Colors.white,
-                              fontSize:25,
+                        child: Center(
+                          child: Text(S.of(context).titleLogin ,
+                            style:const TextStyle(color: Colors.white,
+                              fontSize:20,
                               fontWeight:FontWeight.w500,
                               fontFamily: 'Cairo',
                             ),
@@ -183,11 +172,11 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Login with Facebook or Google",
-                          style: TextStyle(color: Colors.grey,
+                      Text(S.of(context).Login_with_Facebook_or_Google,
+                          style:const TextStyle(color: Colors.grey,
                             fontSize: 15,
                             fontWeight:FontWeight.w700,
                             fontFamily: 'Cairo',)),
@@ -235,11 +224,11 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("If you don't have an account?",
-                          style: TextStyle(color: Colors.grey,
+                      Text( S.of(context).If_you_dont_have_an_account,
+                          style:const  TextStyle(color: Colors.grey,
                             fontSize: 15,
                             fontWeight:FontWeight.w700,
                             fontFamily: 'Cairo',)),
@@ -252,11 +241,11 @@ class _LoginPageState extends State<LoginPage>{
                         return RegisterPage();
                       }));
                     },
-                    child:const Row(
+                    child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Register",
-                              style: TextStyle(color: Kcolor,fontSize: 18,
+                          Text(S.of(context).titleRegister,
+                              style:const TextStyle(color: Kcolor,fontSize: 18,
                                 fontWeight:FontWeight.w500,
                                 fontFamily: 'Cairo',)
                           ),

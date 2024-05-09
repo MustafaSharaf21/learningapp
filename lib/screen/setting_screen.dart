@@ -51,14 +51,19 @@ class _SettingState extends State<Setting> {
               onTap:() {
                  Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(),));
                 }),
-            Container(width: 335,
+
+            
+
+            Container(
+              width: 335,
               height: 50,
-              margin: EdgeInsets.only(left: 12,top: 8),
-              padding: EdgeInsets.all(12),
+              margin:const  EdgeInsets.only(left: 12,top: 8),
+              padding:const  EdgeInsets.all(12),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color(0xD5E5E4E4)
-              ),child: Row(
+                  color:const  Color(0xD5E5E4E4)
+                    ),
+              child: Row(
               children: [
                 Container(
                     width:27,
@@ -66,8 +71,9 @@ class _SettingState extends State<Setting> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100)
-                    ),child: Icon(Icons.language)),
-                SizedBox(width: 10,),
+                    ),child:const  Icon(Icons.language)),
+                const SizedBox(width: 10,),
+
                 Text(' App Language',style: TextStyle(color: Colors.black,fontSize: 18),),
                 SizedBox(width: 72,),
                 DropdownButton<String>( value:dropdownValue,
@@ -82,6 +88,7 @@ class _SettingState extends State<Setting> {
               ],
             ),
             ),
+
             Container(child: Row(
               children: [
                 Container(

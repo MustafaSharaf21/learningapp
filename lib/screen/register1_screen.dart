@@ -5,6 +5,8 @@ import 'package:lottie/lottie.dart';
 import '../core/constants.dart';
 import '../core/widgets/buildInputDecoration.dart';
 import '../core/widgets/header_painater.dart';
+import '../generated/l10n.dart';
+
 
 
 
@@ -26,6 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
   List<String>genderList=['Teacher','Student'];
   String? selectedGender;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +48,8 @@ class _RegisterPageState extends State<RegisterPage> {
             key: _formkey,
             child: Column(
               children:[
-                FullHeaderPainter(HeaderText: "Register"),
-                const SizedBox(height: 200,),
+                FullHeaderPainter(HeaderText: S.of(context).titleRegister),
+                const SizedBox(height:50),
                 DefaultTextStyle(
                   style: const TextStyle(
                       fontSize: 15,
@@ -56,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: AnimatedTextKit(
                     animatedTexts: [
-                      TypewriterAnimatedText("Do you want to Register as Teacher or Student ?"),
+                      TypewriterAnimatedText(S.of(context).Teacher_or_Student),
                     ],
                   ),
                 ),
@@ -80,9 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           underline:const Divider( thickness:0,height:0),
                           icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
                           dropdownColor: Kcolor,
-                          hint:const  Text(
-                            'Choose Teacher or Student              ',
-                            style: TextStyle(
+                          hint: Text(
+                            S.of(context).Choose_Teacher_or_Student              ,
+                            style:const TextStyle(
                                 fontSize:15,
                                 color: Color(0xFF464241),
                                 fontFamily:'Cairo'),
@@ -116,10 +119,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     controller: full_Name,
                     keyboardType: TextInputType.text,
-                    decoration: buildInputDecoration(Icons.person, "Full Name"),
+                    decoration: buildInputDecoration(Icons.person, S.of(context).Full_Name),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter an name';
+                        return S.of(context).Enter_a_name;
                       }
                       return null;
                     },
@@ -130,14 +133,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
-                    decoration: buildInputDecoration(Icons.email, "Email"),
+                    decoration: buildInputDecoration(Icons.email, S.of(context).email),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter an email';
+                        return S.of(context).enter_an_email;
                       }
                       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                           .hasMatch(value)) {
-                        return 'Enter a valid Email';
+                        return S.of(context).enter_a_valid_Email;
                       }
                       return null;
                     },
@@ -150,8 +153,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: password,
                     obscureText: secureText,
                     decoration: InputDecoration(
-                      labelText: "Password",
-                      hintText: "Password",
+                      labelText: S.of(context).password,
+                      hintText: S.of(context).password,
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -181,10 +184,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter a Password';
+                        return S.of(context).enter_a_password;
                       }
                       if(value.length<6){
-                        return 'Password must be greater than six characters';
+                        return S.of(context).Password_characters;
 
                       }
                       return null;
@@ -198,8 +201,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: secureText2,
                     controller: confirmpassword,
                     decoration: InputDecoration(
-                      labelText:"Confirm Password" ,
-                      hintText: "Confirm Password",
+                      labelText:S.of(context).Confirm_Password ,
+                      hintText:S.of(context).Confirm_Password,
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -231,14 +234,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Re-enter Password';
+                        return S.of(context).Reenter_Password;
                       }
                       print(password.text);
 
                       print(confirmpassword.text);
 
                       if (password.text != confirmpassword.text) {
-                        return "Enter the Password Correctly";
+                        return S.of(context).Enter_the_Password_Correctly;
                       }
                       return null;
                     },
@@ -269,26 +272,3 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-/*
-
-Align(
-child: IconButton(
-style: IconButton.styleFrom(
-shape: const OvalBorder(),
-backgroundColor:  Kcolor,
-),
-onPressed: () {
-if (_formkey.currentState!.validate()) {
-Navigator.push(context,
-MaterialPageRoute(builder: (context) {
-return RegisterPage2();
-}));
-}
-},
-icon: const Icon(
-Icons.east_sharp,
-size: 25,
-color: Colors.grey,
-),
-),
-),*/

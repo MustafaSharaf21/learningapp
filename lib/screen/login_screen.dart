@@ -1,14 +1,18 @@
+import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:learningapp/screen/register1_screen.dart';
-import '../core/constants.dart';
-import '../core/widgets/buildInputDecoration.dart';
-import '../core/widgets/header_painater.dart';
-import '../generated/l10n.dart';
+import 'package:learningapp/core/constants.dart';
+import 'package:learningapp/core/widgets/buildInputDecoration.dart';
+import 'package:learningapp/core/widgets/header_painater.dart';
+import '../data/http.dart';
+import 'foreger_password_screen.dart';
 import 'home_screen.dart';
+import 'register1_screen.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -23,10 +27,29 @@ class _LoginPageState extends State<LoginPage>{
   TextEditingController email = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-
- Future signInWithGoogle() async {
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+/* Future signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -40,14 +63,9 @@ class _LoginPageState extends State<LoginPage>{
         MaterialPageRoute(builder: (context) {
           return HomePage();
         }));
-  }
+  }*/
 
-
-
-
-
-
-
+//e
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,21 +86,21 @@ class _LoginPageState extends State<LoginPage>{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FullHeader(HeaderText:S.of(context).titleLogin),
+                  FullHeaderPainter(HeaderText:"Login"),
                   const  SizedBox(height: 150,),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10,left:30,right:30),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: email,
-                      decoration:buildInputDecoration(Icons.email,S.of(context).email),
+                      decoration:buildInputDecoration(Icons.email,"Email"),
                       validator: ( value){
                         if(value!.isEmpty)
                         {
-                          return S.of(context).enter_an_email;
+                          return 'Enter an email';
                         }
                         if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
-                          return S.of(context).enter_a_valid_Email;
+                          return 'Enter a valid Email';
                         }
                         return null;
                       },
@@ -95,8 +113,8 @@ class _LoginPageState extends State<LoginPage>{
                       controller: password,
                       keyboardType: TextInputType.visiblePassword,
                       decoration:InputDecoration(
-                        labelText:S.of(context).password,
-                        hintText: S.of(context).password,
+                        labelText:"password",
+                        hintText: "Password",
                         suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -131,23 +149,34 @@ class _LoginPageState extends State<LoginPage>{
                       validator: ( value){
                         if(value!.isEmpty)
                         {
-                          return S.of(context).enter_a_password;
+                          return 'Enter a Password';
                         }
                         if(value.length<6){
-                          return S.of(context).Password_characters;
+                          return 'Password must be greater than six characters';
                         }
                         return null;
                       },
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 15),
+                  GestureDetector(
+                    child: Container(alignment:Alignment.bottomRight,
+                      padding: EdgeInsets.only(right: 20),
+                      child: Text("ForgetPassword?",style:TextStyle(color: Colors.grey),textAlign: TextAlign.right,),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordPage(),));
+                    },
+                  ),
+                  SizedBox(height: 5,),
                   GestureDetector(
                     onTap: (){
                       if (_formkey.currentState!.validate()){
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return HomePage();
-                            }));
+                        login();
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) {
+                        //       return HomePage();
+                        //     }));
                       }
                     },
                     child:Padding(
@@ -159,10 +188,10 @@ class _LoginPageState extends State<LoginPage>{
                             color:  Kcolor,
                             borderRadius: BorderRadius.all(Radius.circular(30),)
                         ),
-                        child: Center(
-                          child: Text(S.of(context).titleLogin ,
-                            style:const TextStyle(color: Colors.white,
-                              fontSize:20,
+                        child:const Center(
+                          child: Text("Login",
+                            style: TextStyle(color: Colors.white,
+                              fontSize:25,
                               fontWeight:FontWeight.w500,
                               fontFamily: 'Cairo',
                             ),
@@ -171,12 +200,13 @@ class _LoginPageState extends State<LoginPage>{
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 10),
-                   Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(S.of(context).Login_with_Facebook_or_Google,
-                          style:const TextStyle(color: Colors.grey,
+                      Text("Login with Facebook or Google",
+                          style: TextStyle(color: Colors.grey,
                             fontSize: 15,
                             fontWeight:FontWeight.w700,
                             fontFamily: 'Cairo',)),
@@ -224,11 +254,11 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   const SizedBox(height: 10),
-                   Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text( S.of(context).If_you_dont_have_an_account,
-                          style:const  TextStyle(color: Colors.grey,
+                      Text("If you don't have an account?",
+                          style: TextStyle(color: Colors.grey,
                             fontSize: 15,
                             fontWeight:FontWeight.w700,
                             fontFamily: 'Cairo',)),
@@ -241,11 +271,11 @@ class _LoginPageState extends State<LoginPage>{
                         return RegisterPage();
                       }));
                     },
-                    child: Row(
+                    child:const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(S.of(context).titleRegister,
-                              style:const TextStyle(color: Kcolor,fontSize: 18,
+                          Text("Register",
+                              style: TextStyle(color: Kcolor,fontSize: 18,
                                 fontWeight:FontWeight.w500,
                                 fontFamily: 'Cairo',)
                           ),
@@ -261,11 +291,36 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
   }
+  login()async{
+    await HttpHelper.postData(url:'login',body:{
+      'email':email.text,
+      'password':password.text
+    }).then((value){
+      Map<String,dynamic> res = jsonDecode(value.body);
+      print (res);
+      if (value.statusCode==200||value.statusCode==201){
+        token=res['data']['token'];
+        GetStorage _box=GetStorage();
+        _box.write('token',token);
+        Get.snackbar(
+            ' ',res['data']['message'].toString(),
+            snackPosition:SnackPosition.BOTTOM,
+            backgroundColor:Colors.black,
+            colorText:Colors.white
+        );
+        print(res);
+        print(token);
+        Get.to(HomePage());
+      }else{
+        print(res);
+        Get.snackbar(
+            'Error',res['message'].toString(),
+            backgroundColor:Colors.black,
+            colorText:Colors.white
+
+        );
+      }
+    });
+  }
 }
-
-
-
-
-
-
 

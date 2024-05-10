@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/home_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
@@ -6,6 +7,8 @@ import 'package:learningapp/screen/register1_screen.dart';
 import 'package:learningapp/screen/register2_screen.dart';
 import 'package:learningapp/screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'screen/category_screen.dart';
 
 
 
@@ -22,7 +25,7 @@ class LearningApp extends StatefulWidget {
 class _LearningAppState extends State<LearningApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor:const  Color(0xFF399679
@@ -36,10 +39,10 @@ class _LearningAppState extends State<LearningApp> {
         LoginPage.id: (context) => LoginPage(),
         HomePage.id:(context)=> HomePage(),
         SplashPage.id:(context)=> SplashPage(),
-      
+        Category.id:(context)=> Category()
       },
-      initialRoute:SplashPage.id,
-      locale: Locale('ar'),
+      initialRoute:Category.id,
+      locale: Locale('en'),
       localizationsDelegates: [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,

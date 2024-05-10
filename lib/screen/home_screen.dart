@@ -1,10 +1,13 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:learningapp/screen/setting_screen.dart';
 import 'allcategory_screen.dart';
-import 'profile/profile_screen.dart';
-import 'setting_screen.dart';
+import 'cources_screen.dart';
+import 'documentation_screen.dart';
+import 'saerch_screen.dart';
+import 'vedio_screen.dart';
 
 void main() => runApp(HomePage());
 
@@ -31,15 +34,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   PageController _pageController = PageController();
   int _currentIndex = 0;
   final List<String> _imageList = [
-   'assets/images/pdf.jpg',
+    'assets/images/pdf.jpg',
     'assets/images/Log_in.jpg',
-   'assets/images/pdf2.jpg'
+    'assets/images/pdf2.jpg'
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
         _currentIndex = (_pageController.page!.toInt() + 1) % _imageList.length;
@@ -62,83 +65,85 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Color(0xFFEAEAEA),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
 
-            SliverAppBar(actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 4.0),
-                child:IconButton(icon:Icon(Icons.settings),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Setting(),));;},),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 1.5),
-                child: IconButton(icon:Icon(Icons.notifications),onPressed: (){},),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
-                child: Icon(Icons.search),
-              ),
-              Expanded(child: Container(),),
-              Text("Eline Faramnd"),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: GestureDetector(child: CircleAvatar(backgroundColor: Color(0xFF399679)
-                  ,),onTap: (){
-                }
+              SliverAppBar(actions: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child:IconButton(icon:Icon(Icons.settings),onPressed: (){Get.to(Setting());},),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 1.5),
+                  child: IconButton(icon:Icon(Icons.notifications),onPressed: (){},),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: IconButton(icon:Icon(Icons.search),onPressed: (){Get.to(SearchPage());},),
+                ),
+                Expanded(child: Container(),),
+                Text("Eline Faramnd"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: GestureDetector(child: CircleAvatar(backgroundColor: Color(0xFF399679)
+                    ,),onTap: (){
+                  }
+                  ),
+                ),
+
+
+
+              ],
+                pinned: false,
+                floating: true,
+                snap: true, // Snap the app bar into view or out of view
+                forceElevated: innerBoxIsScrolled,
               ),
-
-
-
-            ],
-              pinned: false,
-              floating: true,
-              snap: true, // Snap the app bar into view or out of view
-              forceElevated: innerBoxIsScrolled,
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100.0, // Image height
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: _imageList.length,
-                  itemBuilder: (context, index) => Container(padding: EdgeInsets.all(8),
-                    child: ClipRRect(borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        _imageList[index],
-                        fit: BoxFit.cover,
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 100.0, // Image height
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: _imageList.length,
+                    itemBuilder: (context, index) => Container(padding: EdgeInsets.all(8),
+                      child: ClipRRect(borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          _imageList[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SliverPersistentHeader(
-              delegate: _SliverAppBarDelegate(
-                TabBar(indicatorColor: Color(0xFF399679),
-                  labelColor: Color(0xFF399679),
-                  controller: _tabController,
-                  tabs: [
-                    Tab(text: 'All'),
-                    Tab(text: 'cources'),
-                    Tab(text: 'EEE'),
-                  ],
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  TabBar(indicatorColor: Color(0xFF399679),
+                    labelColor: Color(0xFF399679),
+                    controller: _tabController,
+                    tabs: [
+                      Tab(text: 'All'),
+                      Tab(text: 'cources'),
+                      Tab(text: 'vedio'),
+                      Tab(text: 'doc'),
+                    ],
+                  ),
                 ),
+                pinned: true,
               ),
-              pinned: true,
-            ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            allCategory(),
-            Center(child: Text('Courses')),
-            Center(child: Text('EEE'))
-          ],
+            ];
+          },
+          body: TabBarView(
+            controller: _tabController,
+            children: [
+              allCategory(),
+              Cources(),
+              Vedio(),
+              documentation(),
+            ],
+          ),
         ),
-      ),
         bottomNavigationBar:
         NavigationBar(
           height: 50,

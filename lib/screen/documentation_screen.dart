@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Vedio extends StatefulWidget {
-  const Vedio({Key? key}) : super(key: key);
+class documentation extends StatefulWidget {
+  const documentation({Key? key}) : super(key: key);
 
   @override
-  State<Vedio> createState() => _CourcesState();
+  State<documentation> createState() => _CourcesState();
 }
 
-class _CourcesState extends State<Vedio> {
+class _CourcesState extends State<documentation> {
 
   List images =[
     "assets/images/pdf.jpg",
@@ -56,8 +56,8 @@ class _CourcesState extends State<Vedio> {
                       Padding(
                         padding: const EdgeInsets.only(top:8.0),
                         child: Container(height: 200,
-                          width: 100,
-                          child: Image.asset('assets/images/vedio.jpg',
+                          // width: 50,
+                          child: Image.asset('assets/images/pdf.jpg',height: 50,width: 50,
                           ),),
                       )
                     ],

@@ -24,8 +24,8 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(title: Text("Category"),backgroundColor: Kcolor,),
-      body: Container(
-        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisCount: 2), itemCount: category.length,itemBuilder: (context,i){
+      body: Container(padding: EdgeInsets.only(top: 8),
+        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisSpacing: 10,mainAxisSpacing: 30,crossAxisCount: 2), itemCount: category.length,itemBuilder: (context,i){
           return
             GestureDetector(
               onTap: (){
@@ -33,25 +33,25 @@ class _CategoryState extends State<Category> {
                   // images=index;
                 });
               },
-              child: Container(width:137,decoration: BoxDecoration(
+              child: Container(decoration: BoxDecoration(
                   color: Color(0xFFF8F8F7),
 
                   borderRadius: BorderRadius.circular(8)
-              ), height: 180,margin: EdgeInsets.only(left: 10,right: 15),
+              ), height: 180,margin: EdgeInsets.only(left: 0,right: 0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 18.0,top: 2.8),
+                      padding: const EdgeInsets.only(right: 0.0,top: 2.8),
                       child: Container(
                         height: 130,
-                        width: 120,
+                        //width: 120,
                         alignment: Alignment.center,
-                        margin:EdgeInsets.only(left:20,
+                        margin:EdgeInsets.only(left:0,
                           // right: index==images.length -1 ?20:0),
                         ),
                         // padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(color: Colors.black,
+                        decoration: BoxDecoration(color: Colors.transparent,
                             // color: index==selectedIndex?Colors.white.withOpacity(0.4):Color(0xFFC68FCE),
                             borderRadius: BorderRadius.circular(6),
                             image: DecorationImage(
@@ -64,19 +64,7 @@ class _CategoryState extends State<Category> {
 
                       ),
                     ),
-                    Text(category[i]["title"],style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
-                    Row(children: [
-                      Row(children: [
-                        Icon(Icons.auto_fix_high,color: Color(0xFF399679),size: 20,),
-                        Text("Author",style: TextStyle(color: Colors.grey),)
-                      ],),
-                      Spacer(),
-
-                      Row(children: [
-                        Text("pdf",style: TextStyle(color: Colors.grey),),
-                        Icon(Icons.picture_as_pdf,color: Color(0xFF399679),size: 20,),
-                      ],)
-                    ],)
+                    Text(category[i]["title"],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),

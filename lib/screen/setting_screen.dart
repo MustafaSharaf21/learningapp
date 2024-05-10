@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../data/http.dart';
+import 'login_screen.dart';
 import 'my_constants.dart';
 import 'profile/profile_screen.dart';
 
@@ -173,7 +174,7 @@ class _SettingState extends State<Setting> {
                                 snackPosition: SnackPosition.BOTTOM,
                                 backgroundColor: Colors.black,
                                 colorText: Colors.white);
-                            // Get.offAll(()=>LoginPage());
+                             Get.offAll(()=>LoginPage());
 
                           }else {
                             print(res);

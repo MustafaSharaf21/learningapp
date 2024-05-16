@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/screen/profile/profile.dart';
 import '../data/http.dart';
 import 'login_screen.dart';
 import 'my_constants.dart';
@@ -54,7 +55,7 @@ class _SettingState extends State<Setting> {
                   ),
                 ),
                 onTap:() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => profilepage(),));
                 }),
             GestureDetector(
                 child: Container(child: Row(

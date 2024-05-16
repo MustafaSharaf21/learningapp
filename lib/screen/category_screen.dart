@@ -25,7 +25,7 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(title: Text("Category"),backgroundColor: Kcolor,),
       body: Container(padding: EdgeInsets.only(top: 8),
-        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisSpacing: 10,mainAxisSpacing: 30,crossAxisCount: 2), itemCount: category.length,itemBuilder: (context,i){
+        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisSpacing: 5,mainAxisSpacing: 30,crossAxisCount: 3), itemCount: category.length,itemBuilder: (context,i){
           return
             GestureDetector(
               onTap: (){
@@ -43,25 +43,27 @@ class _CategoryState extends State<Category> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 0.0,top: 2.8),
-                      child: Container(
-                        height: 130,
-                        //width: 120,
-                        alignment: Alignment.center,
-                        margin:EdgeInsets.only(left:0,
-                          // right: index==images.length -1 ?20:0),
-                        ),
-                        // padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(color: Colors.transparent,
-                            // color: index==selectedIndex?Colors.white.withOpacity(0.4):Color(0xFFC68FCE),
-                            borderRadius: BorderRadius.circular(6),
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image:AssetImage( category[i]['image'])
-                            )
-                        ),
-                        // child:Image.asset( images[index],height: 140,width: 140,)
+                      child: SizedBox(height: 70,width: 70,
+                        child: Container(
+                          height: 130,
+                          //width: 120,
+                          alignment: Alignment.center,
+                          margin:EdgeInsets.only(left:0,
+                            // right: index==images.length -1 ?20:0),
+                          ),
+                          // padding: EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(color: Colors.transparent,
+                              // color: index==selectedIndex?Colors.white.withOpacity(0.4):Color(0xFFC68FCE),
+                              borderRadius: BorderRadius.circular(6),
+                              image: DecorationImage(scale: 0.3,
+                                  fit: BoxFit.cover,
+                                  image:AssetImage( category[i]['image'],)
+                              )
+                          ),
+                          // child:Image.asset( images[index],height: 140,width: 140,)
 
 
+                        ),
                       ),
                     ),
                     Text(category[i]["title"],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),

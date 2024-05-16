@@ -19,10 +19,7 @@ class HttpHelper{
       "Authorization": 'Bearer $token'
     });
   }
-  getData(
-
-      String url
-      )async {
+  getData(String url)async {
     try {
       var response =await http.get(Uri.parse('$baseurl$url'));
       if (response.statusCode==200||response.statusCode==201){

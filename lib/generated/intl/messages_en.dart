@@ -22,18 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Choose_Teacher_or_Student":
-            MessageLookupByLibrary.simpleMessage("Choose Teacher or Student"),
+        "Choose_Teacher_or_Student": MessageLookupByLibrary.simpleMessage(
+            "Choose Teacher or Student         "),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "Country": MessageLookupByLibrary.simpleMessage(
-            "Country                                            "),
+            "Country                                             "),
         "Date_of_birth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "Enter_a_name": MessageLookupByLibrary.simpleMessage("Enter a name"),
         "Enter_the_Password_Correctly": MessageLookupByLibrary.simpleMessage(
             "Enter the Password Correctly"),
-        "Favorite_specialization":
-            MessageLookupByLibrary.simpleMessage("Favorite specialization "),
+        "Favorite_specialization": MessageLookupByLibrary.simpleMessage(
+            "Favorite specialization             "),
+        "ForgetPassword":
+            MessageLookupByLibrary.simpleMessage("ForgetPassword?"),
         "Full_Name": MessageLookupByLibrary.simpleMessage("Full Name"),
         "Gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "If_you_dont_have_an_account": MessageLookupByLibrary.simpleMessage(
@@ -47,8 +49,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Re-enter Password"),
         "Teacher_or_Student": MessageLookupByLibrary.simpleMessage(
             "Do you want to Register as Teacher or Student ?"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "already_a_member":
             MessageLookupByLibrary.simpleMessage("I\'m already a member"),
+        "chating": MessageLookupByLibrary.simpleMessage("chating"),
+        "cources": MessageLookupByLibrary.simpleMessage("cources"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enter_a_password":
             MessageLookupByLibrary.simpleMessage("Enter a Password"),
@@ -56,11 +61,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter a valid Email"),
         "enter_an_email":
             MessageLookupByLibrary.simpleMessage("Enter an email"),
+        "favorite": MessageLookupByLibrary.simpleMessage("favorite"),
+        "home": MessageLookupByLibrary.simpleMessage("home"),
+        "library": MessageLookupByLibrary.simpleMessage("library"),
         "name": MessageLookupByLibrary.simpleMessage("Learning"),
         "password": MessageLookupByLibrary.simpleMessage("password"),
+        "pdf": MessageLookupByLibrary.simpleMessage("pdf"),
         "specialization":
             MessageLookupByLibrary.simpleMessage("specialization"),
         "titleLogin": MessageLookupByLibrary.simpleMessage("Login"),
-        "titleRegister": MessageLookupByLibrary.simpleMessage("Register")
+        "titleRegister": MessageLookupByLibrary.simpleMessage("Register"),
+        "vedio": MessageLookupByLibrary.simpleMessage("vedio")
       };
 }

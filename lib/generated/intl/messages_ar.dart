@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور بشكل صحيح"),
         "Favorite_specialization":
             MessageLookupByLibrary.simpleMessage("التخصص المفضل "),
+        "ForgetPassword":
+            MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور"),
         "Full_Name": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "Gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "If_you_dont_have_an_account":
@@ -47,8 +49,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إعادة إدخال كلمة المرور"),
         "Teacher_or_Student": MessageLookupByLibrary.simpleMessage(
             "هل تريد التسجيل كمدرس أو طالب؟"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "already_a_member":
             MessageLookupByLibrary.simpleMessage("أنا عضو بالفعل"),
+        "chating": MessageLookupByLibrary.simpleMessage("مشاركة"),
+        "cources": MessageLookupByLibrary.simpleMessage("المقرر التعليمي"),
         "email": MessageLookupByLibrary.simpleMessage("البريدالإلكتروني"),
         "enter_a_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
@@ -56,10 +61,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل بريد إلكتروني متاح"),
         "enter_an_email":
             MessageLookupByLibrary.simpleMessage("أدخل البريد الإلكتروني"),
+        "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
+        "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
+        "library": MessageLookupByLibrary.simpleMessage("المكتبة"),
         "name": MessageLookupByLibrary.simpleMessage("تعليم"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "pdf": MessageLookupByLibrary.simpleMessage("pdfملفات"),
         "specialization": MessageLookupByLibrary.simpleMessage("التخصص"),
         "titleLogin": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "titleRegister": MessageLookupByLibrary.simpleMessage("سجل دخول")
+        "titleRegister": MessageLookupByLibrary.simpleMessage("سجل دخول"),
+        "vedio": MessageLookupByLibrary.simpleMessage("فيديوهات")
       };
 }

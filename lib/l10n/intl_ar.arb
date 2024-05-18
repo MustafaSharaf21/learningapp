@@ -9,6 +9,7 @@
     "enter_a_valid_Email":"أدخل بريد إلكتروني متاح",
     "password":"كلمة المرور",
     "enter_a_password":"أدخل كلمة المرور",
+    "ForgetPassword":"هل نسيت كلمة المرور",
     "Password_characters":"كلمة المرور يجب أن تكون أكبر من ستة أحرف",
     "Login_with_Facebook_or_Google":"تسجيل الدخول باستخدام الفيسبوك أو جوجل",
     "If_you_dont_have_an_account":"إذا كنت لا تملك حساب",
@@ -27,6 +28,15 @@
     "Favorite_specialization":"التخصص المفضل ",
     "Date_of_birth":"تاريخ الميلاد",
     "Gender":"الجنس",
-    "already_a_member":"أنا عضو بالفعل"
+    "already_a_member":"أنا عضو بالفعل",
+
+    "all":"الكل",
+    "cources":"المقرر التعليمي",
+    "vedio":"فيديوهات",
+    "pdf":"pdfملفات",
+    "home":"الصفحة الرئيسية",
+    "favorite":"المفضلة",
+    "library" :"المكتبة" ,
+    "chating":"مشاركة"
  
 }

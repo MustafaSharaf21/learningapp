@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `ForgetPassword?`
+  String get ForgetPassword {
+    return Intl.message(
+      'ForgetPassword?',
+      name: 'ForgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password must be greater than six characters`
   String get Password_characters {
     return Intl.message(
@@ -170,10 +180,10 @@ class S {
     );
   }
 
-  /// `Choose Teacher or Student`
+  /// `Choose Teacher or Student         `
   String get Choose_Teacher_or_Student {
     return Intl.message(
-      'Choose Teacher or Student',
+      'Choose Teacher or Student         ',
       name: 'Choose_Teacher_or_Student',
       desc: '',
       args: [],
@@ -240,10 +250,10 @@ class S {
     );
   }
 
-  /// `Country                                            `
+  /// `Country                                             `
   String get Country {
     return Intl.message(
-      'Country                                            ',
+      'Country                                             ',
       name: 'Country',
       desc: '',
       args: [],
@@ -260,10 +270,10 @@ class S {
     );
   }
 
-  /// `Favorite specialization `
+  /// `Favorite specialization             `
   String get Favorite_specialization {
     return Intl.message(
-      'Favorite specialization ',
+      'Favorite specialization             ',
       name: 'Favorite_specialization',
       desc: '',
       args: [],
@@ -295,6 +305,86 @@ class S {
     return Intl.message(
       'I\'m already a member',
       name: 'already_a_member',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cources`
+  String get cources {
+    return Intl.message(
+      'cources',
+      name: 'cources',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `vedio`
+  String get vedio {
+    return Intl.message(
+      'vedio',
+      name: 'vedio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pdf`
+  String get pdf {
+    return Intl.message(
+      'pdf',
+      name: 'pdf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `home`
+  String get home {
+    return Intl.message(
+      'home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `favorite`
+  String get favorite {
+    return Intl.message(
+      'favorite',
+      name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `library`
+  String get library {
+    return Intl.message(
+      'library',
+      name: 'library',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `chating`
+  String get chating {
+    return Intl.message(
+      'chating',
+      name: 'chating',
       desc: '',
       args: [],
     );

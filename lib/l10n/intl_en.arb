@@ -10,25 +10,35 @@
    "enter_a_valid_Email":"Enter a valid Email",
    "password":"password",
    "enter_a_password":"Enter a Password",
+   "ForgetPassword":"ForgetPassword?",
    "Password_characters":"Password must be greater than six characters",
    "Login_with_Facebook_or_Google":"Login with Facebook or Google",
    "If_you_dont_have_an_account":"If you don't have an account",
 
    "titleRegister":"Register",
    "Teacher_or_Student":"Do you want to Register as Teacher or Student ?",
-   "Choose_Teacher_or_Student":"Choose Teacher or Student",
+   "Choose_Teacher_or_Student":"Choose Teacher or Student             ",
    "Full_Name":"Full Name",
    "Enter_a_name":"Enter a name",
    "Confirm_Password":"Confirm Password",
    "Reenter_Password":"Re-enter Password",
    "Enter_the_Password_Correctly":"Enter the Password Correctly",
    "Phone_Number":"Phone Number",
-   "Country":"Country                                            ",
+   "Country":"Country                                                ",
    "specialization":"specialization",
-   "Favorite_specialization":"Favorite specialization ",
+   "Favorite_specialization":"Favorite specialization                ",
    "Date_of_birth":"Date of birth",
    "Gender":"Gender",
-   "already_a_member":"I'm already a member"
+   "already_a_member":"I'm already a member",
+
+   "all":"All",
+   "cources":"cources",
+   "vedio":"vedio",
+   "pdf":"pdf",
+   "home":"home",
+   "favorite":"favorite",
+   "library" :"library" ,
+   "chating":"chating"
 
 
 

@@ -1,7 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/screen/profile/profile_screen.dart';
+
+import '../../data/http.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   static String id = " UpdateProfileScreen";
@@ -11,14 +17,14 @@ class UpdateProfileScreen extends StatefulWidget {
 
 class _EditImagePageState extends State<UpdateProfileScreen> {
 
-  XFile? _image;
-  final ImagePicker _picker = ImagePicker();
+  File? _image;
+  final  _picker = ImagePicker();
 
   Future<void> _pickImage(ImageSource source) async {
-    final XFile? selectedImage = await _picker.pickImage(source: source);
+    final selectedImage = await _picker.pickImage(source: source);
     if (selectedImage != null) {
       setState(() {
-        _image = selectedImage;
+        _image = File(selectedImage.path);
       });
     }
   }
@@ -134,13 +140,13 @@ class _EditImagePageState extends State<UpdateProfileScreen> {
                     SizedBox(child:  Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF399679)),
-                          onPressed: (){
-                          if (_image!=null&& phone_num.text.isNotEmpty){
-                            _updateProfile(File(_image!.path),
-                            phone_num.text);
-                          }else{
-                            print('Please select an image and enter your phone number');
-                          }
+                          onPressed: (){ _updatProfile(_image! ,
+                              phone_num.text);
+                          // if (_image!=null&& phone_num.text.isNotEmpty){
+                          //
+                          // }else{
+                          //   print('Please select an image and enter your phone number');
+                          // }
                           }, child: const Text("Save",style: TextStyle(color: Colors.white),) ,),
                         ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                             onPressed: (){}, child: const Text("cancel") ),
@@ -153,20 +159,49 @@ class _EditImagePageState extends State<UpdateProfileScreen> {
     )
         ));
   }
-  Future<void> _updateProfile(File image,String phone)async{
-    var uri = Uri.parse('http://192.168.43.63:8000/api/profile');
-    var request =http.MultipartRequest('Post',uri)..fields['mobile_number']=phone
-    ..files.add(await http.MultipartFile.fromPath('image',image.path));
-    var response =await request.send();
-    if(response.statusCode==200){
-      print('Profile updated successfully');
-    }else{
-      print('Profile update failed with status:${response.statusCode}');
+  // Future<void> _updateProfile(File image,String phone)async{
+  //   var uri = Uri.parse('http://192.168.43.63:8000/api/profile');
+  //   var request =http.MultipartRequest('Post',uri)..fields['mobile_number']=phone
+  //   ..files.add(await http.MultipartFile.fromPath('image',image.path));
+  //   var response =await request.send();
+  //   if(response.statusCode==200){
+  //     print('Profile updated successfully');
+  //   }else{
+  //     print('Profile update failed with status:${response.statusCode}');
+  //   }
+  // }
+  // @override
+  // void dispose(){
+  //   phone_num.dispose();
+  //   super.dispose();
+  // }
+  Future<void> _updatProfile(File image, String phone) async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://192.168.43.63:8000/api/profile'),
+    );
+   // request.headers['Authorization'] = 'Bearer $token';
+    request.fields['mobile_number'] = phone;
+    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+
+    var response = await request.send();
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      var responseData = await response.stream.bytesToString();
+      Map<String, dynamic> data = jsonDecode(responseData);
+      if (data.containsKey('data')) {
+        Get.snackbar(
+          'updated',
+          data['data'].toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black,
+          colorText: Colors.white,
+        );
+        Get.offAll(() => Profile());
+      } else {
+        print('Response does not contain "data" key: $data');
+      }
+    } else {
+      print('Error: ${response.statusCode} - ${response.reasonPhrase}');
     }
-  }
-  @override
-  void dispose(){
-    phone_num.dispose();
-    super.dispose();
   }
 }

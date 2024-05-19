@@ -12,6 +12,7 @@ import '../data/http.dart';
 import '../generated/l10n.dart';
 import 'foreger_password_screen.dart';
 import 'home_screen.dart';
+import 'profile/update_profile_screen.dart';
 import 'register1_screen.dart';
 
 
@@ -296,7 +297,7 @@ class _LoginPageState extends State<LoginPage>{
         );
         print(res);
         print(token);
-        Get.to(HomePage());
+        Get.to(UpdateProfileScreen());
       }else{
         print(res);
         Get.snackbar(

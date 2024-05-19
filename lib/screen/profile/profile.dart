@@ -43,8 +43,6 @@ class _profilepageState extends State<profilepage> {
                     itemCount: prof.length,
                     itemBuilder: (context, ind) =>
                     Container(padding: const EdgeInsets.all(8),
-                
-                
                       child: Column(
                         children: [
                           Stack(

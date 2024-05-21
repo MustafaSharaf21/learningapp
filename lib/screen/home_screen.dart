@@ -2,7 +2,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/setting_screen.dart';
 import 'allcategory_screen.dart';
 import 'cources_screen.dart';
@@ -84,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   child: IconButton(icon:Icon(Icons.search),onPressed: (){Get.to(SearchPage());},),
                 ),
                 Expanded(child: Container(),),
-                Text(S.of(context).Full_Name),
+                Text("Full_Name"),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(child: CircleAvatar(backgroundColor: Color(0xFF399679)
@@ -124,10 +123,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     labelColor: Color(0xFF399679),
                     controller: _tabController,
                     tabs: [
-                      Tab(text: S.of(context).all),
-                      Tab(text: S.of(context).cources),
-                      Tab(text: S.of(context).vedio),
-                      Tab(text: S.of(context).pdf),
+                      Tab(text: "all"),
+                      Tab(text:" cources"),
+                      Tab(text:" vedio"),
+                      Tab(text: "pdf"),
                     ],
                   ),
                 ),
@@ -157,10 +156,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             this._currentIndex=index;
           }),
           destinations: [
-            NavigationDestination(icon:const Icon(Icons.home,size: 20),selectedIcon:const Icon(Icons.home),label: S.of(context).home),
-            NavigationDestination(icon:const Icon(Icons.favorite,size: 20),selectedIcon:const Icon(Icons.favorite),label:S.of(context).favorite),
-            NavigationDestination(icon:const Icon(Icons.local_library_outlined,size: 20),selectedIcon:const Icon(Icons.local_library_outlined),label: S.of(context).library ),
-            NavigationDestination(icon:const Icon(Icons.chat,size: 20),selectedIcon:const Icon(Icons.chat),label: S.of(context).chating),
+            NavigationDestination(icon:const Icon(Icons.home,size: 20),selectedIcon:const Icon(Icons.home),label:" home"),
+            NavigationDestination(icon:const Icon(Icons.favorite,size: 20),selectedIcon:const Icon(Icons.favorite),label:"favorite"),
+            NavigationDestination(icon:const Icon(Icons.local_library_outlined,size: 20),selectedIcon:const Icon(Icons.local_library_outlined),label:" library" ),
+            NavigationDestination(icon:const Icon(Icons.chat,size: 20),selectedIcon:const Icon(Icons.chat),label:"chating"),
           ],
 
 

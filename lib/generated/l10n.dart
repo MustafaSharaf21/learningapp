@@ -180,10 +180,10 @@ class S {
     );
   }
 
-  /// `Choose Teacher or Student         `
+  /// `Choose Teacher or Student             `
   String get Choose_Teacher_or_Student {
     return Intl.message(
-      'Choose Teacher or Student         ',
+      'Choose Teacher or Student             ',
       name: 'Choose_Teacher_or_Student',
       desc: '',
       args: [],
@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `Country                                             `
+  /// `Country                                                `
   String get Country {
     return Intl.message(
-      'Country                                             ',
+      'Country                                                ',
       name: 'Country',
       desc: '',
       args: [],
@@ -270,10 +270,10 @@ class S {
     );
   }
 
-  /// `Favorite specialization             `
+  /// `Favorite specialization                `
   String get Favorite_specialization {
     return Intl.message(
-      'Favorite specialization             ',
+      'Favorite specialization                ',
       name: 'Favorite_specialization',
       desc: '',
       args: [],
@@ -380,10 +380,10 @@ class S {
     );
   }
 
-  /// `chating`
+  /// `chatting`
   String get chating {
     return Intl.message(
-      'chating',
+      'chatting',
       name: 'chating',
       desc: '',
       args: [],

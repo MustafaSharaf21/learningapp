@@ -8,7 +8,7 @@ class ProfileMenuWidget extends StatefulWidget {
     required this.icon,
     required this.onpress,
     this.endIcon = true,
-    this.textColor,
+    this.textColor, required this.height,
   });
   final String title;
   final String subtitle;
@@ -16,7 +16,7 @@ class ProfileMenuWidget extends StatefulWidget {
   final VoidCallback onpress;
   final bool endIcon;
   final Color? textColor;
-
+  final int height;
   @override
   State<ProfileMenuWidget> createState() => _ProfileMenuWidgetState();
 }
@@ -25,7 +25,6 @@ class _ProfileMenuWidgetState extends State<ProfileMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(width: 320,
-      height: 57,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),
 
         color: Color(0xD5E5E4E4),),

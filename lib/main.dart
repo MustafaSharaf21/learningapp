@@ -36,15 +36,16 @@ class _LearningAppState extends State<LearningApp> {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
+        Profile.id: (context) => Profile(),
         profilepage.id: (context) => profilepage(),
         RegisterPage.id: (context) => RegisterPage(),
         LoginPage.id: (context) => LoginPage(),
         HomePage.id:(context)=> HomePage(),
         SplashPage.id:(context)=> SplashPage(),
         Category.id:(context)=> Category(),
-        UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
+        //UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
       },
-      initialRoute:LoginPage.id,
+      initialRoute:RegisterPage.id,
       locale: Locale('en'),
       localizationsDelegates: [
                 S.delegate,

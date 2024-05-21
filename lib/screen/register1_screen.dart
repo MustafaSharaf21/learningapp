@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController idd = TextEditingController();
+  TextEditingController countryIdd = TextEditingController();
   bool secureText = true,
       secureText2 = true;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -45,67 +44,26 @@ class _RegisterPageState extends State<RegisterPage> {
   /*String? selectedGender;*/
   String? selectedRole;
   int? selectedRoleId;
+  int? countryId;
+  List<DropdownMenuItem<int>> countryItems = [];
+  Map<String, dynamic> countries = {};
+  int? selectedCountryId;
 
+  @override
+  void initState() {
+    super.initState();
+
+    fetchCountries();
+    _selectedSpecialist = _Specialties;
+    super.initState();
+  }
   TextEditingController phone = TextEditingController();
   TextEditingController country = TextEditingController();
   DateTime date = DateTime.now();
   String? selectedGender;
   List<String> genderList = ['male', 'female'];
   String? selectedCountry;
-  List<String> CountryList = [
-    'Afghanistan',
-    ' Albania',
-    ' Algeria',
-    ' Andorra',
-    ' Angola',
-    'Antigua and Barbuda',
-    ' Argentina',
-    'Armenia' 'Australia',
-    'Austria',
-    'Austrian Empire*',
-    ' Azerbaijan',
-    'Baden',
-    ' Bahamas',
-    'Bahrain',
-    'Bangladesh',
-    ' Barbados',
-    'Bavaria',
-    ' Belarus',
-    'Belgium',
-    'Belize',
-    'Benin (Dahomey)',
-    'Bolivia',
-    'Bosnia and Herzegovina',
-    'Botswana',
-    ' Brazil',
-    'Brunei',
-    ' Brunswick and Lüneburg',
-    ' Bulgaria',
-    'Burkina Faso (Upper Volta)',
-    'Burma',
-    'Burundi',
-    'CabonVerde',
-    ' Cambodia',
-    ' Cameroon',
-    ' Canada',
-    ' Cayman Islands',
-    'Central African Republic',
-    ' Central American Federation*',
-    ' Chad',
-    ' Chile',
-    'China',
-    ' Colombia',
-    'Comoros',
-    ' Congo Free State, The*',
-    'Costa Rica',
-    'Cote d’Ivoire ',
-    ' Croatia',
-    'Cuba',
-    'Cyprus',
-    'Czechia',
-    'Czechoslovakia'
-  ];
-
+  List<String> CountryList = [];
   static List<Specialist> _Specialties = [
     Specialist(id: 1, name: "Developer"),
     Specialist(id: 2, name: "UI"),
@@ -130,10 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _items = _Specialties.map((specialist) =>
       MultiSelectItem<Specialist>(specialist, specialist.name)).toList();
   List<Specialist> _selectedSpecialist = [];
-  void initState() {
-    _selectedSpecialist = _Specialties;
-    super.initState();
-  }
+
 
 // @override
 // void dispose(){
@@ -416,7 +371,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 Container(
-                  width: 325,
+                  width: 300,
                   height: 65,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
@@ -426,54 +381,44 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(left: 10, top: 5),
-                        child: Icon(Icons.location_city,
-                            color: Color(0xFF413F3F)),
+                        child: Icon(Icons.location_city, color: Color(0xFF413F3F)),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16, right: 20, top: 5),
-                        child: DropdownButton(
-                          borderRadius: BorderRadius.circular(30),
-                          underline:
-                          const Divider(thickness: 0, height: 0),
-                          icon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: Color(0xFF464241),
-                            size: 30,
-                          ),
-                          dropdownColor: Colors.white,
-                          hint: Text(
-                            S.of(context).Country,
-                            style: const TextStyle(
-                                fontSize: 15,
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5), // تعديل الحشوات
+                          child:DropdownButton<int>(
+                            borderRadius: BorderRadius.circular(30),
+                            underline: const Divider(thickness: 0, height: 0),
+                            icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
+                            dropdownColor: Color(0xFFB2CCC8),
+                            hint: Text(
+                              selectedCountry ?? S.of(context).Country,
+                              style: const TextStyle(
+                                fontSize: 16,
                                 color: Color(0xFF464241),
-                                fontFamily: 'Cairo'),
-                          ),
-                          items: CountryList.map(
-                                (item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.black,
-                                    fontFamily: 'Cairo'),
+                                fontFamily: 'Cairo',
                               ),
                             ),
-                          ).toList(),
-                          onChanged: (item) {
-                            setState(() {
-                              selectedCountry = item;
-                              // print( selectedGender);
-                            });
-                          },
-                          value: selectedCountry,
+                            items: countryItems,
+                            onChanged: (int? item) {
+                              setState(() {
+                                GetStorage().write('selectedCountryId', item);
+                                selectedCountry = countries['data'].firstWhere((c) => c['id'] == item)['name'];
+                                selectedCountryId=item;
+                                countryIdd.text=selectedCountryId.toString();
+                              });
+                              print('Selected country ID: $item');
+                              print('country id to back:$selectedCountryId');
+                              //sendSelectedCountryToBackend(item);
+                            },
+                            value: selectedCountryId,
+                            isExpanded: true,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(
+                ),const SizedBox(
                   height: 15,
                 ),
                 Container(
@@ -534,25 +479,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Column(
                         children: [
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              _selectDate();
-                            },
-                            icon: const Icon(
-                              Icons.calendar_month,
-                              color: Color(0xFF565555),
-                            ),
-                            label: Text(
-                              S.of(context).Date_of_birth,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Cairo',
+                          Container(width: 140,
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                _selectDate();
+                              },
+                              icon: const Icon(
+                                Icons.calendar_month,
+                                color: Color(0xFF565555),
                               ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Kcolor,
-                              minimumSize: const Size(50, 50),
+                              label: Text(
+                                S.of(context).Date_of_birth,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontFamily: 'Cairo',
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Kcolor,
+                                minimumSize: const Size(50, 50),
+                              ),
                             ),
                           ),
                           Text(
@@ -732,12 +679,16 @@ class _RegisterPageState extends State<RegisterPage> {
   // }
   signup() async {
     int? id = roles[selectedGender];
+    int?countryId=selectedCountryId;
+
     await HttpHelper.postData(url: 'register', body: {
       'name': full_Name.text,
       'email': email.text,
       'password': password.text,
       'confirm_password': confirmpassword.text,
-      'role_id': idd.text
+      'role_id': idd.text,
+      'country_id':countryIdd.text
+
     }).then((value) {
       Map<String, dynamic> res = jsonDecode(value.body);
       print(res);
@@ -793,6 +744,50 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
+  Future<void> fetchCountries() async {
+    final response = await http.get(
+      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      setState(() {
+        countries = jsonDecode(response.body);
+        countryItems = (countries['data'] as List)
+            .map((country) => DropdownMenuItem<int>(
+          value: country['id'],
+          child: Text(country['name']),
+        ))
+            .toList();
+      });
+    } else {
+      print('Error fetching countries');
+    }
+  }
+
+  // Future<void> sendSelectedCountryToBackend(int? countryId) async {
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse('http://192.168.43.63:8000/api/register'),
+  //       headers: {'Content-Type': 'application/json'},
+  //       body: jsonEncode({'countryId': countryId}),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       // Handle the response from the back-end
+  //       print('Selected country sent to back-end: $countryId');
+  //     } else {
+  //       print('Error sending selected country to back-end: ${response.statusCode} - ${response.body}');
+  //       throw Exception('Failed to send selected country to back-end');
+  //     }
+  //   } catch (e) {
+  //     print('Exception occurred: $e');
+  //     rethrow;
+  //   }
+  // }
+
 }
 class Specialist {
   final int id;

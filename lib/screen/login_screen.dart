@@ -8,10 +8,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/core/widgets/buildInputDecoration.dart';
 import 'package:learningapp/core/widgets/header_painater.dart';
+import 'package:learningapp/screen/profile/profile.dart';
 import '../data/http.dart';
 import '../generated/l10n.dart';
 import 'foreger_password_screen.dart';
 import 'home_screen.dart';
+import 'profile/profile_screen.dart';
 import 'profile/update_profile_screen.dart';
 import 'register1_screen.dart';
 
@@ -297,7 +299,7 @@ class _LoginPageState extends State<LoginPage>{
         );
         print(res);
         print(token);
-        Get.to(UpdateProfileScreen());
+        Get.to(profilepage());
       }else{
         print(res);
         Get.snackbar(

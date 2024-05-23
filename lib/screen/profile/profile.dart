@@ -48,7 +48,7 @@ class _profilepageState extends State<profilepage> {
                       width: 120,
                       height: 120,
                       child:ClipRRect(borderRadius: BorderRadius.circular(100),
-                          child: Image.network('http://192.168.43.63:8000/api/${prof['data']['image']}')
+                          child: Image.network(prof['data']['image'])
 //prof['data']['image']
                         //   Image (image:AssetImage('assets/images/profile.jpg'))
                       )
@@ -113,8 +113,6 @@ class _profilepageState extends State<profilepage> {
 
                             SizedBox(height: 14,),
 
-
-
                           ],
                         ),
 
@@ -124,10 +122,6 @@ class _profilepageState extends State<profilepage> {
             ],
           ),
         ),
-
-
-
-
 
     ));
   }

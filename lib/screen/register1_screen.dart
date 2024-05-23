@@ -35,6 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController confirmpassword = TextEditingController();
   TextEditingController idd = TextEditingController();
   TextEditingController countryIdd = TextEditingController();
+  TextEditingController SpeIdd = TextEditingController();
   bool secureText = true,
       secureText2 = true;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -46,15 +47,20 @@ class _RegisterPageState extends State<RegisterPage> {
   int? selectedRoleId;
   int? countryId;
   List<DropdownMenuItem<int>> countryItems = [];
+  List<DropdownMenuItem<int>> SpecializationItems = [];
   Map<String, dynamic> countries = {};
+  Map<String, dynamic> Specializations = {};
   int? selectedCountryId;
+  int? selectedSpecializeId;
 
   @override
   void initState() {
     super.initState();
 
     fetchCountries();
-    _selectedSpecialist = _Specialties;
+   // _selectedSpecialist = _Specialties;
+    super.initState();
+    fetchSpesialization();
     super.initState();
   }
   TextEditingController phone = TextEditingController();
@@ -63,31 +69,32 @@ class _RegisterPageState extends State<RegisterPage> {
   String? selectedGender;
   List<String> genderList = ['male', 'female'];
   String? selectedCountry;
+  String? selectedSpe;
   List<String> CountryList = [];
-  static List<Specialist> _Specialties = [
-    Specialist(id: 1, name: "Developer"),
-    Specialist(id: 2, name: "UI"),
-    Specialist(id: 3, name: "UX"),
-    Specialist(id: 4, name: "Front-end Flutter"),
-    Specialist(id: 5, name: "Front-end React"),
-    Specialist(id: 6, name: "Front-end AngularJs"),
-    Specialist(id: 7, name: "JavaScript"),
-    Specialist(id: 8, name: " CSS"),
-    Specialist(id: 9, name: "HTML"),
-    Specialist(id: 10, name: "Backend Python"),
-    Specialist(id: 11, name: "Backend Node.js"),
-    Specialist(id: 12, name: "Backend Laravel"),
-    Specialist(id: 13, name: "Backend Spring"),
-    Specialist(id: 14, name: "Backend PHP"),
-    Specialist(id: 15, name: "C++"),
-    Specialist(id: 16, name: "C#"),
-    Specialist(id: 17, name: "Java"),
-    Specialist(id: 18, name: "Dart"),
-  ];
+  // static List<Specialist> _Specialties = [
+  //   Specialist(id: 1, name: "Developer"),
+  //   Specialist(id: 2, name: "UI"),
+  //   Specialist(id: 3, name: "UX"),
+  //   Specialist(id: 4, name: "Front-end Flutter"),
+  //   Specialist(id: 5, name: "Front-end React"),
+  //   Specialist(id: 6, name: "Front-end AngularJs"),
+  //   Specialist(id: 7, name: "JavaScript"),
+  //   Specialist(id: 8, name: " CSS"),
+  //   Specialist(id: 9, name: "HTML"),
+  //   Specialist(id: 10, name: "Backend Python"),
+  //   Specialist(id: 11, name: "Backend Node.js"),
+  //   Specialist(id: 12, name: "Backend Laravel"),
+  //   Specialist(id: 13, name: "Backend Spring"),
+  //   Specialist(id: 14, name: "Backend PHP"),
+  //   Specialist(id: 15, name: "C++"),
+  //   Specialist(id: 16, name: "C#"),
+  //   Specialist(id: 17, name: "Java"),
+  //   Specialist(id: 18, name: "Dart"),
+  // ];
 
-  final _items = _Specialties.map((specialist) =>
-      MultiSelectItem<Specialist>(specialist, specialist.name)).toList();
-  List<Specialist> _selectedSpecialist = [];
+  // final _items = _Specialties.map((specialist) =>
+  //     MultiSelectItem<Specialist>(specialist, specialist.name)).toList();
+  // List<Specialist> _selectedSpecialist = [];
 
 
 // @override
@@ -422,52 +429,52 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 15,
                 ),
                 Container(
-                  width: 325,
+                  width: 300,
                   height: 65,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 5, top: 11),
-                    child: Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 15, bottom: 10),
-                          child: Icon(Icons.school_sharp,
-                              color: Color(0xFF413F3F)),
-                        ),
-                        MultiSelectDialogField(
-                          chipDisplay: MultiSelectChipDisplay.none(),
-                          items: _items,
-                          title: Text(S.of(context).specialization),
-                          searchable: true,
-                          selectedColor: Kcolor,
-                          buttonText: Text(
-                            S.of(context).Favorite_specialization,
-                            style: const TextStyle(
-                                fontSize: 15,
+                  child: Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10, top: 5),
+                        child: Icon( Icons.school_sharp, color: Color(0xFF413F3F)),
+                      ),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5), // تعديل الحشوات
+                          child:DropdownButton<int>(
+                            borderRadius: BorderRadius.circular(30),
+                            underline: const Divider(thickness: 0, height: 0),
+                            icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
+                            dropdownColor: Color(0xFFB2CCC8),
+                            hint: Text(
+                              selectedSpe ?? S.of(context).specialization,
+                              style: const TextStyle(
+                                fontSize: 16,
                                 color: Color(0xFF464241),
-                                fontFamily: 'Cairo'),
-
+                                fontFamily: 'Cairo',
+                              ),
+                            ),
+                            items: SpecializationItems,
+                            onChanged: (int? item) {
+                              setState(() {
+                                GetStorage().write('selectedCountryId', item);
+                                selectedSpe = Specializations['data'].firstWhere((c) => c['id'] == item)['name'];
+                                selectedSpecializeId=item;
+                                SpeIdd.text=selectedSpecializeId.toString();
+                              });
+                              print('Selected Specialize ID: $item');
+                              print('Specialize id to back:$selectedSpecializeId');
+//sendSelectedCountryToBackend(item);
+                            },
+                            value: selectedSpecializeId,
+                            isExpanded: true,
                           ),
-                          buttonIcon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: Color(0xFF464241),
-                            size: 30,
-                          ),
-                          onConfirm: (results) {
-                            setState(() {
-                              _selectedSpecialist = results.cast<Specialist>();
-                              for (var specialist in _selectedSpecialist) {
-                                print(specialist.id);  // Assuming 'name' is a property of 'Specialist'
-                              }
-                            });
-                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -766,27 +773,29 @@ class _RegisterPageState extends State<RegisterPage> {
       print('Error fetching countries');
     }
   }
+  Future<void> fetchSpesialization() async {
+    final response = await http.get(
+      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
 
-  // Future<void> sendSelectedCountryToBackend(int? countryId) async {
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('http://192.168.43.63:8000/api/register'),
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: jsonEncode({'countryId': countryId}),
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       // Handle the response from the back-end
-  //       print('Selected country sent to back-end: $countryId');
-  //     } else {
-  //       print('Error sending selected country to back-end: ${response.statusCode} - ${response.body}');
-  //       throw Exception('Failed to send selected country to back-end');
-  //     }
-  //   } catch (e) {
-  //     print('Exception occurred: $e');
-  //     rethrow;
-  //   }
-  // }
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      setState(() {
+        Specializations = jsonDecode(response.body);
+        SpecializationItems = (Specializations['data'] as List)
+            .map((Specialize) => DropdownMenuItem<int>(
+          value: Specialize['id'],
+          child: Text(Specialize['name']),
+        ))
+            .toList();
+      });
+    } else {
+      print('Error fetching countries');
+    }
+  }
+
 
 }
 class Specialist {
@@ -814,3 +823,32 @@ class Specialist {
                         'assets/images/next2.json', height: 150, width: 150,)
                   ),
                 ),*/
+// MultiSelectDialogField(
+// chipDisplay: MultiSelectChipDisplay.none(),
+// items: _items,
+// title: Text(S.of(context).specialization),
+// searchable: true,
+// selectedColor: Kcolor,
+// buttonText: Text(
+// S.of(context).Favorite_specialization,
+// style: const TextStyle(
+// fontSize: 15,
+// color: Color(0xFF464241),
+// fontFamily: 'Cairo'),
+//
+// ),
+// buttonIcon: const Icon(
+// Icons.arrow_drop_down,
+// color: Color(0xFF464241),
+// size: 30,
+// ),
+// onConfirm: (results) {
+// setState(() {
+// _selectedSpecialist = results.cast<Specialist>();
+// for (var specialist in _selectedSpecialist) {
+// print(specialist.id);  // Assuming 'name' is a property of 'Specialist'
+// }
+// });
+// },
+// ),
+

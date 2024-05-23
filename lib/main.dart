@@ -45,7 +45,7 @@ class _LearningAppState extends State<LearningApp> {
         Category.id:(context)=> Category(),
         //UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
       },
-      initialRoute:RegisterPage.id,
+      initialRoute:LoginPage.id,
       locale: Locale('en'),
       localizationsDelegates: [
                 S.delegate,

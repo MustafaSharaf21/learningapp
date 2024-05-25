@@ -299,7 +299,7 @@ class _LoginPageState extends State<LoginPage>{
         );
         print(res);
         print(token);
-        Get.to(profilepage());
+        Get.to(HomePage());
       }else{
         print(res);
         Get.snackbar(

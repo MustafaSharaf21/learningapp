@@ -1,13 +1,17 @@
 
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/screen/setting_screen.dart';
+import '../data/http.dart';
 import 'allcategory_screen.dart';
 import 'cources_screen.dart';
 import 'documentation_screen.dart';
 import 'saerch_screen.dart';
 import 'vedio_screen.dart';
+
 
 void main() => runApp(HomePage());
 
@@ -30,6 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+
   TabController? _tabController;
   PageController _pageController = PageController();
   int _currentIndex = 0;
@@ -166,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         )
     );
   }
+
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -190,6 +196,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
     return false;
   }
+
 }
 
 

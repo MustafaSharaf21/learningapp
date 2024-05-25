@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:learningapp/screen/profile/update_profile_screen.dart';
 import 'package:learningapp/screen/profile/widgets/profile_menu.dart';
 
@@ -11,144 +10,182 @@ import '../../data/http.dart';
 
 class profilepage extends StatefulWidget {
   static String id = "profilepage";
-  const profilepage({super.key});
+
+  const profilepage({Key? key}) : super(key: key);
 
   @override
-  State<profilepage> createState() => _profilepageState();
+  State<profilepage> createState() => _ProfilePageState();
 }
 
-class _profilepageState extends State<profilepage> {
-  Map <String,dynamic> prof={};
+class _ProfilePageState extends State<profilepage> {
+  Map<String, dynamic> prof = {};
+
   @override
   void initState() {
-
-      fetchUserProfile();
-
-
-    // TODO: implement initState
+    fetchUserProfile();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:Text('Profile'),
-        leading: IconButton(icon:Icon(Icons.arrow_back_ios),onPressed: (){},),
+        title: Text('Profile'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {},
+        ),
       ),
-      body:
-      SingleChildScrollView(
+      body: prof.isNotEmpty
+          ? SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(
                 children: [
                   SizedBox(
-                      width: 120,
-                      height: 120,
-                      child:ClipRRect(borderRadius: BorderRadius.circular(100),
-                          child: Image.network(prof['data']['image'])
-//prof['data']['image']
-                        //   Image (image:AssetImage('assets/images/profile.jpg'))
-                      )
+                    width: 120,
+                    height: 120,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.network(
+                        prof['data']['image'],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: Container(
-
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Color(0xFF399679),
                       ),
-                      child: const Icon(Icons.edit_outlined,size: 15,),
+                      child: const Icon(Icons.edit_outlined, size: 15),
                     ),
                   )
                 ],
               ),
-
-              const SizedBox(height: 10,),
-              Text("Eline Faramnd",style: TextStyle(fontFamily: 'Pacifico'),),
-              SizedBox(height: 10,),
-              SizedBox(width:150,child:  Container(
-
-                  child: ElevatedButton( style:ElevatedButton.styleFrom(backgroundColor: Color(
-                      0xFFEEF5F2).withOpacity(.9)),
-                      onPressed: ()=>Navigator.push(context, MaterialPageRoute
-                        (builder: (context) => UpdateProfileScreen(),)),
-                      child: const Text("Edit Profile",style: TextStyle(color: Color(0xFF399679)),) ))),
-              Container(
-                height: 10000,
-                child: prof.isNotEmpty?ListView.builder(
-                    itemCount: prof.length,
-                    itemBuilder: (context, ind) =>
-                    SingleChildScrollView(
-                      child: Container(padding: const EdgeInsets.all(8),
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 2.5,),
-                            const Divider(color: Color(0xC7EAEAEA),),
-                            const SizedBox(height: 5,),
-                            ProfileMenuWidget(title:"Name ",icon:Icons.person,onpress: (){}, subtitle:prof['data']['name'], height: 17,),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Email",icon:Icons.email,onpress: (){}, subtitle:prof['data']['email'], height: 57),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Phone",icon:Icons.phone,
-                              onpress: (){}, subtitle: prof['data']['mobile_number'], height: 57),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Gender",icon:Icons.wc,
-                              onpress: (){}, subtitle: prof['data']['gender'], height: 57),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Birth_Date",icon:Icons.celebration,
-                              onpress: (){}, subtitle: prof['data']['birth_date'], height: 57),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Country",icon:Icons.flag,
-                              onpress: (){}, subtitle: prof['data']['country']['name'], height: 57),
-                            SizedBox(height: 14,),
-                            ProfileMenuWidget(title:"Interesrts",icon:Icons.psychology,
-                                onpress: (){}, subtitle:  prof['data']['interests'].values.join(', '), height: 70),
-
-                            SizedBox(height: 14,),
-
-                          ],
-                        ),
-
-                      ),
-                    )):Center(child: CircularProgressIndicator(),),
+              const SizedBox(height: 10),
+              Text(
+                prof['data']['name'],
+                style: TextStyle(fontFamily: 'Pacifico'),
               ),
+              SizedBox(height: 10),
+              SizedBox(
+                width: 150,
+                child: Container(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFEEF5F2).withOpacity(.9),
+                    ),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdateProfileScreen(),
+                      ),
+                    ),
+                    child: const Text(
+                      "Edit Profile",
+                      style: TextStyle(color: Color(0xFF399679)),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+            Center(child: Column(children: [
+              ProfileMenuWidget(
+                title: "Name",
+                icon: Icons.person,
+                onpress: () {},
+                subtitle: prof['data']['name'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Email",
+                icon: Icons.email,
+                onpress: () {},
+                subtitle: prof['data']['email'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Phone",
+                icon: Icons.phone,
+                onpress: () {},
+                subtitle: prof['data']['mobile_number'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Gender",
+                icon: Icons.wc,
+                onpress: () {},
+                subtitle: prof['data']['gender'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Birth Date",
+                icon: Icons.celebration,
+                onpress: () {},
+                subtitle: prof['data']['birth_date'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Country",
+                icon: Icons.flag,
+                onpress: () {},
+                subtitle: prof['data']['country']['name'],
+                height: 57,
+              ),
+              const SizedBox(height: 14),
+              ProfileMenuWidget(
+                title: "Interests",
+                icon: Icons.psychology,
+                onpress: () {},
+                subtitle: prof['data']['interests'].values.join(', '),
+                height: 70,
+              ),
+              const SizedBox(height: 14),
+            ],),)
             ],
           ),
         ),
-
-    ));
+      )
+          : Center(child: CircularProgressIndicator()),
+    );
   }
 
   fetchUserProfile() async {
-    await http.get(Uri.parse(
-        'http://192.168.43.63:8000/api/profile'),
-        headers: {
-          'Authorization':'Bearer $token'
-        }
-    ).then((value) {
-
-     prof =jsonDecode(value.body);
-      print(prof['data']);
-      if(value.statusCode==200||value.statusCode==201){
+    try {
+      final response = await http.get(
+        Uri.parse('http://192.168.43.63:8000/api/profile'),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        setState(() {
+          prof = jsonDecode(response.body);
+        });
         Get.snackbar(
-            ' success',prof['data']['name'],
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.black,
-            colorText: Colors.white);
-
-
-      }else {
-        print('error');
+          'Success',
+          prof['data']['name'],
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.black,
+          colorText: Colors.white,
+        );
+      } else {
+        print('Error');
       }
-    });
+    } catch (e) {
+      print('Error: $e');
+    }
   }
-
 }
-//ee

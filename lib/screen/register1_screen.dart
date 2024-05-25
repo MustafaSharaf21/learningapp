@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:learningapp/screen/home_screen.dart';
@@ -36,6 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController idd = TextEditingController();
   TextEditingController countryIdd = TextEditingController();
   TextEditingController SpeIdd = TextEditingController();
+  TextEditingController birthDate = TextEditingController();
   bool secureText = true,
       secureText2 = true;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -58,53 +60,20 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState();
 
     fetchCountries();
-   // _selectedSpecialist = _Specialties;
+    // _selectedSpecialist = _Specialties;
     super.initState();
     fetchSpesialization();
     super.initState();
   }
   TextEditingController phone = TextEditingController();
   TextEditingController country = TextEditingController();
+  TextEditingController gender =TextEditingController();
   DateTime date = DateTime.now();
   String? selectedGender;
   List<String> genderList = ['male', 'female'];
   String? selectedCountry;
   String? selectedSpe;
   List<String> CountryList = [];
-  // static List<Specialist> _Specialties = [
-  //   Specialist(id: 1, name: "Developer"),
-  //   Specialist(id: 2, name: "UI"),
-  //   Specialist(id: 3, name: "UX"),
-  //   Specialist(id: 4, name: "Front-end Flutter"),
-  //   Specialist(id: 5, name: "Front-end React"),
-  //   Specialist(id: 6, name: "Front-end AngularJs"),
-  //   Specialist(id: 7, name: "JavaScript"),
-  //   Specialist(id: 8, name: " CSS"),
-  //   Specialist(id: 9, name: "HTML"),
-  //   Specialist(id: 10, name: "Backend Python"),
-  //   Specialist(id: 11, name: "Backend Node.js"),
-  //   Specialist(id: 12, name: "Backend Laravel"),
-  //   Specialist(id: 13, name: "Backend Spring"),
-  //   Specialist(id: 14, name: "Backend PHP"),
-  //   Specialist(id: 15, name: "C++"),
-  //   Specialist(id: 16, name: "C#"),
-  //   Specialist(id: 17, name: "Java"),
-  //   Specialist(id: 18, name: "Dart"),
-  // ];
-
-  // final _items = _Specialties.map((specialist) =>
-  //     MultiSelectItem<Specialist>(specialist, specialist.name)).toList();
-  // List<Specialist> _selectedSpecialist = [];
-
-
-// @override
-// void dispose(){
-//   full_Name.dispose();
-//   email.dispose();
-//   password.dispose();
-//   confirmpassword.dispose();
-//   super.dispose();
-// }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -577,6 +546,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     onChanged: (item) {
                                       setState(() {
                                         selectedGender = item;
+                                        gender.text=selectedGender.toString();
+                                        print('gender is : $selectedGender');
                                       });
                                     },
                                     value: selectedGender,
@@ -597,10 +568,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 GestureDetector(
                     onTap: () {
                       if (_formkey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return HomePage();
-                            }));
+                        signup();
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) {
+                        //       return HomePage();
+                        //     }));
                       }
                     },
                     child: Padding(
@@ -694,7 +666,12 @@ class _RegisterPageState extends State<RegisterPage> {
       'password': password.text,
       'confirm_password': confirmpassword.text,
       'role_id': idd.text,
-      'country_id':countryIdd.text
+      'country_id':countryIdd.text,
+      'specialization_id[]':SpeIdd.text,
+      'gender':gender.text,
+      'birth_date':birthDate.text,
+      'mobile_number':phone.text
+
 
     }).then((value) {
       Map<String, dynamic> res = jsonDecode(value.body);
@@ -722,21 +699,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       }
     });
-//   }
-//   Future<void> navigatorToRegister2() async{
-//   if(selectedGender!=null){
-//     int roleId=roles[selectedGender]!;
-//     Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage2(
-//       email: email.text,
-//       name: full_Name.text,
-//       pass: password.text,
-//       confirmpass: confirmpassword.text,
-//       //roleId: selectedRoleId,
-//     ),));
-//   }else{
-//     print('select the role please');
-//     }
-// }
+
   }
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
@@ -748,6 +711,8 @@ class _RegisterPageState extends State<RegisterPage> {
     if (_picked != null) {
       setState(() {
         date = _picked;
+        birthDate.text='${_picked.year}-${_picked.month.toString().padLeft(2,'0')}-${_picked.day.toString().padLeft(2,'0')}';
+        print(' birth_date:$date');
       });
     }
   }

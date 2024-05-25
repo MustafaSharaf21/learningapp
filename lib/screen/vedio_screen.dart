@@ -1,6 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:learningapp/screen/vedio_player_screen.dart';
+import '../data/http.dart';
+
 
 class Vedio extends StatefulWidget {
   const Vedio({Key? key}) : super(key: key);
@@ -10,60 +14,122 @@ class Vedio extends StatefulWidget {
 }
 
 class _CourcesState extends State<Vedio> {
-
-  List images =[
-    "assets/images/pdf.jpg",
-    "assets/images/pdf.jpg",
-    "assets/images/pdf.jpg",
-    "assets/images/pdf.jpg",
+  List<dynamic> videos = [];
+  List<String> videoUrls = [
+    'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
+    'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
+    // أضف المزيد من روابط الفيديوهات هنا...
   ];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchVideos();
+  }
+
+  Future<void> fetchVideos() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://192.168.43.63:8000/api/Home/Getvideos_tapbar'),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body)['data'] as List;
+        setState(() {
+          videos = data;
+          isLoading = false;
+        });
+      } else {
+        print('Error: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return
-      ListView.builder(scrollDirection: Axis.vertical,
-        itemCount: images.length,
-        itemBuilder: (context, index) =>
-            Padding(
-              padding: const EdgeInsets.only(top: 0,left: 20,right: 20,bottom: 20),
-              child: Container(height: 100,
-                decoration: BoxDecoration(border:Border.all(color: Colors.black12),borderRadius: BorderRadius.circular(17) )
-                ,child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8),
+    return Scaffold(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          final video = videos[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VideoPlayerPage(
+                videoUrl: videoUrls[index],
+                ),)
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20.0,bottom: 20,left: 20,top: 2),
+              child: Container(
+                height: 120,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(17),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                      Expanded(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(padding: EdgeInsets.only(left: 55),child: Text('Title',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600),)),
-                            SizedBox(height: 5,),
-                            Text('here we will put description',style: TextStyle(color: Colors.grey[600],fontSize: 12),),
+                            Text(
+                              video['name'],
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              'Type: ${video['type']}',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12,
+                              ),
+                            ),
                             Spacer(),
-                            Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                // SizedBox( height:20,width:20,child: ImageIcon(AssetImage("assets/images/vedio.jpg",))),
-                                Text("author"),
-                                SizedBox(width: MediaQuery.of(context).size.width*0.30,),
-
-                                // Icon(Icons.play_circle_outlined)
-                              ],
-                            )
+                            Text(
+                             ' ${video['url']}',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      Spacer(flex: 15,),
-                      Padding(
-                        padding: const EdgeInsets.only(top:8.0),
-                        child: Container(height: 200,
-                          width: 100,
-                          child: Image.asset('assets/images/vedio.jpg',
-                          ),),
-                      )
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Image.asset(
+                          'assets/images/vedio.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-      );
-  }}
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+//

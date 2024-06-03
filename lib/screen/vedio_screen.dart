@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:learningapp/screen/vedio_player_screen.dart';
 import '../data/http.dart';
@@ -18,7 +17,7 @@ class _CourcesState extends State<Vedio> {
   List<String> videoUrls = [
     'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
     'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
-    // أضف المزيد من روابط الفيديوهات هنا...
+
   ];
   bool isLoading = true;
 

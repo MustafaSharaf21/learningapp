@@ -51,7 +51,7 @@ class _ProfilePageState extends State<profilepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.network(
-                        prof['data']['image'],
+                        'http://192.168.43.63:8000' + prof['data']['image'],
                         fit: BoxFit.cover,
                       ),
                     ),

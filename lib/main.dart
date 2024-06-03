@@ -8,9 +8,11 @@ import 'package:learningapp/screen/profile/profile_screen.dart';
 import 'package:learningapp/screen/register1_screen.dart';
 import 'package:learningapp/screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:learningapp/screen/testMySelf/creat_questions.dart';
 
 import 'screen/category_screen.dart';
 import 'screen/profile/update_profile_screen.dart';
+import 'screen/testMySelf/test_myself.dart';
 
 
 
@@ -43,7 +45,8 @@ class _LearningAppState extends State<LearningApp> {
         HomePage.id:(context)=> HomePage(),
         SplashPage.id:(context)=> SplashPage(),
         Category.id:(context)=> Category(),
-        //UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
+       // CreatQuestion.id:(context)=> CreatQuestion(),
+        TestMySelf.id:(context)=> TestMySelf(),
       },
       initialRoute:LoginPage.id,
       locale: Locale('en'),

@@ -1,25 +1,28 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learningapp/core/constants.dart';
+import 'package:learningapp/data/models/course/cources.dart';
 import 'package:learningapp/screen/setting_screen.dart';
 import '../data/http.dart';
+import '../data/models/doc/doc.dart';
 import 'allcategory_screen.dart';
 import 'cources_screen.dart';
 import 'documentation_screen.dart';
 import 'saerch_screen.dart';
 import 'vedio_screen.dart';
-
+import 'package:http/http.dart' as http;
 
 void main() => runApp(HomePage());
 
 class HomePage extends StatelessWidget {
-  static String id = " HomePage";
+  static String id = "HomePage";
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -34,7 +37,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-
   TabController? _tabController;
   PageController _pageController = PageController();
   int _currentIndex = 0;
@@ -43,10 +45,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     'assets/images/Log_in.jpg',
     'assets/images/pdf2.jpg'
   ];
+  late Course course;
+  late Docs docs;
 
   @override
   void initState() {
     super.initState();
+    getAllCourse();
+    getAllDocs();
     _tabController = TabController(length: 4, vsync: this);
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
@@ -69,109 +75,219 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color(0xFFEAEAEA),
-        body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-
-              SliverAppBar(actions: [
+    return Scaffold(
+      backgroundColor: Color(0xFFEAEAEA),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              actions: [
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0),
-                  child:IconButton(icon:Icon(Icons.settings),onPressed: (){Get.to(Setting());},),
+                  child: IconButton(
+                    icon: Icon(Icons.settings),
+                    onPressed: () {
+                      Get.to(Setting());
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 1.5),
-                  child: IconButton(icon:Icon(Icons.notifications),onPressed: (){},),
+                  child: IconButton(
+                    icon: Icon(Icons.notifications),
+                    onPressed: () {},
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: IconButton(icon:Icon(Icons.search),onPressed: (){Get.to(SearchPage());},),
-                ),
-                Expanded(child: Container(),),
-                Text("Full_Name"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: GestureDetector(child: CircleAvatar(backgroundColor: Color(0xFF399679)
-                    ,),onTap: (){
-                  }
+                  child: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      Get.to(SearchPage());
+                    },
                   ),
                 ),
-
-
-
+                Expanded(
+                  child: Container(),
+                ),
+                Text("Eline"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: GestureDetector(
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xFF399679),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
               ],
-                pinned: false,
-                floating: true,
-                snap: true, // Snap the app bar into view or out of view
-                forceElevated: innerBoxIsScrolled,
-              ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 100.0, // Image height
-                  child: PageView.builder(
-                    controller: _pageController,
-                    itemCount: _imageList.length,
-                    itemBuilder: (context, index) => Container(padding: EdgeInsets.all(8),
-                      child: ClipRRect(borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          _imageList[index],
-                          fit: BoxFit.cover,
-                        ),
+              pinned: false,
+              floating: true,
+              snap: true,
+              forceElevated: innerBoxIsScrolled,
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 100.0,
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: _imageList.length,
+                  itemBuilder: (context, index) => Container(
+                    padding: EdgeInsets.all(8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        _imageList[index],
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
               ),
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  TabBar(indicatorColor: Color(0xFF399679),
-                    labelColor: Color(0xFF399679),
-                    controller: _tabController,
-                    tabs: [
-                      Tab(text: "all"),
-                      Tab(text:" cources"),
-                      Tab(text:" vedio"),
-                      Tab(text: "pdf"),
-                    ],
+            ),
+            SliverPersistentHeader(
+              delegate: _SliverAppBarDelegate(
+                TabBar(
+                  indicator: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Colors.transparent,
+                        width: 0,
+                      ),
+                    ),
                   ),
+                  labelColor: Color(0xFF399679),
+                  unselectedLabelColor: Colors.grey,
+                  controller: _tabController,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        width: 55,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Kcolor,width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                        child: Text("all"),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(width: 99,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Kcolor,width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+                        child: Text("courses"),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(width: 99,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Kcolor,width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        child: Text(
+                          "video",
+                          style: TextStyle(fontSize: 14), // تحديد حجم الكلمة هنا
+                        ),
+                      ),
+                    ),
+
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Kcolor,width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child: Text("pdf"),
+                      ),
+                    ),
+                  ],
                 ),
-                pinned: true,
               ),
-            ];
-          },
-          body: TabBarView(
-            controller: _tabController,
-            children: [
-              allCategory(),
-              Cources(),
-              Vedio(),
-              documentation(),
-            ],
-          ),
-        ),
-        bottomNavigationBar:
-        NavigationBar(
-          height: 50,
-          indicatorColor: Color(0xFF399679),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          //backgroundColor: Color(0xFFFDFCFC),
-          selectedIndex:_currentIndex,
-          onDestinationSelected: (index)=>setState(() {
-            this._currentIndex=index;
-          }),
-          destinations: [
-            NavigationDestination(icon:const Icon(Icons.home,size: 20),selectedIcon:const Icon(Icons.home),label:" home"),
-            NavigationDestination(icon:const Icon(Icons.favorite,size: 20),selectedIcon:const Icon(Icons.favorite),label:"favorite"),
-            NavigationDestination(icon:const Icon(Icons.local_library_outlined,size: 20),selectedIcon:const Icon(Icons.local_library_outlined),label:" library" ),
-            NavigationDestination(icon:const Icon(Icons.chat,size: 20),selectedIcon:const Icon(Icons.chat),label:"chating"),
+              pinned: true,
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            allCategory(),
+            Cources(course.data),
+            Vedio(),
+            documentation(docs.data),
           ],
-
-
-        )
+        ),
+      ),
+      bottomNavigationBar: NavigationBar(
+        height: 50,
+        indicatorColor: Color(0xFF399679),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) => setState(() {
+          _currentIndex = index;
+        }),
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home, size: 20),
+            selectedIcon: const Icon(Icons.home),
+            label: "home",
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.favorite, size: 20),
+            selectedIcon: const Icon(Icons.favorite),
+            label: "favorite",
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.local_library_outlined, size: 20),
+            selectedIcon: const Icon(Icons.local_library_outlined),
+            label: "library",
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.chat, size: 20),
+            selectedIcon: const Icon(Icons.chat),
+            label: "Test mySelf",
+          ),
+        ],
+      ),
     );
   }
 
+  Future<void> getAllCourse() async {
+    var response = await http.get(
+      Uri.parse('http://192.168.43.63:8000/api/course/show/1'),
+      headers: {
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200) {
+      setState(() {
+        course = Course.fromJson(json.decode(response.body));
+        print("Test ${course.data[0].name}");
+      });
+    }
+  }
+
+  Future<void> getAllDocs() async {
+    var response = await http.get(
+      Uri.parse('http://192.168.43.63:8000/api/Home/Getdocuments_tapbar'),
+      headers: {"Authorization": "Bearer $token"},
+    );
+    if (response.statusCode == 200) {
+      setState(() {
+        docs = Docs.fromJson(json.decode(response.body));
+        print("Test ${docs.data[0].name}");
+      });
+    }
+  }
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -186,8 +302,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new Container(
-      color: Colors.white,
+    return Container(
+      color: Colors.transparent,
       child: _tabBar,
     );
   }
@@ -196,7 +312,4 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
     return false;
   }
-
 }
-
-

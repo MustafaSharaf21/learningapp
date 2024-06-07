@@ -41,9 +41,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   PageController _pageController = PageController();
   int _currentIndex = 0;
   final List<String> _imageList = [
-    'assets/images/pdf.jpg',
-    'assets/images/Log_in.jpg',
-    'assets/images/pdf2.jpg'
+    'assets/images/advertisements.png',
+    'assets/images/advertisements.png',
+    'assets/images/advertisements.png'
   ];
   late Course course;
   late Docs docs;

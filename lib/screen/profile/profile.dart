@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
@@ -41,7 +40,8 @@ class _ProfilePageState extends State<profilepage> {
           ? SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(
                 children: [
@@ -51,7 +51,8 @@ class _ProfilePageState extends State<profilepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.network(
-                        'http://192.168.43.63:8000' + prof['data']['image'],
+                        'http://192.168.43.63:8000' +
+                            (prof['data']['image'] ?? ''),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -73,7 +74,7 @@ class _ProfilePageState extends State<profilepage> {
               ),
               const SizedBox(height: 10),
               Text(
-                prof['data']['name'],
+                prof['data']['name'] ?? '',
                 style: TextStyle(fontFamily: 'Pacifico'),
               ),
               SizedBox(height: 10),
@@ -82,7 +83,8 @@ class _ProfilePageState extends State<profilepage> {
                 child: Container(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFEEF5F2).withOpacity(.9),
+                      backgroundColor:
+                      Color(0xFFEEF5F2).withOpacity(.9),
                     ),
                     onPressed: () => Navigator.push(
                       context,
@@ -98,64 +100,75 @@ class _ProfilePageState extends State<profilepage> {
                 ),
               ),
               const SizedBox(height: 10),
-            Center(child: Column(children: [
-              ProfileMenuWidget(
-                title: "Name",
-                icon: Icons.person,
-                onpress: () {},
-                subtitle: prof['data']['name'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Email",
-                icon: Icons.email,
-                onpress: () {},
-                subtitle: prof['data']['email'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Phone",
-                icon: Icons.phone,
-                onpress: () {},
-                subtitle: prof['data']['mobile_number'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Gender",
-                icon: Icons.wc,
-                onpress: () {},
-                subtitle: prof['data']['gender'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Birth Date",
-                icon: Icons.celebration,
-                onpress: () {},
-                subtitle: prof['data']['birth_date'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Country",
-                icon: Icons.flag,
-                onpress: () {},
-                subtitle: prof['data']['country']['name'],
-                height: 57,
-              ),
-              const SizedBox(height: 14),
-              ProfileMenuWidget(
-                title: "Interests",
-                icon: Icons.psychology,
-                onpress: () {},
-                subtitle: prof['data']['interests'].values.join(', '),
-                height: 70,
-              ),
-              const SizedBox(height: 14),
-            ],),)
+              Center(
+                child: Column(
+                  children: [
+                    ProfileMenuWidget(
+                      title: "Name",
+                      icon: Icons.person,
+                      onpress: () {},
+                      subtitle: prof['data']['name'] ?? '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Email",
+                      icon: Icons.email,
+                      onpress: () {},
+                      subtitle: prof['data']['email'] ?? '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Phone",
+                      icon: Icons.phone,
+                      onpress: () {},
+                      subtitle: prof['data']['mobile_number'] ?? '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Gender",
+                      icon: Icons.wc,
+                      onpress: () {},
+                      subtitle: prof['data']['gender'] ?? '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Birth Date",
+                      icon: Icons.celebration,
+                      onpress: () {},
+                      subtitle: prof['data']['birth_date'] ?? '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Country",
+                      icon: Icons.flag,
+                      onpress: () {},
+                      subtitle: (prof['data']['country'] != null)
+                          ? prof['data']['country']['name'] ?? ''
+                          : '',
+                      height: 57,
+                    ),
+                    const SizedBox(height: 14),
+                    ProfileMenuWidget(
+                      title: "Interests",
+                      icon: Icons.psychology,
+                      onpress: () {},
+                      subtitle: (prof['data']['interests'] != null)
+                          ? prof['data']['interests']
+                          .values
+                          .where((v) => v != null)
+                          .join(', ')
+                          : '',
+                      height: 70,
+                    ),
+                    const SizedBox(height: 14),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -176,7 +189,7 @@ class _ProfilePageState extends State<profilepage> {
         });
         Get.snackbar(
           'Success',
-          prof['data']['name'],
+          prof['data']['name'] ?? 'Unknown',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.black,
           colorText: Colors.white,

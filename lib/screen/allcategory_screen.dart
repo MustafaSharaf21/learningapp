@@ -182,7 +182,7 @@ class _ExampleState extends State<allCategory> {
                                   randomcourses['image'] != null
                                       ? 'http://192.168.43.63:8000' +
                                       randomcourses['image']
-                                      : 'assets/images/default.jpg',
+                                      : 'assets/images/artificalIntelligence.png',
                                 ),
                               ),
                             ),
@@ -246,7 +246,7 @@ class _ExampleState extends State<allCategory> {
               final trendCourses = trendCountryCourses[index];
               final imageUrl = trendCourses['image'] != null
                   ? 'http://192.168.43.63:8000' + trendCourses['image']
-                  : 'assets/images/default.jpg';
+                  : 'assets/images/artificalIntelligence.png';
               return GestureDetector(
                 onTap: () {
                   setState(() {
@@ -280,7 +280,7 @@ class _ExampleState extends State<allCategory> {
                                 trendCourses['image'] != null
                                     ? 'http://192.168.43.63:8000' +
                                     trendCourses['image']
-                                    : 'assets/images/default.jpg',
+                                    : 'assets/images/artificalIntelligence.png',
                               ),
                             ),
                           ),

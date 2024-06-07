@@ -6,6 +6,7 @@ import 'dart:io';
 import '../../data/http.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
+  static String id = "UpdateProfileScreen";
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }

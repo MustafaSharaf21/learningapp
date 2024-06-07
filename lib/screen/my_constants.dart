@@ -106,6 +106,7 @@ import '../core/constants.dart';
 
 
 class myContents extends StatefulWidget {
+  static String id = "myContents";
   @override
   _MyComponentPageState createState() => _MyComponentPageState();
 }

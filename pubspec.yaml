@@ -39,6 +39,7 @@ dependencies:
   image_picker: ^1.1.0
   video_player: ^2.8.6
   youtube_player_flutter: ^9.0.1
+  flip_card: ^0.6.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -107,6 +108,7 @@ flutter:
     - assets/images/thinking.png
     - assets/images/Thinking face-bro.png
     - assets/images/High five-bro.png
+    - assets/images/advertisements.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

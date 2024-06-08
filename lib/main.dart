@@ -50,10 +50,10 @@ class _LearningAppState extends State<LearningApp> {
         UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
         TestMySelf.id:(context)=> TestMySelf(),
         myContents.id:(context)=> myContents(),
-        welcomeScreen.id:(context)=> TestMySelf(),
+        welcomeScreen.id:(context)=> welcomeScreen(),
 
       },
-      initialRoute:LoginPage.id,
+      initialRoute:welcomeScreen.id,
       locale: Locale('en'),
       localizationsDelegates: [
                 S.delegate,
@@ -67,4 +67,4 @@ class _LearningAppState extends State<LearningApp> {
     );
   }
 }
-//mmmm
+//eline

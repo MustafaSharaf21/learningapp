@@ -366,7 +366,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(30),
                             underline: const Divider(thickness: 0, height: 0),
                             icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
-                            dropdownColor: Color(0xFFB2CCC8),
+                            dropdownColor:const Color(0xFFB2CCC8),
                             hint: Text(
                               selectedCountry ?? S.of(context).Country,
                               style: const TextStyle(
@@ -382,6 +382,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 selectedCountry = countries['data'].firstWhere((c) => c['id'] == item)['name'];
                                 selectedCountryId=item;
                                 countryIdd.text=selectedCountryId.toString();
+                                print('');
+
                               });
                               print('Selected country ID: $item');
                               print('country id to back:$selectedCountryId');
@@ -394,7 +396,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                ),const SizedBox(
+                ),
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
@@ -417,7 +420,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(30),
                             underline: const Divider(thickness: 0, height: 0),
                             icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
-                            dropdownColor: Color(0xFFB2CCC8),
+                            dropdownColor:const Color(0xFFB2CCC8),
                             hint: Text(
                               selectedSpe ?? S.of(context).specialization,
                               style: const TextStyle(
@@ -436,7 +439,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               });
                               print('Selected Specialize ID: $item');
                               print('Specialize id to back:$selectedSpecializeId');
-//sendSelectedCountryToBackend(item);
+                              //sendSelectedCountryToBackend(item);
                             },
                             value: selectedSpecializeId,
                             isExpanded: true,
@@ -455,7 +458,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Column(
                         children: [
-                          Container(width: 140,
+                          SizedBox(
+                            width: 140,
                             child: ElevatedButton.icon(
                               onPressed: () {
                                 _selectDate();
@@ -569,10 +573,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     onTap: () {
                       if (_formkey.currentState!.validate()) {
                         signup();
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //       return HomePage();
-                        //     }));
+                         //Navigator.push(context,
+                           // MaterialPageRoute(builder: (context) {
+                            // return HomePage();
+                            // }));
                       }
                     },
                     child: Padding(
@@ -701,6 +705,7 @@ class _RegisterPageState extends State<RegisterPage> {
     });
 
   }
+
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
       context: context,
@@ -716,9 +721,10 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
+
   Future<void> fetchCountries() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
+      Uri.parse('http://192.168.43.226:8000/api/getCountries'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -730,7 +736,7 @@ class _RegisterPageState extends State<RegisterPage> {
         countryItems = (countries['data'] as List)
             .map((country) => DropdownMenuItem<int>(
           value: country['id'],
-          child: Text(country['name']),
+             child: Text(country['name']),
         ))
             .toList();
       });
@@ -740,7 +746,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchSpesialization() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
+      Uri.parse('http://192.168.43.226:8000/api/getSpecializations'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -752,7 +758,7 @@ class _RegisterPageState extends State<RegisterPage> {
         SpecializationItems = (Specializations['data'] as List)
             .map((Specialize) => DropdownMenuItem<int>(
           value: Specialize['id'],
-          child: Text(Specialize['name']),
+             child: Text(Specialize['name']),
         ))
             .toList();
       });
@@ -772,6 +778,9 @@ class Specialist {
     required this.name,
   });
 }
+
+
+
 /* GestureDetector(
                   onTap: () {
                     if (_formkey.currentState!.validate()) {

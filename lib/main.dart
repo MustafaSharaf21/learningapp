@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/home_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
@@ -16,9 +17,9 @@ import 'screen/profile/update_profile_screen.dart';
 import 'screen/testMySelf/test_myself.dart';
 import 'screen/welcome_screen.dart';
 
-
-
-void main() {
+GetStorage box = GetStorage();
+void main() async {
+  await GetStorage.init();
   runApp(const LearningApp());
 }
 
@@ -31,39 +32,37 @@ class LearningApp extends StatefulWidget {
 class _LearningAppState extends State<LearningApp> {
   @override
   Widget build(BuildContext context) {
+    print(box.read('token'));
     return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor:const  Color(0xFF399679
-          ),
+          seedColor: const Color(0xFF399679),
         ),
       ),
       debugShowCheckedModeBanner: false,
-      routes: {
-        Profile.id: (context) => Profile(),
-        profilepage.id: (context) => profilepage(),
-        RegisterPage.id: (context) => RegisterPage(),
-        LoginPage.id: (context) => LoginPage(),
-        HomePage.id:(context)=> HomePage(),
-        SplashPage.id:(context)=> SplashPage(),
-        Category.id:(context)=> Category(),
-        UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
-        TestMySelf.id:(context)=> TestMySelf(),
-        myContents.id:(context)=> myContents(),
-        welcomeScreen.id:(context)=> welcomeScreen(),
-
-      },
-      initialRoute:welcomeScreen.id,
+      // routes: {
+      //   Profile.id: (context) => Profile(),
+      //   profilepage.id: (context) => profilepage(),
+      //   RegisterPage.id: (context) => RegisterPage(),
+      //   LoginPage.id: (context) => LoginPage(),
+      //   MyHomePage.id: (context) => MyHomePage(),
+      //   SplashPage.id: (context) => SplashPage(),
+      //   Category.id: (context) => Category(),
+      //   UpdateProfileScreen.id: (context) => UpdateProfileScreen(),
+      //   TestMySelf.id: (context) => TestMySelf(),
+      //   myContents.id: (context) => myContents(),
+      //   welcomeScreen.id: (context) => welcomeScreen(),
+      // },
+      home: MyHomePage(),
+      initialRoute: welcomeScreen.id,
       locale: Locale('en'),
       localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-
-
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }

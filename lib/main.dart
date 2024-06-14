@@ -53,7 +53,7 @@ class _LearningAppState extends State<LearningApp> {
         welcomeScreen.id:(context)=> TestMySelf(),
 
       },
-      initialRoute:SplashPage.id,
+      initialRoute:LoginPage.id,
       locale: Locale('en'),
       localizationsDelegates: [
                 S.delegate,

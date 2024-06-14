@@ -66,7 +66,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             if(pageController!.page!<2){
               pageController?.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
             }else{
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
             }
           },
           text:pageController!.hasClients? pageController?.page==2?"Get Started":"Next":"Next",))

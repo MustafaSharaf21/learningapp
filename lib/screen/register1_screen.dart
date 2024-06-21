@@ -677,9 +677,10 @@ class _RegisterPageState extends State<RegisterPage> {
       Map<String, dynamic> res = jsonDecode(value.body);
       print(res);
       if (value.statusCode == 200 || value.statusCode == 201) {
-        token = res['data']['token'];
+        token = res['data']['user']['remember_token'];
         GetStorage _box = GetStorage();
         _box.write('token', token);
+        _box.write('role',res['data']['user']['role_id']);
         Get.snackbar(
             ' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,
@@ -718,7 +719,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchCountries() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
+      Uri.parse('http://192.168.1.6:8000/api/getCountries'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -740,7 +741,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchSpesialization() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
+      Uri.parse('http://192.168.1.6:8000/api/getSpecializations'),
       headers: {
         'Authorization': 'Bearer $token',
       },

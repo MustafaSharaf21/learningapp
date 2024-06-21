@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/screen/add_course_page/add_course_page.dart';
 import 'package:learningapp/screen/profile/profile.dart';
 import '../data/http.dart';
 import 'login_screen.dart';
@@ -23,7 +24,9 @@ class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text('Setting',style: TextStyle(color: Colors.white),),
         centerTitle: true,
         backgroundColor: Color(0xFF399679),
@@ -57,7 +60,34 @@ class _SettingState extends State<Setting> {
                 onTap:() {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => profilepage(),));
                 }),
-            GestureDetector(
+            box.read('role')!='2'?Container(): GestureDetector(
+
+                child: Container(child: Row(
+                  children: [
+                    Container(
+                        width:27,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100)
+                        ),child: Icon(Icons.add)),
+                    SizedBox(width: 10,),
+                    Text('Add course',style: TextStyle(color: Colors.black,fontSize: 18),),
+                  ],
+                ),
+                  width: 335,
+                  height: 50,
+                  margin: EdgeInsets.only(left: 12,top: 8,right: 12,),
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xD5E5E4E4)
+                  ),
+                ),
+                onTap:() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddCoursesPage(),));
+                }),
+            box.read('role')!='2'?Container(): GestureDetector(
                 child: Container(child: Row(
                   children: [
                     Container(

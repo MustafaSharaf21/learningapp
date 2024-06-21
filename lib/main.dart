@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:learningapp/data/http.dart';
 import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/home_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
@@ -17,8 +19,9 @@ import 'screen/testMySelf/test_myself.dart';
 import 'screen/welcome_screen.dart';
 
 
-
-void main() {
+// 5|rO7GS4vzYbVneVy9yB814vCGw3JwpE4jai44GeOH78da276f
+void main()async {
+  await GetStorage.init();
   runApp(const LearningApp());
 }
 
@@ -31,6 +34,8 @@ class LearningApp extends StatefulWidget {
 class _LearningAppState extends State<LearningApp> {
   @override
   Widget build(BuildContext context) {
+    print(box.read('role'));
+    print(box.read('token'));
     return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(

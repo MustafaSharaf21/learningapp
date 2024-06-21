@@ -15,24 +15,29 @@ import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
 
+<<<<<<< HEAD
+=======
+// void main() => runApp(HomePage());
+>>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
 
-class HomePage extends StatelessWidget {
-  static String id = "HomePage";
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
+// class HomePage extends StatelessWidget {
+//   static String id = "HomePage";
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: MyHomePage(),
+//     );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
+  static String id = "HomePage";
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
@@ -44,15 +49,24 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     'assets/images/advertisements.png',
     'assets/images/advertisements.png'
   ];
+<<<<<<< HEAD
   late Course course;
   late Docs docs;
   bool courseLoading=true;
   bool docsLoading=true;
+=======
+  Map<String, dynamic> course = {};
+  Map<String, dynamic> docs = {};
+
+>>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
   @override
   void initState() {
     getAllCourse();
     getAllDocs();
+<<<<<<< HEAD
     super.initState();
+=======
+>>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
 
     _tabController = TabController(length: 4, vsync: this);
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
@@ -166,47 +180,50 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       child: Container(
                         width: 55,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Kcolor,width: 1.5),
+                          border: Border.all(color: Kcolor, width: 1.5),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 7),
                         child: Text("all"),
                       ),
                     ),
                     Tab(
-                      child: Container(width: 99,
+                      child: Container(
+                        width: 99,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Kcolor,width: 1.5),
+                          border: Border.all(color: Kcolor, width: 1.5),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 9, vertical: 8),
                         child: Text("courses"),
                       ),
                     ),
                     Tab(
-                      child: Container(width: 99,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Kcolor,width: 1.5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        child: Text(
-                          "video",
-                          style: TextStyle(fontSize: 14), // تحديد حجم الكلمة هنا
-                        ),
-                      ),
-                    ),
-
-                    Tab(
                       child: Container(
+                        width: 99,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Kcolor,width: 1.5),
+                          border: Border.all(color: Kcolor, width: 1.5),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        child: Text(
+                          "video",
+                          style:
+                              TextStyle(fontSize: 14), // تحديد حجم الكلمة هنا
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Kcolor, width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                         child: Text("pdf"),
                       ),
                     ),
@@ -221,10 +238,24 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           controller: _tabController,
           children: [
             allCategory(),
+<<<<<<< HEAD
             courseLoading==true?Center(child: CircularProgressIndicator(),):
             Cources(course.data),
             Vedio(),
             docsLoading==true?Center(child: CircularProgressIndicator(),): documentation(docs.data),
+=======
+            courseLoading == true
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Cources(course['data']),
+            Vedio(),
+            // loadingDocs == true
+            //     ? Center(
+            //         child: CircularProgressIndicator(),
+            //       )
+            //     : documentation(docs['date']),
+>>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
           ],
         ),
       ),
@@ -263,6 +294,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
 
+<<<<<<< HEAD
   Future<void> getAllCourse() async {
     var response = await http.get(
       Uri.parse('http://192.168.1.6:8000/api/course/show/1'),
@@ -293,6 +325,40 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         print("Test ${docs.data[0].name}");
       });
     }
+=======
+  bool courseLoading = true;
+  Future getAllCourse() async {
+    await HttpHelper.gettData(
+      url: 'Home/Getcourses_tapbar',
+    ).then((value) {
+      if (value.statusCode == 200) {
+        setState(() {
+          course = jsonDecode(value.body);
+          print("Test ${value.body}");
+        });
+        setState(() {
+          courseLoading = false;
+        });
+      }
+    });
+  }
+
+  bool loadingDocs = true;
+  Future getAllDocs() async {
+    await HttpHelper.gettData(
+      url: 'Home/Getdocuments_tapbar',
+    ).then((value) {
+      if (value.statusCode == 200) {
+        setState(() {
+          docs = jsonDecode(value.body);
+          // print("Test ${docs['data'][0].name}");
+        });
+        setState(() {
+          loadingDocs = false;
+        });
+      }
+    });
+>>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
   }
 }
 
@@ -307,7 +373,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => _tabBar.preferredSize.height;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       color: Colors.transparent,
       child: _tabBar,

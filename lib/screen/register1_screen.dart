@@ -689,7 +689,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
         print(res);
         print(token);
-        Get.to((HomePage()));
+        Get.to((MyHomePage()));
       } else {
         print(res);
         Get.snackbar(

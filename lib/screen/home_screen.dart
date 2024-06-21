@@ -15,10 +15,9 @@ import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
 
-<<<<<<< HEAD
-=======
+
 // void main() => runApp(HomePage());
->>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
+
 
 // class HomePage extends StatelessWidget {
 //   static String id = "HomePage";
@@ -49,24 +48,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     'assets/images/advertisements.png',
     'assets/images/advertisements.png'
   ];
-<<<<<<< HEAD
+
   late Course course;
   late Docs docs;
   bool courseLoading=true;
   bool docsLoading=true;
-=======
+
   Map<String, dynamic> course = {};
   Map<String, dynamic> docs = {};
 
->>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
   @override
   void initState() {
     getAllCourse();
     getAllDocs();
-<<<<<<< HEAD
     super.initState();
-=======
->>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
+
 
     _tabController = TabController(length: 4, vsync: this);
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
@@ -238,12 +234,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           controller: _tabController,
           children: [
             allCategory(),
-<<<<<<< HEAD
             courseLoading==true?Center(child: CircularProgressIndicator(),):
             Cources(course.data),
             Vedio(),
             docsLoading==true?Center(child: CircularProgressIndicator(),): documentation(docs.data),
-=======
+
             courseLoading == true
                 ? Center(
                     child: CircularProgressIndicator(),
@@ -255,7 +250,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             //         child: CircularProgressIndicator(),
             //       )
             //     : documentation(docs['date']),
->>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
           ],
         ),
       ),
@@ -294,7 +288,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
 
-<<<<<<< HEAD
+
   Future<void> getAllCourse() async {
     var response = await http.get(
       Uri.parse('http://192.168.1.6:8000/api/course/show/1'),
@@ -325,7 +319,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         print("Test ${docs.data[0].name}");
       });
     }
-=======
   bool courseLoading = true;
   Future getAllCourse() async {
     await HttpHelper.gettData(
@@ -358,7 +351,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         });
       }
     });
->>>>>>> ed6238242aad5b0ebf252ce9435b2024f26ef421
   }
 }
 

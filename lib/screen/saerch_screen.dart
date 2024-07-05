@@ -509,7 +509,7 @@ class _SearchBarState extends State<SearchBar> {
           children: <Widget>[
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding:const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(10),
@@ -518,11 +518,11 @@ class _SearchBarState extends State<SearchBar> {
                   controller: _controller,
                   decoration: InputDecoration(
                     hintText: 'Search Here',
-                    icon: Icon(Icons.search),
+                    icon:const Icon(Icons.search),
                     suffixIcon: _controller.text.isEmpty
                         ? null
                         : GestureDetector(
-                      child: Icon(Icons.close),
+                      child:const Icon(Icons.close),
                       onTap: () {
                         _controller.clear();
                         setState(() {});
@@ -537,7 +537,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.filter_list),
+              icon:const Icon(Icons.filter_list),
               onPressed: () {
                 Get.to(()=>Filtering());
               },

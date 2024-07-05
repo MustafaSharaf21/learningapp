@@ -51,7 +51,7 @@ class _ProfilePageState extends State<profilepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.network(
-                        'http://192.168.43.63:8000' +
+                        'http://192.168.186.128:8000' +
                             (prof['data']['image'] ?? ''),
                         fit: BoxFit.cover,
                       ),
@@ -65,7 +65,7 @@ class _ProfilePageState extends State<profilepage> {
                       height: 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Color(0xFF399679),
+                        color: const Color(0xFF399679),
                       ),
                       child: const Icon(Icons.edit_outlined, size: 15),
                     ),
@@ -173,14 +173,14 @@ class _ProfilePageState extends State<profilepage> {
           ),
         ),
       )
-          : Center(child: CircularProgressIndicator()),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
   fetchUserProfile() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/profile'),
+        Uri.parse('http://192.168.118.128:8000/api/profile'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

@@ -9,8 +9,10 @@ import 'package:learningapp/screen/setting_screen.dart';
 import '../data/http.dart';
 import '../data/models/doc/doc.dart';
 import 'allcategory_screen.dart';
+import 'chating_screen.dart';
 import 'cources_screen.dart';
 import 'documentation_screen.dart';
+import 'live_screen.dart';
 import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
@@ -47,6 +49,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   ];
   late Course course;
   late Docs docs;
+  bool isLoadingDocs=true;
+  bool isLoadingCourses=true;
 
   @override
   void initState() {
@@ -54,12 +58,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     getAllCourse();
     getAllDocs();
     _tabController = TabController(length: 4, vsync: this);
-    Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
         _currentIndex = (_pageController.page!.toInt() + 1) % _imageList.length;
         _pageController.animateToPage(
           _currentIndex,
-          duration: Duration(milliseconds: 350),
+          duration:const  Duration(milliseconds: 350),
           curve: Curves.easeIn,
         );
       }
@@ -76,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEAEAEA),
+      backgroundColor: const Color(0xFFEAEAEA),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -85,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0),
                   child: IconButton(
-                    icon: Icon(Icons.settings),
+                    icon:const  Icon(Icons.settings),
                     onPressed: () {
                       Get.to(Setting());
                     },
@@ -94,14 +98,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Padding(
                   padding: const EdgeInsets.only(right: 1.5),
                   child: IconButton(
-                    icon: Icon(Icons.notifications),
+                    icon:const Icon(Icons.notifications),
                     onPressed: () {},
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: IconButton(
-                    icon: Icon(Icons.search),
+                    icon:const Icon(Icons.search),
                     onPressed: () {
                       Get.to(SearchPage());
                     },
@@ -110,11 +114,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Expanded(
                   child: Container(),
                 ),
-                Text("Eline"),
+                const Text("Eline"),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
-                    child: CircleAvatar(
+                    child:const CircleAvatar(
                       backgroundColor: Color(0xFF399679),
                     ),
                     onTap: () {},
@@ -133,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   controller: _pageController,
                   itemCount: _imageList.length,
                   itemBuilder: (context, index) => Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
@@ -148,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             SliverPersistentHeader(
               delegate: _SliverAppBarDelegate(
                 TabBar(
-                  indicator: BoxDecoration(
+                  indicator:const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
                         color: Colors.transparent,
@@ -156,10 +160,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  labelColor: Color(0xFF399679),
+                  labelColor:const Color(0xFF399679),
                   unselectedLabelColor: Colors.grey,
                   controller: _tabController,
-                  labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                  labelPadding:const EdgeInsets.symmetric(horizontal: 8.0),
                   tabs: [
                     Tab(
                       child: Container(
@@ -169,8 +173,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-                        child: Text("all"),
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                        child:const Text("all"),
                       ),
                     ),
                     Tab(
@@ -180,8 +184,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-                        child: Text("courses"),
+                        const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+                        child:const Text("courses"),
                       ),
                     ),
                     Tab(
@@ -190,8 +194,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           border: Border.all(color: Kcolor,width: 1.5),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        child: Text(
+                        padding:const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        child:const Text(
                           "video",
                           style: TextStyle(fontSize: 14), // تحديد حجم الكلمة هنا
                         ),
@@ -205,8 +209,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                        child: Text("pdf"),
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child:const Text("pdf"),
                       ),
                     ),
                   ],
@@ -216,19 +220,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ),
           ];
         },
-        body: TabBarView(
+        body:isLoadingCourses ||isLoadingDocs
+        ? const Center(child: CircularProgressIndicator(),)
+        :TabBarView(
           controller: _tabController,
           children: [
-            allCategory(),
+            const allCategory(),
             Cources(course.data),
-            Vedio(),
+            const Vedio(),
             documentation(docs.data),
           ],
         ),
       ),
       bottomNavigationBar: NavigationBar(
         height: 50,
-        indicatorColor: Color(0xFF399679),
+        indicatorColor: const Color(0xFF399679),
         backgroundColor: Colors.white,
         elevation: 0,
         selectedIndex: _currentIndex,
@@ -236,25 +242,42 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           _currentIndex = index;
         }),
         destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home, size: 20),
-            selectedIcon: const Icon(Icons.home),
+          const NavigationDestination(
+            icon:  Icon(Icons.home, size: 20),
+            selectedIcon:  Icon(Icons.home),
             label: "home",
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.favorite, size: 20),
-            selectedIcon: const Icon(Icons.favorite),
+          const NavigationDestination(
+            icon:  Icon(Icons.favorite, size: 20),
+            selectedIcon:  Icon(Icons.favorite),
             label: "favorite",
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.local_library_outlined, size: 20),
-            selectedIcon: const Icon(Icons.local_library_outlined),
+          const NavigationDestination(
+            icon:  Icon(Icons.local_library_outlined, size: 20),
+            selectedIcon: Icon(Icons.local_library_outlined),
             label: "library",
           ),
           NavigationDestination(
-            icon: const Icon(Icons.chat, size: 20),
-            selectedIcon: const Icon(Icons.chat),
-            label: "Test mySelf",
+            icon:
+            IconButton(onPressed:() {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const ChattingScreen(),));},
+              icon:const Icon(Icons.chat, size:20),
+            ),
+            selectedIcon:const Icon(Icons.chat),
+            label: "Chatting",
+
+          ),
+          NavigationDestination(
+            icon:
+                 IconButton(onPressed:() {
+                          Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => const LiveScreen(),));},
+                          icon:const Icon(Icons.video_call_sharp, size:20),
+                          ),
+            selectedIcon:const Icon(Icons.video_call_sharp),
+            label: "Live",
+
           ),
         ],
       ),
@@ -262,28 +285,23 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   Future<void> getAllCourse() async {
-    var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/course/show/1'),
-      headers: {
-        "Authorization": "Bearer $token",
-      },
-    );
+
+    var response = await HttpHelper.gettData(url: 'course/show/1');
     if (response.statusCode == 200) {
       setState(() {
         course = Course.fromJson(json.decode(response.body));
+        isLoadingCourses=false;
         print("Test ${course.data[0].name}");
       });
     }
   }
 
   Future<void> getAllDocs() async {
-    var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/Home/Getdocuments_tapbar'),
-      headers: {"Authorization": "Bearer $token"},
-    );
+    var response = await HttpHelper.gettData(url: 'Home/Getdocuments_tapbar');
     if (response.statusCode == 200) {
       setState(() {
         docs = Docs.fromJson(json.decode(response.body));
+        isLoadingDocs=false;
         print("Test ${docs.data[0].name}");
       });
     }

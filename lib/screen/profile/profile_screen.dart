@@ -101,7 +101,7 @@ class _ProfileState extends State<Profile> {
   }
   fetchUserProfile() async {
     await http.get(Uri.parse(
-        'http://192.168.43.63:8000/api/profile'),
+        'http://192.168.118.128:8000/api/profile'),
         headers: {
 
           'Authorization':'Bearer $token'

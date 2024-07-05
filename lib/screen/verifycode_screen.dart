@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import 'resetpassword_screen.dart';
+
 class VerifyCode extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   static String id = " ForgetPasswordPage";
@@ -9,13 +8,13 @@ class VerifyCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Verification Code ',style: TextStyle(
+        title:const Text('Verification Code ',style: TextStyle(
             color: Colors.grey
         )),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body:const Padding(
+        padding:  EdgeInsets.all(16.0),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.stretch,

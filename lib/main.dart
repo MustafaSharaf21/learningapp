@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/generated/l10n.dart';
+import 'package:learningapp/screen/chating_screen.dart';
 import 'package:learningapp/screen/home_screen.dart';
+import 'package:learningapp/screen/live_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
 import 'package:learningapp/screen/profile/profile.dart';
 import 'package:learningapp/screen/profile/profile_screen.dart';
@@ -34,28 +36,29 @@ class _LearningAppState extends State<LearningApp> {
     return GetMaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor:const  Color(0xFF399679
-          ),
+          seedColor:const  Color(0xFF399679),
         ),
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        Profile.id: (context) => Profile(),
-        profilepage.id: (context) => profilepage(),
-        RegisterPage.id: (context) => RegisterPage(),
+        Profile.id: (context) => const Profile(),
+        profilepage.id: (context) => const profilepage(),
+        RegisterPage.id: (context) => const RegisterPage(),
         LoginPage.id: (context) => LoginPage(),
         HomePage.id:(context)=> HomePage(),
-        SplashPage.id:(context)=> SplashPage(),
-        Category.id:(context)=> Category(),
+        SplashPage.id:(context)=> const SplashPage(),
+        Category.id:(context)=> const Category(),
         UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
-        TestMySelf.id:(context)=> TestMySelf(),
+        TestMySelf.id:(context)=> const TestMySelf(),
         myContents.id:(context)=> myContents(),
-        welcomeScreen.id:(context)=> welcomeScreen(),
+        welcomeScreen.id:(context)=> const welcomeScreen(),
+        LiveScreen.id: (context) =>const LiveScreen(),
+        ChattingScreen.id: (context) =>const ChattingScreen(),
 
       },
       initialRoute:welcomeScreen.id,
-      locale: Locale('en'),
-      localizationsDelegates: [
+      locale: const Locale('en'),
+      localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
@@ -67,4 +70,3 @@ class _LearningAppState extends State<LearningApp> {
     );
   }
 }
-//eline

@@ -32,7 +32,7 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
     }
 
     // URL لواجهة برمجة التطبيقات الخاصة بك
-    var uri = Uri.parse('http://192.168.43.63:8000/api/profile');
+    var uri = Uri.parse('http://192.168.118.128:8000/api/profile');
     var request = http.MultipartRequest('POST', uri)
       ..headers['Authorization'] = 'Bearer$token' // إضافة رأس التوثيق
       ..fields['mobile_number'] = phoneController.text // حقل رقم الجوال

@@ -128,7 +128,7 @@ class _MyComponentPageState extends State<myContents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Content', style: TextStyle(color: Colors.black)),
+        title: const Text('My Content', style: TextStyle(color: Colors.black)),
         backgroundColor: Kcolor,
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -143,7 +143,7 @@ class _MyComponentPageState extends State<myContents> {
                 value: 'select_all',
                 child: Text('select all'),
               ),
-              PopupMenuItem<String>(
+              const PopupMenuItem<String>(
                 value: 'delete',
                 child: Text('delete'),
               ),
@@ -194,11 +194,11 @@ class _MyComponentPageState extends State<myContents> {
                                   value: 'Add',
                                   child: Text('Add'),
                                 ),
-                                PopupMenuItem<String>(
+                                const PopupMenuItem<String>(
                                   value: 'edit',
                                   child: Text('edit'),
                                 ),
-                                PopupMenuItem<String>(
+                                const PopupMenuItem<String>(
                                   value: 'delete',
                                   child: Text('delete'),
                                 ),
@@ -207,7 +207,7 @@ class _MyComponentPageState extends State<myContents> {
                             // SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                             Text(
                               'Title $index',
-                              style: TextStyle(
+                              style:const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -215,7 +215,7 @@ class _MyComponentPageState extends State<myContents> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           'here we will put description',
                           style: TextStyle(
@@ -226,7 +226,7 @@ class _MyComponentPageState extends State<myContents> {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     height: 100,
                     width: 100,

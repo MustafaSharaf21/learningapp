@@ -21,8 +21,8 @@ class _SearchPageState extends State<Filtering> {
   String? selectedSpecialization;
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(contentPadding: EdgeInsets.symmetric(vertical: 24),
-        title: Text('Filter by'),backgroundColor: Colors.white,
+    return AlertDialog(contentPadding:const  EdgeInsets.symmetric(vertical: 24),
+        title: const Text('Filter by'),backgroundColor: Colors.white,
         content:
         Column(mainAxisSize:MainAxisSize.min,children: [
           DropdownButton(//padding: EdgeInsets.symmetric(horizontal: 2,vertical: 24),
@@ -56,7 +56,7 @@ class _SearchPageState extends State<Filtering> {
             value: selectedCountry,
 
           ),
-          DropdownButton(padding: EdgeInsets.symmetric(horizontal: 2,vertical: 24),
+          DropdownButton(padding:const  EdgeInsets.symmetric(horizontal: 2,vertical: 24),
             borderRadius: BorderRadius.circular(10),
             underline:const Divider( thickness:0,height:0),
             icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),

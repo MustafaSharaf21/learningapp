@@ -30,7 +30,7 @@ class _CourcesState extends State<Vedio> {
   Future<void> fetchVideos() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/Getvideos_tapbar'),
+        Uri.parse('http://192.168.118.128:8000/api/Home/Getvideos_tapbar'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -51,13 +51,13 @@ class _CourcesState extends State<Vedio> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: videos.length,
-        itemBuilder: (context, index) {
-          final video = videos[index];
-          return GestureDetector(
+           scrollDirection: Axis.vertical,
+           itemCount: videos.length,
+           itemBuilder: (context, index) {
+           final video = videos[index];
+           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -85,13 +85,13 @@ class _CourcesState extends State<Vedio> {
                           children: [
                             Text(
                               video['name'],
-                              style: TextStyle(
+                              style:const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               'Type: ${video['type']}',
                               style: TextStyle(
@@ -99,7 +99,7 @@ class _CourcesState extends State<Vedio> {
                                 fontSize: 12,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Text(
                              ' ${video['url']}',
                               style: TextStyle(
@@ -131,4 +131,3 @@ class _CourcesState extends State<Vedio> {
 }
 
 
-//

@@ -6,7 +6,7 @@ class Library extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      child: Text("Library",style: TextStyle(
+      child:const Text("Library",style: TextStyle(
           color: Colors.teal
       ),),
     );

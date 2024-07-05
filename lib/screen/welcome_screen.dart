@@ -47,16 +47,14 @@ class _welcomeScreenState extends State<welcomeScreen>
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.6,
-                  decoration: BoxDecoration(color: Colors.white),
+                  decoration:const BoxDecoration(color: Colors.white),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 1.6,
-                  decoration: BoxDecoration(
+                  decoration:const BoxDecoration(
                       color: Color(0xFF399679),
-
-
-                    borderRadius:
+                      borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(70)),
                   ),
                   child: Center(
@@ -75,7 +73,7 @@ class _welcomeScreenState extends State<welcomeScreen>
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.666,
                 // padding: EdgeInsets.only(top: 40,bottom: 30),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                     // color: Color(0xFF674AEF),
                      color: Color(0xFF399679)
 
@@ -87,8 +85,8 @@ class _welcomeScreenState extends State<welcomeScreen>
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.666,
-                padding: EdgeInsets.only(top: 50, bottom: 30),
-                decoration: BoxDecoration(
+                padding:const EdgeInsets.only(top: 50, bottom: 30),
+                decoration:const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(70),
@@ -97,7 +95,7 @@ class _welcomeScreenState extends State<welcomeScreen>
                   children: [
                     FadeTransition(
                       opacity: fadingAnimation!,
-                      child: Text(
+                      child:const Text(
                         "Learning is Everything",
                         style: TextStyle(
                             fontSize: 25,
@@ -106,8 +104,8 @@ class _welcomeScreenState extends State<welcomeScreen>
                             wordSpacing: 2),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top:8,
+                    const Padding(
+                      padding:  EdgeInsets.only(top:8,
                           left: 45,right: 35),
                       child: Text('Learning with pleasure whenever you are',style: TextStyle(
                           fontSize: 14,
@@ -126,7 +124,7 @@ class _welcomeScreenState extends State<welcomeScreen>
   }
 
   void goToNextView() {
-    Future.delayed(Duration(seconds: 3),(){
+    Future.delayed(const Duration(seconds: 3),(){
       Navigator.push(context, MaterialPageRoute(builder: (context) => OnBoardingView(),));
     });
 

@@ -31,12 +31,12 @@ class _ExampleState extends State<allCategory> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        Text(
+        const Text(
           "الاكثر...",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          margin:const EdgeInsets.symmetric(horizontal: 15),
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -44,7 +44,7 @@ class _ExampleState extends State<allCategory> {
             itemBuilder: (context, index) {
               final lastUpdate = lastUpdatedCourses[index];
               final imageUrl = lastUpdate['image'] != null
-                  ? 'http://192.168.43.63:8000' + lastUpdate['image']
+                  ? 'http://192.168.118.128:8000' + lastUpdate['image']
                   : 'assets/images/default.jpg';
               return GestureDetector(
                 onTap: () {
@@ -55,11 +55,11 @@ class _ExampleState extends State<allCategory> {
                 child: Container(
                   width: 142,
                   decoration: BoxDecoration(
-                    color: Color(0xFFF8F8F7),
+                    color:const Color(0xFFF8F8F7),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   height: 180,
-                  margin: EdgeInsets.only(left: 10, right: 15),
+                  margin:const EdgeInsets.only(left: 10, right: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -69,7 +69,7 @@ class _ExampleState extends State<allCategory> {
                           height: 130,
                           width: 120,
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(left: 20),
+                          margin:const EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(6),
@@ -77,7 +77,7 @@ class _ExampleState extends State<allCategory> {
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 lastUpdate['image'] != null
-                                    ? 'http://192.168.43.63:8000' +
+                                    ? 'http://192.168.118.128:8000' +
                                         lastUpdate['image']
                                     : 'assets/images/default.jpg',
                               ),
@@ -87,7 +87,7 @@ class _ExampleState extends State<allCategory> {
                       ),
                       Text(
                         lastUpdate['name'] ?? 'Unknown',
-                        style: TextStyle(
+                        style:const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                             fontSize: 12),
@@ -96,7 +96,7 @@ class _ExampleState extends State<allCategory> {
                         children: [
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.auto_fix_high,
                                 color: Color(0xFF399679),
                                 size: 18,
@@ -104,15 +104,15 @@ class _ExampleState extends State<allCategory> {
                               Text(
                                 lastUpdate['author_name']?.toString() ??
                                     'Unknown',
-                                style: TextStyle(
+                                style:const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600),
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Row(
+                          const Spacer(),
+                          const Row(
                             children: [
                               Text(
                                 "pdf",
@@ -134,12 +134,12 @@ class _ExampleState extends State<allCategory> {
             },
           ),
         ),
-        Text(
+        const Text(
           "الاكثر...",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          margin:const EdgeInsets.symmetric(horizontal: 15),
           height: 180,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -147,7 +147,7 @@ class _ExampleState extends State<allCategory> {
               itemBuilder: (context, index) {
                 final randomcourses = randomRelatedCourses[index];
                 final imageUrl = randomcourses['image'] != null
-                    ? 'http://192.168.43.63:8000' + randomcourses['image']
+                    ? 'http://192.168.118.128:8000' + randomcourses['image']
                     : 'assets/images/vedio.jpg';
                 return GestureDetector(
                   onTap: () {
@@ -158,11 +158,11 @@ class _ExampleState extends State<allCategory> {
                   child: Container(
                     width: 142,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFAFAF6),
+                      color:const Color(0xFFFAFAF6),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     height: 180,
-                    margin: EdgeInsets.only(left: 10, right: 15),
+                    margin:const EdgeInsets.only(left: 10, right: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -172,7 +172,7 @@ class _ExampleState extends State<allCategory> {
                             height: 130,
                             width: 120,
                             alignment: Alignment.center,
-                            margin: EdgeInsets.only(left: 20),
+                            margin:const EdgeInsets.only(left: 20),
                             decoration: BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.circular(6),
@@ -180,7 +180,7 @@ class _ExampleState extends State<allCategory> {
                                 fit: BoxFit.cover,
                                 image:  NetworkImage(
                                   randomcourses['image'] != null
-                                      ? 'http://192.168.43.63:8000' +
+                                      ? 'http://192.168.118.128:8000' +
                                       randomcourses['image']
                                       : 'assets/images/artificalIntelligence.png',
                                 ),
@@ -190,7 +190,7 @@ class _ExampleState extends State<allCategory> {
                         ),
                         Text(
                           randomcourses['name'] ?? 'Unknown',
-                          style: TextStyle(
+                          style:const TextStyle(
                               color: Colors.grey, fontWeight: FontWeight.bold,
                           fontSize: 12),
                         ),
@@ -198,7 +198,7 @@ class _ExampleState extends State<allCategory> {
                           children: [
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.auto_fix_high,
                                   color: Color(0xFF399679),
                                   size: 18,
@@ -206,12 +206,12 @@ class _ExampleState extends State<allCategory> {
                                 Text(
                                   randomcourses['author_name']?.toString() ??
                                       'Unknown',
-                                  style: TextStyle(color: Colors.grey,fontSize: 10,fontWeight: FontWeight.w600),
+                                  style:const TextStyle(color: Colors.grey,fontSize: 10,fontWeight: FontWeight.w600),
                                 ),
                               ],
                             ),
-                            Spacer(),
-                            Row(
+                            const Spacer(),
+                            const Row(
                               children: [
                                 Text(
                                   "pdf",
@@ -232,12 +232,12 @@ class _ExampleState extends State<allCategory> {
                 );
               }),
         ),
-        Text(
+        const Text(
           "الاكثر...",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
+          margin:const EdgeInsets.symmetric(horizontal: 15),
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -245,7 +245,7 @@ class _ExampleState extends State<allCategory> {
             itemBuilder: (context, index) {
               final trendCourses = trendCountryCourses[index];
               final imageUrl = trendCourses['image'] != null
-                  ? 'http://192.168.43.63:8000' + trendCourses['image']
+                  ? 'http://192.168.118.128:8000' + trendCourses['image']
                   : 'assets/images/artificalIntelligence.png';
               return GestureDetector(
                 onTap: () {
@@ -256,11 +256,11 @@ class _ExampleState extends State<allCategory> {
                 child: Container(
                   width: 142,
                   decoration: BoxDecoration(
-                    color: Color(0xFFF8F8F7),
+                    color:const Color(0xFFF8F8F7),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   height: 180,
-                  margin: EdgeInsets.only(left: 10, right: 15),
+                  margin:const EdgeInsets.only(left: 10, right: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -270,7 +270,7 @@ class _ExampleState extends State<allCategory> {
                           height: 130,
                           width: 120,
                           alignment: Alignment.center,
-                          margin: EdgeInsets.only(left: 20),
+                          margin:const EdgeInsets.only(left: 20),
                           decoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(6),
@@ -278,7 +278,7 @@ class _ExampleState extends State<allCategory> {
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 trendCourses['image'] != null
-                                    ? 'http://192.168.43.63:8000' +
+                                    ? 'http://192.168.118.128:8000' +
                                     trendCourses['image']
                                     : 'assets/images/artificalIntelligence.png',
                               ),
@@ -288,7 +288,7 @@ class _ExampleState extends State<allCategory> {
                       ),
                       Text(
                         trendCourses['name'] ?? 'Unknown',
-                        style: TextStyle(
+                        style:const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                             fontSize: 12),
@@ -297,7 +297,7 @@ class _ExampleState extends State<allCategory> {
                         children: [
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.auto_fix_high,
                                 color: Color(0xFF399679),
                                 size: 18,
@@ -305,15 +305,15 @@ class _ExampleState extends State<allCategory> {
                               Text(
                                 trendCourses['author_name']?.toString() ??
                                     'Unknown',
-                                style: TextStyle(
+                                style:const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600),
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Row(
+                          const Spacer(),
+                          const Row(
                             children: [
                               Text(
                                 "pdf",
@@ -342,7 +342,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchLastUpdatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/last_updated_courses'),
+        Uri.parse('http://192.168.118.128:8000/api/Home/last_updated_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -362,7 +362,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchrandomRelatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/rand_related_courses'),
+        Uri.parse('http://192.168.118.128:8000/api/Home/rand_related_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -381,7 +381,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchTrendCountryCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/trend_Country_courses'),
+        Uri.parse('http://192.168.118.128:8000/api/Home/trend_Country_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {

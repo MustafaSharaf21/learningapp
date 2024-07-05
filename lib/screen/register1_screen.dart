@@ -23,8 +23,6 @@ import 'login_screen.dart';
 class RegisterPage extends StatefulWidget {
   static String id = "RegisterPage";
 
-  const RegisterPage({super.key});
-
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -43,7 +41,10 @@ class _RegisterPageState extends State<RegisterPage> {
   bool secureText = true,
       secureText2 = true;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  //List<String>genderList=['Teacher','Student'];
   final Map<String, int>roles = {'Student': 3, 'Teacher': 2};
+  /*String? selectedGender;*/
   String? selectedRole;
   int? selectedRoleId;
   int? countryId;
@@ -700,8 +701,6 @@ class _RegisterPageState extends State<RegisterPage> {
     });
 
   }
-
-
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
       context: context,
@@ -719,7 +718,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchCountries() async {
     final response = await http.get(
-      Uri.parse('http://192.168.118.128:8000/api/getCountries'),
+      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -741,7 +740,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchSpesialization() async {
     final response = await http.get(
-      Uri.parse('http://192.168.118.128:8000/api/getSpecializations'),
+      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
       headers: {
         'Authorization': 'Bearer $token',
       },

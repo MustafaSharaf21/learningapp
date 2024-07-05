@@ -100,6 +100,8 @@ class _FullHeaderPainterState extends State<FullHeaderPainter> {
                   child: image==null?Image.asset('assets/images/login_img.png',
                     fit: BoxFit.cover,):Image.file(image!,fit: BoxFit.cover,),
 
+
+
                 ),
 
               ],

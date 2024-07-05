@@ -42,21 +42,21 @@ class _CourcesState extends State<Cources> {
                           child: Column(mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(padding:const EdgeInsets.only(left: 55),child: Text( widget.data[index].name,style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600),)),
-                              const SizedBox(height: 5,),
+                              Padding(padding: EdgeInsets.only(left: 55),child: Text( widget.data[index].name,style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600),)),
+                              SizedBox(height: 5,),
                               Text( widget.data[index].description,style: TextStyle(color: Colors.grey[600],fontSize: 12),),
-                              const Spacer(),
+                              Spacer(),
                               Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  const Icon(Icons.lock_clock_outlined,size: 20,color: Color(0xffEC7D7F),),
+                                  Icon(Icons.lock_clock_outlined,size: 20,color: Color(0xffEC7D7F),),
                                   SizedBox(width: MediaQuery.of(context).size.width*0.30,),
-                                  const  Text("author")
+                                  Text("author")
                                 ],
                               )
                             ],
                           ),
                         ),
-                        const Spacer(flex: 15,),
+                        Spacer(flex: 15,),
                         Padding(
                           padding: const EdgeInsets.only(top:8.0),
                           child: Container(height: 190,

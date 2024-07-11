@@ -118,30 +118,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   child: Container(),
                 ),
                 Text("Eline"),
-                TextButton(
-                  onPressed: () {
-                    Provider.of<dProvider>(context, listen: false)
-                        .setLanguage('ar');
-                    //setState(() {});
-                    //Navigator.pop(context);
-                  },
-                  child: Text(
-                    S.of(context).Arabic,
-                    style: const TextStyle(color: Kcolor),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Provider.of<dProvider>(context, listen: false)
-                        .setLanguage('en');
-                    //setState(() {});
-                    //Navigator.pop(context);
-                  },
-                  child: Text(
-                    S.of(context).English,
-                    style: const TextStyle(color: Kcolor),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(

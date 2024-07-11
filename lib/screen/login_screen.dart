@@ -8,13 +8,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/core/widgets/buildInputDecoration.dart';
 import 'package:learningapp/core/widgets/header_painater.dart';
-import 'package:learningapp/screen/profile/profile.dart';
 import '../data/http.dart';
 import '../generated/l10n.dart';
 import 'foreger_password_screen.dart';
 import 'home_screen.dart';
-import 'profile/profile_screen.dart';
-import 'profile/update_profile_screen.dart';
 import 'register1_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -147,9 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       alignment: Alignment.bottomRight,
                       padding: const EdgeInsets.only(right: 20),
-                      child: const Text(
-                        "ForgetPassword?",
-                        style: TextStyle(color: Colors.grey),
+                      child:  Text(
+                        S.of(context).ForgetPassword,
+                        style: const TextStyle(color: Colors.grey),
                         textAlign: TextAlign.right,
                       ),
                     ),
@@ -185,10 +182,10 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.all(
                               Radius.circular(30),
                             )),
-                        child: const Center(
+                        child:  Center(
                           child: Text(
-                            "Login",
-                            style: TextStyle(
+                            S.of(context).titleLogin,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 25,
                               fontWeight: FontWeight.w500,
@@ -288,6 +285,7 @@ class _LoginPageState extends State<LoginPage> {
                               )),
                         ]),
                   ),
+
                 ],
               ),
             ),
@@ -313,7 +311,9 @@ class _LoginPageState extends State<LoginPage> {
             colorText: Colors.white);
         print(res);
         print(token);
-        Get.to(MyHomePage());
+        //Get.to(MyHomePage());
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MyHomePage(),));
       } else {
         print(res);
         Get.snackbar('Error', res['message'].toString(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learningapp/generated/l10n.dart';
 
 import 'verifycode_screen.dart';
 class ForgetPasswordPage extends StatelessWidget {
@@ -9,7 +10,8 @@ class ForgetPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const  Text('Forget Password',style: TextStyle(
+        title:  Text(S.of(context).ForgetPassword,
+        style: const TextStyle(
             color: Colors.grey
         ),),
         centerTitle: true,
@@ -19,15 +21,16 @@ class ForgetPasswordPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 25,),
-            const Text("Check Email",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
+             Text(S.of(context).Check_Email,
+            style: const TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
             const SizedBox(height: 15,),
-            const Text("Please Enter Your Email Address To Recive A Verification Code ",textAlign: TextAlign.center,),
+             Text(S.of(context).Please_Enter_Your_Email_Address_To_Recive_A_Verification_Code,textAlign: TextAlign.center,),
             const SizedBox(height: 50,),
             TextFormField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: "Enter Your Email",
+                labelText: S.of(context).email,
+                hintText: S.of(context).Enter_Your_Email,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
                 suffixIcon: const Icon(Icons.email,color: Color(0xFF399679),),
               ),
@@ -41,7 +44,7 @@ class ForgetPasswordPage extends StatelessWidget {
               decoration: BoxDecoration( color:const Color(0xFF399679),
                   borderRadius: BorderRadius.circular(100)),
 
-              child:const Text("Check",style: TextStyle(fontSize: 18,color: Colors.black),),
+              child:Text(S.of(context).Check,style: const TextStyle(fontSize: 18,color: Colors.black),),
             ),
                 onTap:(){
                   //Get.to(() => VerifyCode());

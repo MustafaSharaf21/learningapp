@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/generated/l10n.dart';
 import 'dart:io';
-
 import '../../data/http.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
@@ -63,7 +63,7 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: Text(S.of(context).Edit_Profile),
       ),
       body: Column(
         children: [
@@ -73,15 +73,15 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
                   context: context,
                   builder: (BuildContext context) {
                     return SimpleDialog(
-                      title: const Text('Select Image Source'),
+                      title:  Text(S.of(context).Select_Image_Source),
                       children: <Widget>[
                         SimpleDialogOption(
                           onPressed: () { Navigator.pop(context, ImageSource.camera); },
-                          child: const Text('Camera'),
+                          child:  Text(S.of(context).Camera),
                         ),
                         SimpleDialogOption(
                           onPressed: () { Navigator.pop(context, ImageSource.gallery); },
-                          child: const Text('Gallery'),
+                          child: Text(S.of(context).Gallery),
                         ),
                       ],
                     );
@@ -103,13 +103,13 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
           TextField(
             controller: phoneController,
             decoration: InputDecoration(
-              labelText: 'Phone Number',
+              labelText: S.of(context).Phone_Number,
             ),
             keyboardType: TextInputType.phone,
           ),
           ElevatedButton(
             onPressed: _saveProfile,
-            child: Text('Save'),
+            child: Text(S.of(context).Save),
           ),
         ],
       ),

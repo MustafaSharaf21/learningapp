@@ -8,10 +8,10 @@ class CustomIndecator extends StatelessWidget {
   Widget build(BuildContext context) {
      return 
     DotsIndicator(decorator:DotsDecorator(
-        activeColor: Color(0xFF399679),color: Colors.white,
+        activeColor: const Color(0xFF399679),color: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Color(0xFF2554255) )
+            side: const BorderSide(color: Color(0xFF2554255) )
         )
     )
       ,dotsCount: 3,

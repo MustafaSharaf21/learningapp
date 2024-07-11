@@ -45,6 +45,9 @@ dependencies:
   http: ^1.2.1
   intl: ^0.18.1
   url_launcher: ^6.3.0
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,7 +63,7 @@ dev_dependencies:
   cupertino_icons: ^1.0.2
   youtube_player_flutter: ^9.0.1
   flutter_riverpod: ^2.5.1 #for state management
-  font_awesome_flutter: ^10.7.0 #for Icons
+
   miniplayer: ^1.0.1 #To display the video in small size
   path_provider: ^2.1.2 #To save the video to the user's device
   permission_handler: ^11.3.0 #To save the video to the user's device

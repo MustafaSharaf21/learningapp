@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:learningapp/generated/l10n.dart';
 import '../data/http.dart';
 
 class allCategory extends StatefulWidget {
@@ -31,9 +30,9 @@ class _ExampleState extends State<allCategory> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        const Text(
-          "الاكثر...",
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        Text(
+         S.of(context).The_most,
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(
           margin:const EdgeInsets.symmetric(horizontal: 15),
@@ -134,9 +133,9 @@ class _ExampleState extends State<allCategory> {
             },
           ),
         ),
-        const Text(
-          "الاكثر...",
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+         Text(
+          S.of(context).The_most,
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(
           margin:const EdgeInsets.symmetric(horizontal: 15),
@@ -211,13 +210,13 @@ class _ExampleState extends State<allCategory> {
                               ],
                             ),
                             const Spacer(),
-                            const Row(
+                             Row(
                               children: [
                                 Text(
-                                  "pdf",
-                                  style: TextStyle(color: Colors.grey),
+                                 S.of(context).Pdf,
+                                  style: const TextStyle(color: Colors.grey),
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.picture_as_pdf,
                                   color: Color(0xFF399679),
                                   size: 18,
@@ -232,8 +231,8 @@ class _ExampleState extends State<allCategory> {
                 );
               }),
         ),
-        const Text(
-          "الاكثر...",
+         Text(
+          S.of(context).The_most,
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Container(

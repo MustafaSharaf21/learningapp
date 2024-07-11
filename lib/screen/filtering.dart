@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 
-import '../core/constants.dart';
 
 class Filtering extends StatefulWidget {
   @override
@@ -30,9 +30,9 @@ class _SearchPageState extends State<Filtering> {
             underline:const Divider( thickness:0,height:0),
             icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
             dropdownColor: Colors.white,
-            hint:const  Text(
-              'Country                                            ',
-              style: TextStyle(
+            hint:  Text(
+              S.of(context).Country                                ,
+              style: const TextStyle(
                   fontSize:15,
                   color: Color(0xFF464241),
                   fontFamily:'Cairo'),
@@ -61,9 +61,9 @@ class _SearchPageState extends State<Filtering> {
             underline:const Divider( thickness:0,height:0),
             icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
             dropdownColor: Colors.white,
-            hint:const  Text(
-              'Specialization                                            ',
-              style: TextStyle(
+            hint:  Text(
+              S.of(context).specialization                                ,
+              style: const TextStyle(
                   fontSize:15,
                   color: Color(0xFF464241),
                   fontFamily:'Cairo'),

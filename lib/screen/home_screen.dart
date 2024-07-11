@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
+import 'package:learningapp/generated/l10n.dart';
+import 'package:learningapp/screen/providers/provider.dart';
 import 'package:learningapp/screen/setting_screen.dart';
+import 'package:provider/provider.dart';
 import '../data/http.dart';
 import '../data/models/doc/doc.dart';
 import 'allcategory_screen.dart';
+import 'chating_screen.dart';
 import 'cources_screen.dart';
 import 'documentation_screen.dart';
+import 'live_screen.dart';
 import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
@@ -47,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   ];
   late Course course;
   late Docs docs;
+  bool  isLoadingCourses=true;
+  bool isLoadingDocs=true;
 
   @override
   void initState() {
@@ -54,12 +61,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     getAllCourse();
     getAllDocs();
     _tabController = TabController(length: 4, vsync: this);
-    Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
         _currentIndex = (_pageController.page!.toInt() + 1) % _imageList.length;
         _pageController.animateToPage(
           _currentIndex,
-          duration: Duration(milliseconds: 350),
+          duration: const Duration(milliseconds: 350),
           curve: Curves.easeIn,
         );
       }
@@ -111,6 +118,30 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   child: Container(),
                 ),
                 Text("Eline"),
+                TextButton(
+                  onPressed: () {
+                    Provider.of<dProvider>(context, listen: false)
+                        .setLanguage('ar');
+                    //setState(() {});
+                    //Navigator.pop(context);
+                  },
+                  child: Text(
+                    S.of(context).Arabic,
+                    style: const TextStyle(color: Kcolor),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Provider.of<dProvider>(context, listen: false)
+                        .setLanguage('en');
+                    //setState(() {});
+                    //Navigator.pop(context);
+                  },
+                  child: Text(
+                    S.of(context).English,
+                    style: const TextStyle(color: Kcolor),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
@@ -170,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         ),
                         padding:
                         EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-                        child: Text("all"),
+                        child: Text(S.of(context).All),
                       ),
                     ),
                     Tab(
@@ -181,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         ),
                         padding:
                         EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-                        child: Text("courses"),
+                        child: Text(S.of(context).courses),
                       ),
                     ),
                     Tab(
@@ -191,8 +222,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                        child: Text(
-                          "video",
+                        child: Text(S.of(context).video,
                           style: TextStyle(fontSize: 14), // تحديد حجم الكلمة هنا
                         ),
                       ),
@@ -206,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         ),
                         padding:
                         EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                        child: Text("pdf"),
+                        child: Text(S.of(context).Pdf),
                       ),
                     ),
                   ],
@@ -216,7 +246,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ),
           ];
         },
-        body: TabBarView(
+        body: isLoadingCourses ||isLoadingDocs
+        ?Center(child: CircularProgressIndicator(),)
+            :TabBarView(
           controller: _tabController,
           children: [
             allCategory(),
@@ -239,22 +271,59 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           NavigationDestination(
             icon: const Icon(Icons.home, size: 20),
             selectedIcon: const Icon(Icons.home),
-            label: "home",
+            label: S.of(context).Home,
           ),
           NavigationDestination(
             icon: const Icon(Icons.favorite, size: 20),
             selectedIcon: const Icon(Icons.favorite),
-            label: "favorite",
+            label: S.of(context).Favorite,
           ),
           NavigationDestination(
             icon: const Icon(Icons.local_library_outlined, size: 20),
             selectedIcon: const Icon(Icons.local_library_outlined),
-            label: "library",
+            label: S.of(context).Library,
           ),
           NavigationDestination(
             icon: const Icon(Icons.chat, size: 20),
             selectedIcon: const Icon(Icons.chat),
-            label: "Test mySelf",
+            label: S.of(context).Testting,
+          ),
+          NavigationDestination(
+            icon: IconButton(
+              icon:  const Icon(
+                Icons.video_call_sharp,
+                size: 25,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LiveScreen(),
+                  ),
+                );
+              },
+            ),
+            selectedIcon: const Icon(Icons.video_call_sharp),
+            label: S.of(context).Live,
+          ),
+          NavigationDestination(
+            icon: IconButton(
+              icon:  const Icon(
+                Icons.chat,
+                size: 25,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChattingScreen(),
+                  ),
+                );
+              },
+            ),
+
+            selectedIcon: const Icon(Icons.chat),
+            label:S.of(context).Chatting,
           ),
         ],
       ),
@@ -262,28 +331,32 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   Future<void> getAllCourse() async {
-    var response = await http.get(
+    var response = await HttpHelper.gettData(url:'course/show/1' );
+   /* var response = await http.get(
       Uri.parse('http://192.168.43.63:8000/api/course/show/1'),
       headers: {
         "Authorization": "Bearer $token",
       },
-    );
+    );*/
     if (response.statusCode == 200) {
       setState(() {
         course = Course.fromJson(json.decode(response.body));
-        print("Test ${course.data[0].name}");
+        isLoadingCourses=false;
+        print("Test ${course.data?[0].name}");
       });
     }
   }
 
   Future<void> getAllDocs() async {
-    var response = await http.get(
+    var response = await HttpHelper.gettData(url:'Home/Getdocuments_tapbar' );
+    /*var response = await http.get(
       Uri.parse('http://192.168.43.63:8000/api/Home/Getdocuments_tapbar'),
       headers: {"Authorization": "Bearer $token"},
-    );
+    );*/
     if (response.statusCode == 200) {
       setState(() {
         docs = Docs.fromJson(json.decode(response.body));
+        isLoadingDocs=false;
         print("Test ${docs.data[0].name}");
       });
     }

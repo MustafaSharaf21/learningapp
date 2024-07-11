@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
@@ -36,9 +37,9 @@ class _ChattingScreenState extends State<ChattingScreen> {
         backgroundColor: Kcolor,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          "Chatting",
-          style: TextStyle(
+        title:  Text(
+          S.of(context).Chatting,
+          style: const TextStyle(
               color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
         ),
       ),

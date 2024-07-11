@@ -8,7 +8,7 @@ class CustomPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(controller: pageController,
-      children: [
+      children: const [
         SizedBox(height: 100,
           child: PageViewItem(image:'assets/images/on_boarding(1).png',
               title:'First See Learning',

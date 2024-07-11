@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 import 'verifycode_screen.dart';
 class ResetPassword extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -7,7 +8,8 @@ class ResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Reset Password',style: TextStyle(
+        title: Text(S.of(context).Reenter_Password,
+        style: const TextStyle(
             color: Colors.grey
         ),),
         centerTitle: true,
@@ -18,9 +20,10 @@ class ResetPassword extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 25,),
-              const Text("NewPassword",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
+                Text(S.of(context).NewPassword,
+              style: const TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
               const SizedBox(height: 15,),
-              const Text("Please Enter new Password",textAlign: TextAlign.center,),
+                Text(S.of(context).Please_Enter_new_Password,textAlign: TextAlign.center,),
               const SizedBox(height: 50,),
               // OtpTextField(
               //   focusedBorderColor: Color(0xFF399679),
@@ -42,8 +45,8 @@ class ResetPassword extends StatelessWidget {
               const SizedBox(height: 35,),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'password',
-                  hintText: " PassWord",
+                  labelText: S.of(context).password,
+                  hintText: S.of(context).password,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
                   suffixIcon:const Icon(Icons.lock,color: Color(0xFF399679),),
                 ),
@@ -52,8 +55,8 @@ class ResetPassword extends StatelessWidget {
               const SizedBox(height: 27,),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: ' Confirm password',
-                  hintText: " Confirm  Password",
+                  labelText: S.of(context).Confirm_Password,
+                  hintText: S.of(context).Confirm_Password,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
                   suffixIcon:const Icon(Icons.lock,color: Color(0xFF399679),),
                 ),
@@ -67,7 +70,7 @@ class ResetPassword extends StatelessWidget {
                 decoration: BoxDecoration( color:const Color(0xFF399679),
                     borderRadius: BorderRadius.circular(100)),
 
-                child:const Text("Save",style: TextStyle(fontSize: 18,color: Colors.black),),
+                child: Text(S.of(context).Save,style: const TextStyle(fontSize: 18,color: Colors.black),),
               ),
                   onTap:(){
 

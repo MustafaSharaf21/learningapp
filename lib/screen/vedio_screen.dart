@@ -53,13 +53,13 @@ class _CourcesState extends State<Vedio> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-           scrollDirection: Axis.vertical,
-           itemCount: videos.length,
-           itemBuilder: (context, index) {
-           final video = videos[index];
-           return GestureDetector(
-            onTap: () {
-              Navigator.push(
+            scrollDirection: Axis.vertical,
+            itemCount: videos.length,
+            itemBuilder: (context, index) {
+            final video = videos[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => VideoPlayerPage(
@@ -101,7 +101,7 @@ class _CourcesState extends State<Vedio> {
                             ),
                             const Spacer(),
                             Text(
-                             ' ${video['url']}',
+                              ' ${video['url']}',
                               style: TextStyle(
                                 color: Colors.grey[600],
                                 fontSize: 12,

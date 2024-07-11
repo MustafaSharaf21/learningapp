@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/http.dart';
 import 'package:learningapp/main.dart';
-
+import '../../const.dart';
 import '../../core/widgets/buildInputDecoration.dart';
 import '../../data/models/course/cources.dart';
 import '../../generated/l10n.dart';
@@ -75,10 +75,10 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
               Container(
                 height: Get.height * .15,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(
+                padding:const EdgeInsets.symmetric(
                   horizontal: 15,
                 ),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Kcolor,
@@ -95,13 +95,13 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(
+                      child:const Icon(
                         Icons.arrow_back,
                         size: 25,
                         color: Colors.white,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Add course',
                       style: TextStyle(
                         fontSize: 18,
@@ -117,8 +117,8 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                 child: Container(
                   width: double.infinity,
                   padding:
-                      EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
-                  decoration: BoxDecoration(
+                  const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
+                  decoration:const BoxDecoration(
                     gradient: LinearGradient(colors: [
                       Colors.white,
                       Color(0xFFB2CCC8),
@@ -132,7 +132,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(
                               Icons.school,
@@ -156,7 +156,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                 Text(
                                   'You can create Course here',
                                   style: TextStyle(
-                                    color: const Color.fromARGB(
+                                    color:  Color.fromARGB(
                                         255, 155, 155, 155),
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -166,7 +166,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Expanded(
@@ -190,7 +190,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                           image!,
                                           fit: BoxFit.fill,
                                         )
-                                      : Column(
+                                      : const Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           crossAxisAlignment:
@@ -215,7 +215,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                         ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Padding(
@@ -282,7 +282,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                             icon: const Icon(
                                                 Icons.arrow_drop_down,
                                                 color: Color(0xFF464241)),
-                                            dropdownColor: Color(0xFFB2CCC8),
+                                            dropdownColor:const Color(0xFFB2CCC8),
                                             hint: Text(
                                               selectedCountry ??
                                                   S.of(context).Country,
@@ -353,7 +353,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                             icon: const Icon(
                                                 Icons.arrow_drop_down,
                                                 color: Color(0xFF464241)),
-                                            dropdownColor: Color(0xFFB2CCC8),
+                                            dropdownColor:const Color(0xFFB2CCC8),
                                             hint: Text(
                                               selectedSpe ??
                                                   S.of(context).specialization,
@@ -396,7 +396,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         InkWell(
@@ -417,7 +417,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                               color: Kcolor,
                               borderRadius: BorderRadius.circular(25),
                             ),
-                            child: Text(
+                            child:const Text(
                               'Create course',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),

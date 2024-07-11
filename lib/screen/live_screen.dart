@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
 import 'create_live.dart';
@@ -51,9 +52,9 @@ class _LiveScreenState extends State<LiveScreen> {
         backgroundColor: Kcolor,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          "Live",
-          style: TextStyle(
+        title:  Text(
+          S.of(context).Live,
+          style: const TextStyle(
               color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
@@ -158,12 +159,12 @@ class _LiveScreenState extends State<LiveScreen> {
                               Clipboard.setData(
                                   ClipboardData(text: code));
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                 SnackBar(
                                     content:
-                                    Text('Link copied to clipboard')),
+                                    Text(S.of(context).Link_copied_to_clipboard)),
                               );
                             },
-                            child: const Row(
+                            child:  Row(
                               children: [
                                 Icon(
                                   Icons.link,
@@ -172,7 +173,7 @@ class _LiveScreenState extends State<LiveScreen> {
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                  'Copy The Live  Link ',
+                                  S.of(context).Copy_The_Live_Link,
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: Kcolor,

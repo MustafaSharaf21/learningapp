@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import '../feuture/onBoarding/presentation/on_boarding_view.dart';
-//import 'package:project_1/feature/onBoarding/presentation/on_boarding_view.dart';
-//import 'package:project_1/screen/login.dart';
+import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
+import 'package:learningapp/service/service.dart';
+
+import '../feuture/OnBoarding/presentation/on_boarding_view.dart';
 
 class welcomeScreen extends StatefulWidget {
   static String id = " welcomeScreen";
@@ -20,10 +19,9 @@ class _welcomeScreenState extends State<welcomeScreen>
   Animation<double>? fadingAnimation;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
     fadingAnimation =
         Tween<double>(begin: .2, end: 1).animate(animationController!);
     animationController?.repeat(reverse: true);
@@ -37,7 +35,7 @@ class _welcomeScreenState extends State<welcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -75,7 +73,7 @@ class _welcomeScreenState extends State<welcomeScreen>
                 // padding: EdgeInsets.only(top: 40,bottom: 30),
                 decoration:const BoxDecoration(
                     // color: Color(0xFF674AEF),
-                     color: Color(0xFF399679)
+                      color: Color(0xFF399679)
 
                     ),
               ),
@@ -95,19 +93,20 @@ class _welcomeScreenState extends State<welcomeScreen>
                   children: [
                     FadeTransition(
                       opacity: fadingAnimation!,
-                      child:const Text(
-                        "Learning is Everything",
-                        style: TextStyle(
+                      child: Text(
+                        S.of(context).Learning_is_Everything,
+                        style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 1,
                             wordSpacing: 2),
                       ),
                     ),
-                    const Padding(
-                      padding:  EdgeInsets.only(top:8,
+                      Padding(
+                      padding:  const EdgeInsets.only(top:8,
                           left: 45,right: 35),
-                      child: Text('Learning with pleasure whenever you are',style: TextStyle(
+                      child: Text(S.of(context).Learning_with_pleasure_whenever_you_are,
+                      style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff78787c)
@@ -125,7 +124,8 @@ class _welcomeScreenState extends State<welcomeScreen>
 
   void goToNextView() {
     Future.delayed(const Duration(seconds: 3),(){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => OnBoardingView(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => OnBoardingView(),
+      ));
     });
 
   }

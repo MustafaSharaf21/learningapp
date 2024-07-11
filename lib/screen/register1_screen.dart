@@ -656,7 +656,7 @@ class _RegisterPageState extends State<RegisterPage> {
   //   print(e.toString());
   // }
   // }
-  signup() async {
+  /*signup() async {
     int? id = roles[selectedGender];
     int?countryId=selectedCountryId;
 
@@ -700,6 +700,50 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     });
 
+  }ايلين*/
+  signup() async {
+    int? id = roles[selectedGender];
+    int?countryId=selectedCountryId;
+
+    await HttpHelper.postData(url: 'register', body: {
+      'name': full_Name.text,
+      'email': email.text,
+      'password': password.text,
+      'confirm_password': confirmpassword.text,
+      'role_id': idd.text,
+      'country_id':countryIdd.text,
+      'specialization_id[]':SpeIdd.text,
+      'gender':gender.text,
+      'birth_date':birthDate.text,
+      'mobile_number':phone.text
+    }).then((value) {
+      Map<String, dynamic> res = jsonDecode(value.body);
+      print(res);
+      if (value.statusCode == 200 || value.statusCode == 201) {
+        token = res['data']['user']['remember_token'];
+        GetStorage _box = GetStorage();
+        _box.write('token', token);
+        _box.write('role',res['data']['user']['role_id']);
+        Get.snackbar(
+            ' ', res['status'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.black,
+            colorText: Colors.white
+        );
+        print(res);
+        print(token);
+        Get.to((HomePage()));
+      } else {
+        print(res);
+        Get.snackbar(
+            'Error', res['status'].toString(),
+            backgroundColor: Colors.black,
+            colorText: Colors.white
+
+        );
+      }
+    });
+
   }
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
@@ -718,7 +762,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchCountries() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
+      Uri.parse('http://192.168.118.128:8000/api/getCountries'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -740,7 +784,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchSpesialization() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
+      Uri.parse('http://192.168.118.128:8000/api/getSpecializations'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -751,8 +795,8 @@ class _RegisterPageState extends State<RegisterPage> {
         Specializations = jsonDecode(response.body);
         SpecializationItems = (Specializations['data'] as List)
             .map((Specialize) => DropdownMenuItem<int>(
-          value: Specialize['id'],
-          child: Text(Specialize['name']),
+             value: Specialize['id'],
+             child: Text(Specialize['name']),
         ))
             .toList();
       });

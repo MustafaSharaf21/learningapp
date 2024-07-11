@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/http.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../../core/widgets/buildInputDecoration.dart';
 import 'home_screen.dart';
 import 'package:intl/intl.dart';
@@ -52,8 +51,8 @@ class _CreateLiveState extends State<CreateLive> {
           Row(
               children: [
                 Expanded(
-                   child: Container(
-                   color: Kcolor,
+                    child: Container(
+                    color: Kcolor,
                 ),
               ),
                 Expanded(
@@ -93,9 +92,9 @@ class _CreateLiveState extends State<CreateLive> {
                         color: Colors.white,
                       ),
                     ),
-                    const Text(
-                      'Create Live',
-                      style: TextStyle(
+                    Text(
+                      S.of(context).Create_Live,
+                      style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
@@ -124,30 +123,30 @@ class _CreateLiveState extends State<CreateLive> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.school,
                               size: 25,
                               color: Kcolor,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Welcome Teacher',
-                                  style: TextStyle(
+                                  S.of(context).Welcome_Teacher,
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
                                 ),
                                 Text(
-                                  'You can create Live here',
-                                  style: TextStyle(
+                                  S.of(context).You_can_create_Live_here,
+                                  style: const TextStyle(
                                     color:  Color.fromARGB(
                                         255, 155, 155, 155),
                                     fontWeight: FontWeight.w500,
@@ -175,12 +174,12 @@ class _CreateLiveState extends State<CreateLive> {
                                   keyboardType: TextInputType.text,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Enter a Title";
+                                      return S.of(context).Enter_a_Time;
                                     }
                                     return null;
                                   },
                                   decoration: buildInputDecoration(
-                                      Icons.title, "Title"),
+                                      Icons.title, S.of(context).Title),
                                 ),
                               ),
                               Padding(
@@ -191,20 +190,20 @@ class _CreateLiveState extends State<CreateLive> {
                                   keyboardType: TextInputType.text,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Enter a Time";
+                                      return S.of(context).Enter_a_Time;
                                     }
                                     final timeRegExp = RegExp(r'^[0-2][0-9]:[0-5][0-9]$');
                                     if (!timeRegExp.hasMatch(value)) {
-                                      return "Invalid Time Format (hh:mm)";
+                                      return S.of(context).Invalid_Time_Format;
                                     }
                                     int hours = int.parse(value.split(":")[0]);
                                     if (hours > 23) {
-                                      return "Invalid Hours (00-23)";
+                                      return S.of(context).Invalid_Hours;
                                     }
                                     return null;
                                   },
                                   decoration: buildInputDecoration(
-                                      Icons.access_time, "Time"),
+                                      Icons.access_time,S.of(context).Time),
                                 ),
                               ),
                               Padding(
@@ -215,19 +214,19 @@ class _CreateLiveState extends State<CreateLive> {
                                   keyboardType: TextInputType.number,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Enter a Date";
+                                      return S.of(context).Enter_Date;
                                     }try {
                                       DateTime enteredDate = DateFormat('yyyy-MM-dd').parse(value);
                                       if (enteredDate.isBefore(DateTime.now())) {
-                                        return "Cannot enter a past date";
+                                        return S.of(context).Cannot_enter_a_past_date;
                                       }
                                     } catch (e) {
-                                      return "Invalid date format must be of format yyyy-MM-dd";
+                                      return S.of(context).Enter_the_date_correctly_yyyy_MM_dd;
                                     }
                                     return null;
                                   },
                                   decoration: buildInputDecoration(
-                                      Icons.date_range, "Date"),
+                                      Icons.date_range, S.of(context).Date),
                                 ),
                               ),
                               Padding(
@@ -239,12 +238,12 @@ class _CreateLiveState extends State<CreateLive> {
                                   keyboardType: TextInputType.url,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Enter a link";
+                                      return S.of(context).Enter_a_link;
                                     }
                                     return null;
                                   },
                                   decoration: buildInputDecoration(
-                                      Icons.link, "Add link"),
+                                      Icons.link, S.of(context).Add_link),
                                 ),
                               ),
                               Padding(
@@ -281,7 +280,7 @@ class _CreateLiveState extends State<CreateLive> {
                                             dropdownColor:const Color(0xFFB2CCC8),
                                             hint: Text(
                                               selectedSpe ??
-                                                  "specialization",
+                                                  S.of(context).specialization,
                                               style: const TextStyle(
                                                 fontSize: 16,
                                                 color: Color(0xFF464241),
@@ -343,9 +342,9 @@ class _CreateLiveState extends State<CreateLive> {
                               color: Kcolor,
                               borderRadius: BorderRadius.circular(25),
                             ),
-                            child:const Text(
-                              'Create Live',
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).Create_Live,
+                              style: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
@@ -372,8 +371,8 @@ class _CreateLiveState extends State<CreateLive> {
           specializations = jsonDecode(value.body);
           specializationItems = (specializations['data'] as List)
               .map((Specialize) => DropdownMenuItem<int>(
-               value: Specialize['id'],
-               child: Text(Specialize['name']),
+                value: Specialize['id'],
+                child: Text(Specialize['name']),
           ))
               .toList();
         });

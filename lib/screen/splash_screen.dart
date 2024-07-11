@@ -74,20 +74,3 @@ class _SplashPageState extends State<SplashPage> {
 
 
 
-/* SizedBox(
-                     child: DefaultTextStyle(
-                        style: const TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: 'Pacifico',
-                        fontWeight: FontWeight.bold,
-                        color: Kcolor
-                                         ),
-                        child: AnimatedTextKit(
-                        pause:const  Duration(seconds:2),
-                        animatedTexts: [
-                         TypewriterAnimatedText("LearningApplication"),
-                          ScaleAnimatedText('Think'),
-                                       ],
-                                    ),
-                                ),
-                           ),*/

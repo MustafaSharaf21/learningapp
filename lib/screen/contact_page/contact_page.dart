@@ -48,10 +48,10 @@ class _ContactPageState extends State<ContactPage> {
               Container(
                 height: Get.height * .15,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(
+                padding:const EdgeInsets.symmetric(
                   horizontal: 15,
                 ),
-                decoration: BoxDecoration(
+                decoration:const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Kcolor,
@@ -68,13 +68,13 @@ class _ContactPageState extends State<ContactPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(
+                      child:const Icon(
                         Icons.arrow_back,
                         size: 25,
                         color: Colors.white,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Add Content',
                       style: TextStyle(
                         fontSize: 18,
@@ -90,8 +90,8 @@ class _ContactPageState extends State<ContactPage> {
                 child: Container(
                   width: double.infinity,
                   padding:
-                  EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
-                  decoration: BoxDecoration(
+                  const EdgeInsets.only(top: 40, bottom: 20, left: 20, right: 20),
+                  decoration:const BoxDecoration(
                     gradient: LinearGradient(colors: [
                       Colors.white,
                       Color(0xFFB2CCC8),
@@ -105,7 +105,7 @@ class _ContactPageState extends State<ContactPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(
                               Icons.school,
@@ -129,7 +129,7 @@ class _ContactPageState extends State<ContactPage> {
                                 Text(
                                   'You can add Content here',
                                   style: TextStyle(
-                                    color: const Color.fromARGB(
+                                    color:  Color.fromARGB(
                                         255, 155, 155, 155),
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14,
@@ -139,7 +139,7 @@ class _ContactPageState extends State<ContactPage> {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Expanded(
@@ -195,13 +195,13 @@ class _ContactPageState extends State<ContactPage> {
                                       children: [
                                         Text(
                                           type,
-                                          style: TextStyle(
+                                          style:const TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                         DropdownButton(
-                                          icon: Icon(Icons.arrow_drop_down,size: 28,),
+                                          icon:const Icon(Icons.arrow_drop_down,size: 28,),
                                           items: typeList
                                               .map(
                                                   (e) {return DropdownMenuItem<String>(
@@ -224,10 +224,10 @@ class _ContactPageState extends State<ContactPage> {
                           ),
                         ),
 
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                       loadingData==true?Center(child: CircularProgressIndicator(),): InkWell(
+                       loadingData==true?const Center(child: CircularProgressIndicator(),): InkWell(
                           onTap: () {
                             if (_formkey.currentState!.validate()) {
                               addContent();
@@ -242,7 +242,7 @@ class _ContactPageState extends State<ContactPage> {
                               color: Kcolor,
                               borderRadius: BorderRadius.circular(25),
                             ),
-                            child: Text(
+                            child:const Text(
                               'Add content',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255),

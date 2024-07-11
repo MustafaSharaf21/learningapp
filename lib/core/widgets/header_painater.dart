@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../constants.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,18 +22,18 @@ class _FullHeaderPainterState extends State<FullHeaderPainter> {
         context: context,
         builder: (context)=>
             AlertDialog(
-              title:const  Text("make a choice"),
+              title:  Text(S.of(context).Select_Image_Source),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
                     ListTile(
                       leading:const  Icon(Icons.image),
-                      title:const  Text("Gallery"),
+                      title:  Text(S.of(context).Gallery),
                       onTap:()=> _imageFromGallery(context),
                     ),
                     ListTile(
                       leading:const  Icon(Icons.camera_alt_outlined),
-                      title:const  Text("Camera"),
+                      title:  Text(S.of(context).Camera),
                       onTap:()=> _imageFromCamera(context),
                     ),
                   ],

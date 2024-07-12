@@ -860,10 +860,10 @@ class S {
     );
   }
 
-  /// `Setting`
+  /// `Settings`
   String get Setting {
     return Intl.message(
-      'Setting',
+      'Settings',
       name: 'Setting',
       desc: '',
       args: [],
@@ -980,10 +980,10 @@ class S {
     );
   }
 
-  /// `Arabic`
+  /// `عربي`
   String get Arabic {
     return Intl.message(
-      'Arabic',
+      'عربي',
       name: 'Arabic',
       desc: '',
       args: [],

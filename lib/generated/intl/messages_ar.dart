@@ -23,8 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Add": MessageLookupByLibrary.simpleMessage("إضافة"),
+        "Add_course": MessageLookupByLibrary.simpleMessage("إضافة كورس"),
         "Add_link": MessageLookupByLibrary.simpleMessage("إضافة رابط"),
         "All": MessageLookupByLibrary.simpleMessage("الكل"),
+        "Arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "Are_you_sure_to_log_out": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد من تسجيل الخروج؟"),
         "Camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "Cannot_enter_a_past_date":
             MessageLookupByLibrary.simpleMessage("لا يمكن إدخال تاريخ سابق"),
@@ -34,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفقد البريد الإلكتروني"),
         "Choose_Teacher_or_Student":
             MessageLookupByLibrary.simpleMessage("اختر المعلم أو الطالب"),
+        "Close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "Copy_The_Live_Link":
@@ -41,9 +46,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Country": MessageLookupByLibrary.simpleMessage(
             "الجنسية                                            "),
         "Create_Live": MessageLookupByLibrary.simpleMessage("إنشاء لايف"),
+        "Dark_Mood": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
         "Date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "Date_of_birth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "Edit_Profile": MessageLookupByLibrary.simpleMessage("تعديل حسابي"),
+        "English": MessageLookupByLibrary.simpleMessage("English"),
         "Enter_Date": MessageLookupByLibrary.simpleMessage("أدخل التاريخ"),
         "Enter_Your_Email": MessageLookupByLibrary.simpleMessage("ادخل حسابك"),
         "Enter_a_Time": MessageLookupByLibrary.simpleMessage("أدخل الوقت"),
@@ -72,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الساعات غير الصالحة (00-23)"),
         "Invalid_Time_Format": MessageLookupByLibrary.simpleMessage(
             "تنسيق الوقت غير صالح (ساعة:دقيقة)"),
+        "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "Learning_is_Everything":
             MessageLookupByLibrary.simpleMessage("التعلم هو كل شيء"),
         "Learning_with_pleasure_whenever_you_are":
@@ -82,8 +90,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Live": MessageLookupByLibrary.simpleMessage("لايف"),
         "Login_with_Facebook_or_Google": MessageLookupByLibrary.simpleMessage(
             "تسجيل الدخول باستخدام الفيسبوك أو جوجل"),
+        "My_Account": MessageLookupByLibrary.simpleMessage("حسابي"),
         "My_Content":
             MessageLookupByLibrary.simpleMessage(" المحتوى الخاص بي "),
+        "My_content": MessageLookupByLibrary.simpleMessage("المحتوى الخاص بي"),
         "NewPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
@@ -106,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_Here": MessageLookupByLibrary.simpleMessage("ابحث هنا"),
         "Select_Image_Source":
             MessageLookupByLibrary.simpleMessage("حدد مصدر الصورة"),
+        "Setting": MessageLookupByLibrary.simpleMessage("إعدادات"),
         "Skip": MessageLookupByLibrary.simpleMessage("يتخطى"),
         "Specialization": MessageLookupByLibrary.simpleMessage("الاختصاص"),
         "Teacher_or_Student": MessageLookupByLibrary.simpleMessage(
@@ -120,6 +131,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "already_a_member":
             MessageLookupByLibrary.simpleMessage("أنا عضو بالفعل"),
         "author": MessageLookupByLibrary.simpleMessage("المؤلف"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "click_here_to_log_out":
+            MessageLookupByLibrary.simpleMessage("click here to log out"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "courses": MessageLookupByLibrary.simpleMessage("الكورسات"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
@@ -132,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل البريد الإلكتروني"),
         "here_we_will_put_description":
             MessageLookupByLibrary.simpleMessage("هنا سوف نضع الوصف"),
+        "log_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "name": MessageLookupByLibrary.simpleMessage("تعليم"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "selectall": MessageLookupByLibrary.simpleMessage("اختر الكل"),

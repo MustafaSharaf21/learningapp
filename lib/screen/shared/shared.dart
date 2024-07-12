@@ -1,3 +1,4 @@
+
 import 'package:shared_preferences/shared_preferences.dart';
 class CacheNetwork {
   static late SharedPreferences sharedPref;
@@ -24,5 +25,6 @@ class CacheNetwork {
     return await sharedPref.clear();
   }
 }
+
 
 

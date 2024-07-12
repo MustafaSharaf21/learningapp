@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add_course": MessageLookupByLibrary.simpleMessage("Add course"),
         "Add_link": MessageLookupByLibrary.simpleMessage("Add link"),
         "All": MessageLookupByLibrary.simpleMessage("All"),
-        "Arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "Arabic": MessageLookupByLibrary.simpleMessage("عربي"),
         "Are_you_sure_to_log_out":
             MessageLookupByLibrary.simpleMessage("Are you sure to log out?"),
         "Camera": MessageLookupByLibrary.simpleMessage("Camera"),
@@ -115,7 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_Here": MessageLookupByLibrary.simpleMessage("Search Here"),
         "Select_Image_Source":
             MessageLookupByLibrary.simpleMessage("Select Image Source"),
-        "Setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "Setting": MessageLookupByLibrary.simpleMessage("Settings"),
         "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Specialization":
             MessageLookupByLibrary.simpleMessage("specialization"),

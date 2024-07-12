@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
 import 'package:learningapp/generated/l10n.dart';
-import 'package:learningapp/screen/providers/provider.dart';
 import 'package:learningapp/screen/setting_screen.dart';
-import 'package:provider/provider.dart';
 import '../data/http.dart';
 import '../data/models/doc/doc.dart';
 import 'allcategory_screen.dart';
@@ -18,7 +15,7 @@ import 'documentation_screen.dart';
 import 'live_screen.dart';
 import 'saerch_screen.dart';
 import 'vedio_screen.dart';
-import 'package:http/http.dart' as http;
+
 
 void main() => runApp(HomePage());
 
@@ -121,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundColor: Color(0xFF399679),
                     ),
                     onTap: () {},
@@ -265,20 +262,19 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             label: S.of(context).Testting,
           ),
           NavigationDestination(
-            icon: IconButton(
-              icon:  const Icon(
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
+                      return const LiveScreen();
+                    }));
+              },
+              child: const Icon(
                 Icons.video_call_sharp,
                 size: 25,
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LiveScreen(),
-                  ),
-                );
-              },
             ),
+
             selectedIcon: const Icon(Icons.video_call_sharp),
             label: S.of(context).Live,
           ),

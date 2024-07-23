@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:learningapp/screen/home_screen.dart';
+import 'package:learningapp/generated/l10n.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_indecator.dart';
 import '../../../../screen/login_screen.dart';
+import '../../../../service/service.dart';
 import 'custom_page_view.dart';
 
 
@@ -48,10 +49,10 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           child: Positioned(
             top: MediaQuery.sizeOf(context).height* .1,
             right: MediaQuery.sizeOf(context).width*.1,
-            child: Text("Skip",
-            style: TextStyle(
+            child:  Text(S.of(context).Skip,
+            style: const TextStyle(
               fontSize: 14,
-              color: const Color(0xFF898989),
+              color: Color(0xFF898989),
             ),
               textAlign: TextAlign.left,
             ),
@@ -64,12 +65,13 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         child: CustomGeneralButton(
           onTap:(){
             if(pageController!.page!<2){
-              pageController?.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+              pageController?.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
             }else{
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),
+              ));
             }
           },
-          text:pageController!.hasClients? pageController?.page==2?"Get Started":"Next":"Next",))
+          text:pageController!.hasClients? pageController?.page==2?S.of(context).Get_Started:S.of(context).Next:S.of(context).Next,))
       ],
     );
   }

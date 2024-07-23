@@ -2,7 +2,7 @@
 
 
 {
-   "name":"Learning",
+   "name":"EDUspark",
 
    "titleLogin":"Login",
    "email":"Email",
@@ -31,14 +31,89 @@
    "Gender":"Gender",
    "already_a_member":"I'm already a member",
 
-   "all":"All",
-   "cources":"cources",
-   "vedio":"vedio",
-   "pdf":"pdf",
-   "home":"home",
-   "favorite":"favorite",
-   "library" :"library" ,
-   "chating":"chatting"
+
+   "All":"All",
+   "courses":"courses",
+   "video":"video",
+   "Pdf":"pdf",
+   "Home": "home",
+   "Favorite":"favorite",
+   "Library":"library",
+   "Testting":"Testting",
+   "Live":"Live",
+   "Chatting":"Chatting",
+
+   "Link_copied_to_clipboard":"Link copied to clipboard",
+   "Copy_The_Live_Link":"Copy The Live Link",
+
+   "Profile":"Profile",
+   "Edit_Profile":"Edit Profile",
+   "Interests":"Interests",
+   "Save":"Save",
+   "Select_Image_Source":"Select Image Source",
+   "Gallery":"Gallery",
+   "Camera":"Camera",
+
+   "Skip":"Skip",
+   "Get_Started":"Get Started",
+   "Next":"Next",
+   "The_most":"The most",
+
+   "author":"author",
+
+   "Create_Live":"Create Live",
+   "Welcome_Teacher":"Welcome Teacher",
+   "You_can_create_Live_here":"You can create Live here",
+   "Enter_a_Title": "Enter a Title",
+   "Title":"Title",
+   "Enter_a_Time":"Enter a Time",
+   "Invalid_Time_Format":"Invalid Time Format (hh:mm)",
+   "Invalid_Hours":"Invalid Hours (00-23)",
+   "Time":"Time",
+   "Enter_Date":"Enter a Date",
+   "Cannot_enter_a_past_date":"Cannot enter a past date",
+   "Enter_the_date_correctly_yyyy_MM_dd":"Enter the date correctly yyyy-MM-dd",
+   "Date":"Date",
+   "Enter_a_link":"Enter a link",
+   "Add_link":"Add link",
+   "Specialization":"specialization",
+
+   "here_we_will_put_description":"here we will put description",
+   "Check_Email":"Check Email",
+   "Please_Enter_Your_Email_Address_To_Recive_A_Verification_Code":"Please Enter Your Email Address To Recive A Verification Code",
+   "Enter_Your_Email":"Enter Your Email",
+   "Check":"Check",
+
+   "My_Content":"My Content",
+   "selectall":"select all",
+   "delete":"delete",
+   "Add":"Add",
+   "edit":"edit",
+
+   "Reset_Password":"Reset Password",
+   "NewPassword":"NewPassword",
+   "Please_Enter_new_Password":"Please Enter new Password",
+
+   "Recent":"Recent",
+   "Search_Here":"Search Here",
+
+   "Setting":"Settings",
+   "My_Account":"My Account",
+   "Add_course":"Add course",
+   "My_content":"My Content",
+   "Dark_Mood":"Dark Mood",
+   "Are_you_sure_to_log_out":"Are you sure to log out?",
+   "confirm":"confirm",
+   "cancel":"cancel",
+   "log_out":"log out",
+   "click_here_to_log_out":"click here to log out",
+   "Close":"Close",
+   "Language":"Language",
+   "Arabic": "عربي",
+   "English":"English",
+
+   "Learning_is_Everything":"Learning is Everything",
+   "Learning_with_pleasure_whenever_you_are":"Learning with pleasure whenever you are"
 
 
 

@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Learning`
+  /// `EDUspark`
   String get name {
     return Intl.message(
-      'Learning',
+      'EDUspark',
       name: 'name',
       desc: '',
       args: [],
@@ -319,80 +319,710 @@ class S {
   }
 
   /// `All`
-  String get all {
+  String get All {
     return Intl.message(
       'All',
-      name: 'all',
+      name: 'All',
       desc: '',
       args: [],
     );
   }
 
-  /// `cources`
-  String get cources {
+  /// `courses`
+  String get courses {
     return Intl.message(
-      'cources',
-      name: 'cources',
+      'courses',
+      name: 'courses',
       desc: '',
       args: [],
     );
   }
 
-  /// `vedio`
-  String get vedio {
+  /// `video`
+  String get video {
     return Intl.message(
-      'vedio',
-      name: 'vedio',
+      'video',
+      name: 'video',
       desc: '',
       args: [],
     );
   }
 
   /// `pdf`
-  String get pdf {
+  String get Pdf {
     return Intl.message(
       'pdf',
-      name: 'pdf',
+      name: 'Pdf',
       desc: '',
       args: [],
     );
   }
 
   /// `home`
-  String get home {
+  String get Home {
     return Intl.message(
       'home',
-      name: 'home',
+      name: 'Home',
       desc: '',
       args: [],
     );
   }
 
   /// `favorite`
-  String get favorite {
+  String get Favorite {
     return Intl.message(
       'favorite',
-      name: 'favorite',
+      name: 'Favorite',
       desc: '',
       args: [],
     );
   }
 
   /// `library`
-  String get library {
+  String get Library {
     return Intl.message(
       'library',
-      name: 'library',
+      name: 'Library',
       desc: '',
       args: [],
     );
   }
 
-  /// `chatting`
-  String get chating {
+  /// `Testting`
+  String get Testting {
     return Intl.message(
-      'chatting',
-      name: 'chating',
+      'Testting',
+      name: 'Testting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live`
+  String get Live {
+    return Intl.message(
+      'Live',
+      name: 'Live',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chatting`
+  String get Chatting {
+    return Intl.message(
+      'Chatting',
+      name: 'Chatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link copied to clipboard`
+  String get Link_copied_to_clipboard {
+    return Intl.message(
+      'Link copied to clipboard',
+      name: 'Link_copied_to_clipboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy The Live Link`
+  String get Copy_The_Live_Link {
+    return Intl.message(
+      'Copy The Live Link',
+      name: 'Copy_The_Live_Link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get Profile {
+    return Intl.message(
+      'Profile',
+      name: 'Profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get Edit_Profile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'Edit_Profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interests`
+  String get Interests {
+    return Intl.message(
+      'Interests',
+      name: 'Interests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get Save {
+    return Intl.message(
+      'Save',
+      name: 'Save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Image Source`
+  String get Select_Image_Source {
+    return Intl.message(
+      'Select Image Source',
+      name: 'Select_Image_Source',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get Gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'Gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get Camera {
+    return Intl.message(
+      'Camera',
+      name: 'Camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get Skip {
+    return Intl.message(
+      'Skip',
+      name: 'Skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get Get_Started {
+    return Intl.message(
+      'Get Started',
+      name: 'Get_Started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get Next {
+    return Intl.message(
+      'Next',
+      name: 'Next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The most`
+  String get The_most {
+    return Intl.message(
+      'The most',
+      name: 'The_most',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `author`
+  String get author {
+    return Intl.message(
+      'author',
+      name: 'author',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Live`
+  String get Create_Live {
+    return Intl.message(
+      'Create Live',
+      name: 'Create_Live',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Teacher`
+  String get Welcome_Teacher {
+    return Intl.message(
+      'Welcome Teacher',
+      name: 'Welcome_Teacher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can create Live here`
+  String get You_can_create_Live_here {
+    return Intl.message(
+      'You can create Live here',
+      name: 'You_can_create_Live_here',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a Title`
+  String get Enter_a_Title {
+    return Intl.message(
+      'Enter a Title',
+      name: 'Enter_a_Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get Title {
+    return Intl.message(
+      'Title',
+      name: 'Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a Time`
+  String get Enter_a_Time {
+    return Intl.message(
+      'Enter a Time',
+      name: 'Enter_a_Time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Time Format (hh:mm)`
+  String get Invalid_Time_Format {
+    return Intl.message(
+      'Invalid Time Format (hh:mm)',
+      name: 'Invalid_Time_Format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Hours (00-23)`
+  String get Invalid_Hours {
+    return Intl.message(
+      'Invalid Hours (00-23)',
+      name: 'Invalid_Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time`
+  String get Time {
+    return Intl.message(
+      'Time',
+      name: 'Time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a Date`
+  String get Enter_Date {
+    return Intl.message(
+      'Enter a Date',
+      name: 'Enter_Date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cannot enter a past date`
+  String get Cannot_enter_a_past_date {
+    return Intl.message(
+      'Cannot enter a past date',
+      name: 'Cannot_enter_a_past_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the date correctly yyyy-MM-dd`
+  String get Enter_the_date_correctly_yyyy_MM_dd {
+    return Intl.message(
+      'Enter the date correctly yyyy-MM-dd',
+      name: 'Enter_the_date_correctly_yyyy_MM_dd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get Date {
+    return Intl.message(
+      'Date',
+      name: 'Date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a link`
+  String get Enter_a_link {
+    return Intl.message(
+      'Enter a link',
+      name: 'Enter_a_link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add link`
+  String get Add_link {
+    return Intl.message(
+      'Add link',
+      name: 'Add_link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `specialization`
+  String get Specialization {
+    return Intl.message(
+      'specialization',
+      name: 'Specialization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `here we will put description`
+  String get here_we_will_put_description {
+    return Intl.message(
+      'here we will put description',
+      name: 'here_we_will_put_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Email`
+  String get Check_Email {
+    return Intl.message(
+      'Check Email',
+      name: 'Check_Email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Your Email Address To Recive A Verification Code`
+  String get Please_Enter_Your_Email_Address_To_Recive_A_Verification_Code {
+    return Intl.message(
+      'Please Enter Your Email Address To Recive A Verification Code',
+      name: 'Please_Enter_Your_Email_Address_To_Recive_A_Verification_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Email`
+  String get Enter_Your_Email {
+    return Intl.message(
+      'Enter Your Email',
+      name: 'Enter_Your_Email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check`
+  String get Check {
+    return Intl.message(
+      'Check',
+      name: 'Check',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Content`
+  String get My_Content {
+    return Intl.message(
+      'My Content',
+      name: 'My_Content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `select all`
+  String get selectall {
+    return Intl.message(
+      'select all',
+      name: 'selectall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `delete`
+  String get delete {
+    return Intl.message(
+      'delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get Add {
+    return Intl.message(
+      'Add',
+      name: 'Add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `edit`
+  String get edit {
+    return Intl.message(
+      'edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get Reset_Password {
+    return Intl.message(
+      'Reset Password',
+      name: 'Reset_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NewPassword`
+  String get NewPassword {
+    return Intl.message(
+      'NewPassword',
+      name: 'NewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter new Password`
+  String get Please_Enter_new_Password {
+    return Intl.message(
+      'Please Enter new Password',
+      name: 'Please_Enter_new_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent`
+  String get Recent {
+    return Intl.message(
+      'Recent',
+      name: 'Recent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Here`
+  String get Search_Here {
+    return Intl.message(
+      'Search Here',
+      name: 'Search_Here',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get Setting {
+    return Intl.message(
+      'Settings',
+      name: 'Setting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Account`
+  String get My_Account {
+    return Intl.message(
+      'My Account',
+      name: 'My_Account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add course`
+  String get Add_course {
+    return Intl.message(
+      'Add course',
+      name: 'Add_course',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Content`
+  String get My_content {
+    return Intl.message(
+      'My Content',
+      name: 'My_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Mood`
+  String get Dark_Mood {
+    return Intl.message(
+      'Dark Mood',
+      name: 'Dark_Mood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure to log out?`
+  String get Are_you_sure_to_log_out {
+    return Intl.message(
+      'Are you sure to log out?',
+      name: 'Are_you_sure_to_log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `confirm`
+  String get confirm {
+    return Intl.message(
+      'confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cancel`
+  String get cancel {
+    return Intl.message(
+      'cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `log out`
+  String get log_out {
+    return Intl.message(
+      'log out',
+      name: 'log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `click here to log out`
+  String get click_here_to_log_out {
+    return Intl.message(
+      'click here to log out',
+      name: 'click_here_to_log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get Close {
+    return Intl.message(
+      'Close',
+      name: 'Close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get Language {
+    return Intl.message(
+      'Language',
+      name: 'Language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `عربي`
+  String get Arabic {
+    return Intl.message(
+      'عربي',
+      name: 'Arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get English {
+    return Intl.message(
+      'English',
+      name: 'English',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learning is Everything`
+  String get Learning_is_Everything {
+    return Intl.message(
+      'Learning is Everything',
+      name: 'Learning_is_Everything',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learning with pleasure whenever you are`
+  String get Learning_with_pleasure_whenever_you_are {
+    return Intl.message(
+      'Learning with pleasure whenever you are',
+      name: 'Learning_with_pleasure_whenever_you_are',
       desc: '',
       args: [],
     );

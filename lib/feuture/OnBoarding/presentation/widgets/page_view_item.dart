@@ -13,7 +13,7 @@ final String? subtitle;
           padding: const EdgeInsets.only(top:60),
           child: Image.asset(image!),
         ),
-        Text(title!,style: TextStyle(
+        Text(title!,style: const TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
           color: Colors.black
@@ -21,7 +21,7 @@ final String? subtitle;
         Padding(
           padding: const EdgeInsets.only(top:8,
           left: 45,right: 35),
-          child: Text(subtitle!,style: TextStyle(
+          child: Text(subtitle!,style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Color(0xff78787c)

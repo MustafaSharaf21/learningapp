@@ -40,8 +40,7 @@ dependencies:
   video_player: ^2.8.6
   youtube_player_flutter: ^9.0.1
   flip_card: ^0.6.0
-  flutter_cached_pdfview: ^0.4.2
-  flutter_otp_text_field: ^1.1.0+2
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -110,10 +109,6 @@ flutter:
     - assets/images/Thinking face-bro.png
     - assets/images/High five-bro.png
     - assets/images/advertisements.png
-    - assets/images/video_14044100.png
-    - assets/images/edit(2).png
-    - assets/images/gallery.jpg
-    - assets/images/camera.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

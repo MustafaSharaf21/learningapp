@@ -373,112 +373,21 @@
 //     return false;
 //   }
 // }
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learningapp/data/http.dart';
 import 'package:learningapp/screen/filtering.dart';
-
+import '../const.dart';
 import '../core/constants.dart';
-//
-// class SearchPage extends StatefulWidget {
-//   @override
-//   State<SearchPage> createState() => _SearchPageState();
-// }
-//
-// class _SearchPageState extends State<SearchPage> {
-//   List<String>CountryList=['Afghanistan',' Albania', ' Algeria',' Andorra',' Angola','Antigua and Barbuda',' Argentina',
-//     'Armenia''Australia','Austria','Austrian Empire*',' Azerbaijan','Baden',' Bahamas', 'Bahrain','Bangladesh',' Barbados'
-//     ,'Bavaria',' Belarus','Belgium','Belize','Benin (Dahomey)', 'Bolivia','Bosnia and Herzegovina','Botswana',' Brazil','Brunei'
-//     ,' Brunswick and Lüneburg',' Bulgaria','Burkina Faso (Upper Volta)','Burma','Burundi', 'CabonVerde',' Cambodia',' Cameroon'
-//     ,' Canada',' Cayman Islands','Central African Republic',' Central American Federation*',' Chad',' Chile', 'China',' Colombia',
-//     'Comoros',' Congo Free State, The*','Costa Rica', 'Cote d’Ivoire ',' Croatia','Cuba','Cyprus','Czechia','Czechoslovakia'
-//   ];
-//   List<String>SpecializationList=['Ui','Ux','Frontend Developer','Backend Developer'];
-//
-//   String? selectedCountry;
-//   String? selectedSpecialization;
-//   @override
-//   Widget build(BuildContext context) {
-//               return AlertDialog(contentPadding: EdgeInsets.symmetric(horizontal: 2,vertical: 24),
-//                 title: Text('Alert Dialog Title'),
-//                 content:
-//                Column(mainAxisSize:MainAxisSize.min,children: [
-//                  DropdownButton(//padding: EdgeInsets.symmetric(horizontal: 2,vertical: 24),
-//                    borderRadius: BorderRadius.circular(2),
-//                    underline:const Divider( thickness:0,height:0),
-//                    icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
-//                    dropdownColor: Colors.white,
-//                    hint:const  Text(
-//                      'Country                                            ',
-//                      style: TextStyle(
-//                          fontSize:15,
-//                          color: Color(0xFF464241),
-//                          fontFamily:'Cairo'),
-//                    ),
-//                    items:CountryList.map((item) =>DropdownMenuItem(
-//                      value: item,
-//                      child: Text(item,
-//                        style:const  TextStyle(
-//                            fontSize: 15,
-//                            color: Colors.black,
-//                            fontFamily:'Cairo'),
-//                      ),
-//                    ),
-//                    ).toList(),
-//                    onChanged: (item){
-//                      setState((){
-//                        selectedCountry=item;
-//                        // print( selectedGender);
-//                      });
-//                    },
-//                    value: selectedCountry,
-//
-//                  ),
-//                  DropdownButton(padding: EdgeInsets.symmetric(horizontal: 2,vertical: 24),
-//                    borderRadius: BorderRadius.circular(30),
-//                    underline:const Divider( thickness:0,height:0),
-//                    icon:const Icon(Icons.arrow_drop_down, color: Color(0xFF464241),size: 30,),
-//                    dropdownColor: Colors.white,
-//                    hint:const  Text(
-//                      'Specialization                                            ',
-//                      style: TextStyle(
-//                          fontSize:15,
-//                          color: Color(0xFF464241),
-//                          fontFamily:'Cairo'),
-//                    ),
-//                    items:SpecializationList.map((item) =>DropdownMenuItem(
-//                      value: item,
-//                      child: Text(item,
-//                        style:const  TextStyle(
-//                            fontSize: 15,
-//                            color: Colors.black,
-//                            fontFamily:'Cairo'),
-//                      ),
-//                    ),
-//                    ).toList(),
-//                    onChanged: (item){
-//                      setState((){
-//                        selectedSpecialization=item;
-//                        // print( selectedGender);
-//                      });
-//                    },
-//                    value: selectedSpecialization,
-//
-//                  )
-//
-//                ],)
-//               );
-//             }
-//
-//   }
-
 
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-        ),
+        appBar: AppBar(),
         body: SearchBar(),
       ),
     );
@@ -492,65 +401,321 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   TextEditingController _controller = TextEditingController();
- List <String> LastFiveSentences =[
-   " Sentences one",
-   "Sentences two",
-   "Sentences three",
-   "Sentences four",
-  "Sentences five",
- ];
+  Map<String, dynamic> searchData = {};
+  bool searchLoading = false;
+  List recent = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    recentSearchData();
+    print(recent);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8),
-      child:
-      Column(children:[
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    hintText: 'Search Here',
-                    icon: Icon(Icons.search),
-                    suffixIcon: _controller.text.isEmpty
-                        ? null
-                        : GestureDetector(
-                      child: Icon(Icons.close),
-                      onTap: () {
-                        _controller.clear();
-                        setState(() {});
-                      },
-                    ),
-                    border: InputBorder.none,
+      padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+      child: Column(
+        children: [
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onChanged: (value) {
-                    setState(() {});
-                  },
+                  child: TextFormField(
+                    controller: _controller,
+                    onFieldSubmitted: (String value) {
+                      addToRecent(word: value);
+                      searchConnect(value);
+                    },
+                    decoration: InputDecoration(
+                      hintText:"Search_Here",
+                      icon: const Icon(Icons.search),
+                      suffixIcon: _controller.text.isEmpty
+                          ? null
+                          : GestureDetector(
+                        child: const Icon(Icons.close),
+                        onTap: () {
+                          _controller.clear();
+
+                          setState(() {});
+                          searchData.clear();
+                          setState(() {});
+                        },
+                      ),
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.filter_list),
+                onPressed: () {
+                  Get.to(() => Filtering());
+                },
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          searchLoading == true
+              ? const Center(
+            child: CircularProgressIndicator(),
+          )
+              : searchData.isNotEmpty
+              ? searchData['results'].isNotEmpty
+              ? Row(
+            children: [
+              Text(
+                '${searchData['results'].length}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Kcolor,
+                ),
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              Text(
+               " courses",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              )
+            ],
+          )
+              : Container()
+              : Container(),
+          const SizedBox(
+            height: 15,
+          ),
+          searchLoading == true
+              ? const Center(
+            child: CircularProgressIndicator(),
+          )
+              : searchData.isNotEmpty
+              ? searchData['results'].isNotEmpty
+              ? Expanded(
+            child: ListView.builder(
+              itemCount: searchData['results'].length,
+              itemBuilder: (context, index) => Container(
+                child: Row(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                          BorderRadius.circular(15),
+                          color: Colors.grey,
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  '$imgURL${searchData['results'][index]['image']}' ),
+                              fit: BoxFit.fill)),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            searchData['results'][index]
+                            ['name'],
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            searchData['results'][index]
+                            ['description'],
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(Icons.filter_list),
-              onPressed: () {
-                Get.to(()=>Filtering());
-              },
-            ),
-          ],
-        ),
-        Expanded(child:ListView.builder(
-          itemCount:LastFiveSentences.length,
-          itemBuilder:(context,index){
-            return ListTile(title:Text(LastFiveSentences[index]));
-          }
-        ))
-      ])
-    );
+          )
+              : Container()
+              : recent.isNotEmpty? Column(
+            crossAxisAlignment:
+            CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment:
+                MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                   " Recent",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color:Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                    ),
+
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      deleteAllRecent();
+                    },
+                    icon: Icon(
+                      Icons.delete_forever_outlined,
+                      size: 28,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                child: Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: List.generate(
+                    recent.length,
+                        (index) => historySearch(
+                      text: recent[index]
+                          .toString(),
+                      onTap: () {
+                        removeRecentItem(
+                            index: index);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ): Container(),
+        ],
+      ),);
   }
+  Future searchConnect(String v) {
+    if (v.isNotEmpty || v.length > 2) {
+      setState(() {
+        searchLoading = true;
+      });
+      return HttpHelper.gettData(url: 'search?query=$v').then((value) {
+        print(value.body);
+        if (value.statusCode == 200 || value.statusCode == 201) {
+          setState(() {
+            searchData = jsonDecode(value.body);
+          });
+        }
+        setState(() {
+          searchLoading = false;
+        });
+      }).catchError((e) {
+        setState(() {
+          searchLoading = false;
+        });
+      });
+    } else {
+      return Future(() => null);
+    }
+  }
+  recentSearchData() {
+    if (box.read('recent') != null) {
+      setState(() {
+        recent = box.read('recent');
+      });
+    } else {
+      setState(() {
+        recent = [];
+      });
+    }
+  }
+  addToRecent({required String word}) {
+    if (word.isNotEmpty) {
+      if (recent.length > 4) {
+        setState(() {
+          recent.remove(recent.first);
+          recent.addIf(word.length > 1, word);
+          box.write('recent', recent);
+        });
+      } else {
+        setState(() {
+          recent.addIf(word.length > 1, word);
+          box.write('recent', recent);
+        });
+      }
+    }
+  }
+  deleteAllRecent() {
+    setState(() {
+      recent.clear();
+      box.remove('recent');
+    });
+  }
+  removeRecentItem({required int index}) {
+    setState(() {
+      recent.remove(recent[index]);
+      box.write('recent', recent);
+    });
+  }
+  Widget historySearch({required String text,required VoidCallback onTap})=>Container(
+    padding: const EdgeInsets.only(
+      left: 15,
+      right: 5,
+    ),
+    decoration: BoxDecoration(
+      color: Colors.grey[200]!,
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          text,
+          style: const TextStyle(
+              fontSize: 14,
+              color: Colors.grey
+          ),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        InkWell(
+          onTap: onTap,
+
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5,vertical: 8),
+            child: Icon(
+              Icons.clear,
+              size: 20,
+              color: Colors.black,
+            ),
+          ),
+        )
+      ],
+    ),
+  );
 }
+
+
+

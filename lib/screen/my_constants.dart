@@ -99,14 +99,17 @@
 //     ));
 //   }}
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:learningapp/generated/l10n.dart';
 
 import '../core/constants.dart';
 
 
 class myContents extends StatefulWidget {
   static String id = "myContents";
+
+  const myContents({super.key});
   @override
   _MyComponentPageState createState() => _MyComponentPageState();
 }
@@ -128,7 +131,8 @@ class _MyComponentPageState extends State<myContents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Content', style: TextStyle(color: Colors.black)),
+        title: Text(S.of(context).My_Content,
+         style: const TextStyle(color: Colors.black)),
         backgroundColor: Kcolor,
         actions: <Widget>[
           PopupMenuButton<String>(
@@ -139,13 +143,13 @@ class _MyComponentPageState extends State<myContents> {
             },
             itemBuilder: (BuildContext context) =>
             <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: 'select_all',
-                child: Text('select all'),
+                PopupMenuItem<String>(
+                value: S.of(context).selectall,
+                child: Text(S.of(context).selectall),
               ),
               PopupMenuItem<String>(
-                value: 'delete',
-                child: Text('delete'),
+                value: S.of(context).delete,
+                child: Text(S.of(context).delete),
               ),
             ],
           ),
@@ -190,24 +194,24 @@ class _MyComponentPageState extends State<myContents> {
                               },
                               itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                                const PopupMenuItem<String>(
-                                  value: 'Add',
-                                  child: Text('Add'),
+                                  PopupMenuItem<String>(
+                                  value: S.of(context).Add,
+                                  child: Text(S.of(context).Add),
                                 ),
                                 PopupMenuItem<String>(
-                                  value: 'edit',
-                                  child: Text('edit'),
+                                  value: S.of(context).edit,
+                                  child: Text(S.of(context).edit),
                                 ),
                                 PopupMenuItem<String>(
-                                  value: 'delete',
-                                  child: Text('delete'),
+                                  value: S.of(context).delete,
+                                  child: Text(S.of(context).delete),
                                 ),
                               ],
                             ),
                             // SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                             Text(
                               'Title $index',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -215,9 +219,9 @@ class _MyComponentPageState extends State<myContents> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
-                          'here we will put description',
+                          S.of(context).here_we_will_put_description,
                           style: TextStyle(
                             color: Colors.grey[600],
                             fontSize: 12,
@@ -226,8 +230,8 @@ class _MyComponentPageState extends State<myContents> {
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Container(
+                  const Spacer(),
+                  SizedBox(
                     height: 100,
                     width: 100,
                     child: Image.asset("assets/2.jpg", fit: BoxFit.cover),

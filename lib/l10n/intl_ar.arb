@@ -30,13 +30,100 @@
     "Gender":"الجنس",
     "already_a_member":"أنا عضو بالفعل",
 
-    "all":"الكل",
-    "cources":"المقرر التعليمي",
-    "vedio":"فيديوهات",
-    "pdf":"pdfملفات",
-    "home":"الصفحة الرئيسية",
-    "favorite":"المفضلة",
-    "library" :"المكتبة" ,
-    "chating":"مشاركة"
+    
+"All":"الكل",
+"courses":"الكورسات",
+"video":"فيديو",
+"Pdf":"pdf",
+"Home": "الرئيسئة",
+"Favorite":"المفضلة",
+"Library":"المكتبة",
+"Testting":"اختبارات",
+"Live":"لايف",
+"Chatting":"مشاركة",
+
+"Link_copied_to_clipboard":"تم نسخ الرابط الى الحافظة",
+"Copy_The_Live_Link":"انسخ رابط اللايف",
+
+"Profile":"حسابي",
+"Edit_Profile":"تعديل حسابي",
+"Interests":"الاهتمامات",
+"Save":"حفظ",
+"Select_Image_Source":"حدد مصدر الصورة",
+"Gallery":"المعرض",
+"Camera":"الكاميرا",
+
+"Skip":"يتخطى",
+"Get_Started":"البدء",
+"Next":"التالي",
+"The_most":"الاكثر...",
+
+"author":"المؤلف",
+
+"Create_Live":"إنشاء لايف",
+"Welcome_Teacher":"مرحبا أستاذ",
+"You_can_create_Live_here":"يُمكنك إنشاء لايف هنا",
+"Enter_a_Title": "أدخل العنوان",
+"Title":"العنوان",
+"Enter_a_Time":"أدخل الوقت",
+"Invalid_Time_Format":"تنسيق الوقت غير صالح (ساعة:دقيقة)",
+"Invalid_Hours":"الساعات غير الصالحة (00-23)",
+"Time":"الوقت",
+"Enter_Date":"أدخل التاريخ",
+"Cannot_enter_a_past_date":"لا يمكن إدخال تاريخ سابق",
+"Enter_the_date_correctly_yyyy_MM_dd":"أدخل التاريخ بالشكل الصحيح yyyy-MM-dd",
+"Date":"التاريخ",
+"Enter_a_link":"أدخل الرابط",
+"Add_link":"إضافة رابط",
+"Specialization":"الاختصاص",
+
+"here_we_will_put_description":"هنا سوف نضع الوصف",
+"Check_Email":"تفقد البريد الإلكتروني",
+"Please_Enter_Your_Email_Address_To_Recive_A_Verification_Code":"الرجاء إدخال عنوان بريدك الإلكتروني لتلقي رمز التحقق",
+"Enter_Your_Email":"ادخل حسابك",
+"Check":"فحص",
+
+"My_Content":" المحتوى الخاص بي ",
+"selectall":"اختر الكل",
+"delete":"حذف",
+"Add":"إضافة",
+"edit":"تعديل",
+
+
+"Reset_Password":"إعادة تعيين كلمة المرور",
+"NewPassword":"كلمة المرور الجديدة",
+"Please_Enter_new_Password":"الرجاء إدخال كلمة المرور الجديدة",
+
+"Recent":"حديث",
+"Search_Here":"ابحث هنا",
+
+"Setting":"إعدادات",
+"My_Account":"حسابي",
+"Add_course":"إضافة كورس",
+"My_content":"المحتوى الخاص بي",
+"Dark_Mood":"الوضع الداكن",
+"Are_you_sure_to_log_out":"هل أنت متأكد من تسجيل الخروج؟",
+"confirm":"تأكيد",
+"cancel":"إلغاء",
+"log_out":"تسجيل خروج",
+"click_here_to_log_out":"click here to log out",
+"Close":"إغلاق",
+"Language":"اللغة",
+"Arabic": "عربي",
+"English":"English",
+
+
+
+
+"Learning_is_Everything":"التعلم هو كل شيء",
+"Learning_with_pleasure_whenever_you_are":"اتعلُّم بكل سرور أينما كنت"
+
+
+
+
+
+
+
+
  
 }

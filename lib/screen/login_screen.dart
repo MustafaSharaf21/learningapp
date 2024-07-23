@@ -8,62 +8,55 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/core/widgets/buildInputDecoration.dart';
 import 'package:learningapp/core/widgets/header_painater.dart';
-import 'package:learningapp/screen/profile/profile.dart';
 import '../data/http.dart';
 import '../generated/l10n.dart';
 import 'foreger_password_screen.dart';
 import 'home_screen.dart';
-import 'profile/profile_screen.dart';
-import 'profile/update_profile_screen.dart';
 import 'register1_screen.dart';
-
 
 class LoginPage extends StatefulWidget {
   static String id = " LoginPage";
-  @override//
+  @override //
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage>{
+class _LoginPageState extends State<LoginPage> {
   bool secureText = true;
   TextEditingController password = TextEditingController();
   TextEditingController email = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
- Future signInWithGoogle() async {
+  Future signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
-    );//jkjkmm
+    ); //jkjkmm
 
     await FirebaseAuth.instance.signInWithCredential(credential);
     print(credential);
 
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) {
-          return HomePage();
-        }));
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return MyHomePage();
+    }));
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
-        decoration:const  BoxDecoration(
+      body: Container(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
               colors: [
                 Colors.white,
-                Color(0xFFE0F5EC),],//Color(0xFFBCF3E2)
+                Color(0xFFE0F5EC),
+              ], //Color(0xFFBCF3E2)
               begin: Alignment.topRight,
-              end: Alignment.bottomLeft
-          ),
+              end: Alignment.bottomLeft),
         ),
         child: ListView(
           children: [
@@ -72,20 +65,24 @@ class _LoginPageState extends State<LoginPage>{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FullHeader(HeaderText:S.of(context).titleLogin),
-                  const  SizedBox(height: 180,),
+                  FullHeader(HeaderText: S.of(context).titleLogin),
+                  const SizedBox(
+                    height: 180,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10,left:30,right:30),
+                    padding:
+                        const EdgeInsets.only(bottom: 10, left: 30, right: 30),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: email,
-                      decoration:buildInputDecoration(Icons.email,S.of(context).email),
-                      validator: ( value){
-                        if(value!.isEmpty)
-                        {
+                      decoration: buildInputDecoration(
+                          Icons.email, S.of(context).email),
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return S.of(context).enter_an_email;
                         }
-                        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                            .hasMatch(value)) {
                           return S.of(context).enter_a_valid_Email;
                         }
                         return null;
@@ -93,13 +90,14 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10,left:30,right:30),
+                    padding:
+                        const EdgeInsets.only(bottom: 10, left: 30, right: 30),
                     child: TextFormField(
                       obscureText: secureText,
                       controller: password,
                       keyboardType: TextInputType.visiblePassword,
-                      decoration:InputDecoration(
-                        labelText:S.of(context).password,
+                      decoration: InputDecoration(
+                        labelText: S.of(context).password,
                         hintText: S.of(context).password,
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -107,37 +105,34 @@ class _LoginPageState extends State<LoginPage>{
                                 secureText = !secureText;
                               });
                             },
-                            icon: Icon(
-                                secureText ? Icons.visibility_off : Icons.visibility)),
-                        prefixIcon:const  Icon(Icons.lock),
+                            icon: Icon(secureText
+                                ? Icons.visibility_off
+                                : Icons.visibility)),
+                        prefixIcon: const Icon(Icons.lock),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                          borderSide:const   BorderSide(
-                              color:Kcolor,
-                              width: 1
-                          ),
+                          borderSide: const BorderSide(color: Kcolor, width: 1),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                          borderSide:const  BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.grey,
                             width: 1,
                           ),
                         ),
-                        enabledBorder:OutlineInputBorder(
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                          borderSide:const  BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.grey,
                             width: 1,
                           ),
                         ),
                       ),
-                      validator: ( value){
-                        if(value!.isEmpty)
-                        {
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return S.of(context).enter_a_password;
                         }
-                        if(value.length<6){
+                        if (value.length < 6) {
                           return S.of(context).Password_characters;
                         }
                         return null;
@@ -146,39 +141,50 @@ class _LoginPageState extends State<LoginPage>{
                   ),
                   const SizedBox(height: 15),
                   GestureDetector(
-                    child: Container(alignment:Alignment.bottomRight,
-                      padding:const  EdgeInsets.only(right: 20),
-                      child:const   Text("ForgetPassword?",
-                        style:TextStyle(
-                            color: Colors.grey)
-                        ,textAlign: TextAlign.right,
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      padding: const EdgeInsets.only(right: 20),
+                      child:  Text(
+                        S.of(context).ForgetPassword,
+                        style: const TextStyle(color: Colors.grey),
+                        textAlign: TextAlign.right,
                       ),
                     ),
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordPage(),));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgetPasswordPage(),
+                          ));
                     },
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   GestureDetector(
-                    onTap: (){
-                      if (_formkey.currentState!.validate()){
+                    onTap: () {
+                      if (_formkey.currentState!.validate()) {
                         login();
                       }
                     },
-                    child:Padding(
-                      padding:const EdgeInsets.symmetric(vertical:0.0 ,horizontal:80.0 ) ,
-                      child:Container(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0.0, horizontal: 80.0),
+                      child: Container(
                         height: 40,
                         width: 150,
                         decoration: const BoxDecoration(
-                            color:  Kcolor,
-                            borderRadius: BorderRadius.all(Radius.circular(30),)
-                        ),
-                        child:const Center(
-                          child: Text("Login",
-                            style: TextStyle(color: Colors.white,
-                              fontSize:25,
-                              fontWeight:FontWeight.w500,
+                            color: Kcolor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30),
+                            )),
+                        child:  Center(
+                          child: Text(
+                            S.of(context).titleLogin,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
                               fontFamily: 'Cairo',
                             ),
                           ),
@@ -187,19 +193,21 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   const SizedBox(height: 10),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(S.of(context).Login_with_Facebook_or_Google,
-                          style:const  TextStyle(color: Colors.grey,
+                          style: const TextStyle(
+                            color: Colors.grey,
                             fontSize: 15,
-                            fontWeight:FontWeight.w700,
-                            fontFamily: 'Cairo',)),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Cairo',
+                          )),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.only(left:100,right:100),
+                    padding: const EdgeInsets.only(left: 100, right: 100),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -210,12 +218,13 @@ class _LoginPageState extends State<LoginPage>{
                             border: Border.all(color: Colors.blueGrey),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:GestureDetector(
-                            onTap: (){
+                          child: GestureDetector(
+                            onTap: () {
                               print("object");
                             },
-                            child: const Icon(FontAwesomeIcons.facebook,
-                              color:Color(0xFF1877f2),
+                            child: const Icon(
+                              FontAwesomeIcons.facebook,
+                              color: Color(0xFF1877f2),
                             ),
                           ),
                         ),
@@ -226,12 +235,13 @@ class _LoginPageState extends State<LoginPage>{
                             border: Border.all(color: Colors.blueGrey),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:GestureDetector(
-                            onTap: ()async{
+                          child: GestureDetector(
+                            onTap: () async {
                               await signInWithGoogle();
                             },
-                            child: const Icon(FontAwesomeIcons.google,
-                              color:Color(0xFFdb4437),
+                            child: const Icon(
+                              FontAwesomeIcons.google,
+                              color: Color(0xFFdb4437),
                             ),
                           ),
                         ),
@@ -239,35 +249,39 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                   ),
                   const SizedBox(height: 10),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(S.of(context).If_you_dont_have_an_account,
-                          style:const  TextStyle(color: Colors.grey,
+                          style: const TextStyle(
+                            color: Colors.grey,
                             fontSize: 15,
-                            fontWeight:FontWeight.w700,
-                            fontFamily: 'Cairo',)),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Cairo',
+                          )),
                     ],
                   ),
                   const SizedBox(height: 10),
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context){
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return RegisterPage();
                       }));
                     },
-                    child:Row(
+                    child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(S.of(context).titleRegister,
-                              style:const  TextStyle(color: Kcolor,fontSize: 18,
-                                fontWeight:FontWeight.w500,
-                                fontFamily: 'Cairo',)
-                          ),
-                        ]
-                    ),
-
+                              style: const TextStyle(
+                                color: Kcolor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Cairo',
+                              )),
+                        ]),
                   ),
+
                 ],
               ),
             ),
@@ -276,36 +290,31 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
   }
-  login()async{
-    await HttpHelper.postData(url:'login',body:{
-      'email':email.text,
-      'password':password.text
-    }).then((value){
-      Map<String,dynamic> res = jsonDecode(value.body);
-      print (res);
-      if (value.statusCode==200||value.statusCode==201){
-        token=res['data']['token'];
-        GetStorage _box=GetStorage();
-        _box.write('token',token);
-        Get.snackbar(
-            ' ',res['data']['message'].toString(),
-            snackPosition:SnackPosition.BOTTOM,
-            backgroundColor:Colors.black,
-            colorText:Colors.white
-        );
+
+  login() async {
+    await HttpHelper.postData(
+        url: 'login',
+        body: {'email': email.text, 'password': password.text}).then((value) {
+      Map<String, dynamic> res = jsonDecode(value.body);
+      print(res);
+      if (value.statusCode == 200 || value.statusCode == 201) {
+        token = res['data']['token'];
+        GetStorage _box = GetStorage();
+        _box.write('token', token);
+        Get.snackbar(' ', res['data']['message'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.black,
+            colorText: Colors.white);
         print(res);
         print(token);
-        Get.to(HomePage());
-      }else{
+        //Get.to(MyHomePage());
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MyHomePage(),));
+      } else {
         print(res);
-        Get.snackbar(
-            'Error',res['message'].toString(),
-            backgroundColor:Colors.black,
-            colorText:Colors.white
-
-        );
+        Get.snackbar('Error', res['message'].toString(),
+            backgroundColor: Colors.black, colorText: Colors.white);
       }
     });
   }
 }
-

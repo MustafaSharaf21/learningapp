@@ -6,16 +6,16 @@ import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
 import 'package:learningapp/screen/setting_screen.dart';
-import '../data/http.dart';
-import '../data/models/doc/doc.dart';
-import 'allcategory_screen.dart';
-import 'cources_screen.dart';
-import 'documentation_screen.dart';
-import 'saerch_screen.dart';
-import 'vedio_screen.dart';
+import '../../const.dart';
+import '../../data/http.dart';
+import '../../data/models/doc/doc.dart';
+import '../allcategory_screen.dart';
+import '../cources_screen.dart';
+import '../documentation_screen.dart';
+import '../saerch_screen.dart';
+import '../vedio_screen.dart';
 import 'package:http/http.dart' as http;
 
-void main() => runApp(HomePage());
 
 class HomePage extends StatelessWidget {
   static String id = "HomePage";
@@ -47,12 +47,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   ];
   late Course course;
   late Docs docs;
-
+  bool courseLoading=true;
+  bool docsLoading=true;
   @override
   void initState() {
-    super.initState();
     getAllCourse();
     getAllDocs();
+    super.initState();
+
     _tabController = TabController(length: 4, vsync: this);
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
       if (_pageController.hasClients) {
@@ -220,14 +222,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           controller: _tabController,
           children: [
             allCategory(),
+            courseLoading==true?Center(child: CircularProgressIndicator(),):
             Cources(course.data),
             Vedio(),
-            documentation(docs.data),
+            docsLoading==true?Center(child: CircularProgressIndicator(),): documentation(docs.data),
           ],
         ),
       ),
       bottomNavigationBar: NavigationBar(
-        height: 50,
+        height: 80,
         indicatorColor: Color(0xFF399679),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -263,27 +266,31 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Future<void> getAllCourse() async {
     var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/course/show/1'),
+      Uri.parse('http://192.168.118.128:8000/api/course/show/1'),
       headers: {
-        "Authorization": "Bearer $token",
+        "Authorization": "Bearer ${box.read('token')}",
       },
     );
     if (response.statusCode == 200) {
+      print(response.body);
       setState(() {
         course = Course.fromJson(json.decode(response.body));
-        print("Test ${course.data[0].name}");
+        courseLoading=false;
+        print("Test ${course.data.toString()}");
       });
     }
   }
 
   Future<void> getAllDocs() async {
+
     var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/Home/Getdocuments_tapbar'),
+      Uri.parse('http://192.168.118.128:8000/api/Home/Getdocuments_tapbar'),
       headers: {"Authorization": "Bearer $token"},
     );
     if (response.statusCode == 200) {
       setState(() {
         docs = Docs.fromJson(json.decode(response.body));
+        docsLoading=false;
         print("Test ${docs.data[0].name}");
       });
     }

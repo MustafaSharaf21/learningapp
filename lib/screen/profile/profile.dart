@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/profile/update_profile_screen.dart';
 import 'package:learningapp/screen/profile/widgets/profile_menu.dart';
 
@@ -30,9 +31,9 @@ class _ProfilePageState extends State<profilepage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Profile'),
+        title: Text(S.of(context).Profile),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {},
         ),
       ),
@@ -51,7 +52,7 @@ class _ProfilePageState extends State<profilepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.network(
-                        'http://192.168.43.63:8000' +
+                        'http://192.168.118.128:8000' +
                             (prof['data']['image'] ?? ''),
                         fit: BoxFit.cover,
                       ),
@@ -65,7 +66,7 @@ class _ProfilePageState extends State<profilepage> {
                       height: 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Color(0xFF399679),
+                        color: const Color(0xFF399679),
                       ),
                       child: const Icon(Icons.edit_outlined, size: 15),
                     ),
@@ -77,14 +78,14 @@ class _ProfilePageState extends State<profilepage> {
                 prof['data']['name'] ?? '',
                 style: TextStyle(fontFamily: 'Pacifico'),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               SizedBox(
                 width: 150,
                 child: Container(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                      Color(0xFFEEF5F2).withOpacity(.9),
+                      const Color(0xFFEEF5F2).withOpacity(.9),
                     ),
                     onPressed: () => Navigator.push(
                       context,
@@ -92,9 +93,9 @@ class _ProfilePageState extends State<profilepage> {
                         builder: (context) => UpdateProfileScreen(),
                       ),
                     ),
-                    child: const Text(
-                      "Edit Profile",
-                      style: TextStyle(color: Color(0xFF399679)),
+                    child:  Text(
+                      S.of(context).Edit_Profile,
+                      style: const TextStyle(color: Color(0xFF399679)),
                     ),
                   ),
                 ),
@@ -104,7 +105,7 @@ class _ProfilePageState extends State<profilepage> {
                 child: Column(
                   children: [
                     ProfileMenuWidget(
-                      title: "Name",
+                      title: S.of(context).name,
                       icon: Icons.person,
                       onpress: () {},
                       subtitle: prof['data']['name'] ?? '',
@@ -112,7 +113,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Email",
+                      title: S.of(context).email,
                       icon: Icons.email,
                       onpress: () {},
                       subtitle: prof['data']['email'] ?? '',
@@ -120,7 +121,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Phone",
+                      title: S.of(context).Phone_Number,
                       icon: Icons.phone,
                       onpress: () {},
                       subtitle: prof['data']['mobile_number'] ?? '',
@@ -128,7 +129,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Gender",
+                      title: S.of(context).Gender,
                       icon: Icons.wc,
                       onpress: () {},
                       subtitle: prof['data']['gender'] ?? '',
@@ -136,7 +137,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Birth Date",
+                      title: S.of(context).Date_of_birth,
                       icon: Icons.celebration,
                       onpress: () {},
                       subtitle: prof['data']['birth_date'] ?? '',
@@ -144,7 +145,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Country",
+                      title: S.of(context).Country,
                       icon: Icons.flag,
                       onpress: () {},
                       subtitle: (prof['data']['country'] != null)
@@ -154,7 +155,7 @@ class _ProfilePageState extends State<profilepage> {
                     ),
                     const SizedBox(height: 14),
                     ProfileMenuWidget(
-                      title: "Interests",
+                      title: S.of(context).Interests,
                       icon: Icons.psychology,
                       onpress: () {},
                       subtitle: (prof['data']['interests'] != null)
@@ -173,14 +174,14 @@ class _ProfilePageState extends State<profilepage> {
           ),
         ),
       )
-          : Center(child: CircularProgressIndicator()),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
   fetchUserProfile() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/profile'),
+        Uri.parse('http://192.168.118.128:8000/api/profile'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

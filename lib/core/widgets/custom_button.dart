@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomGeneralButton extends StatelessWidget {
@@ -14,11 +14,11 @@ class CustomGeneralButton extends StatelessWidget {
         height: 60,
         width: 150,
         decoration: BoxDecoration(
-          color: Color(0xFF399679),
+          color: const Color(0xFF399679),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(
-          child: Text(text!,style: TextStyle(
+          child: Text(text!,style: const TextStyle(
             fontSize: 14,
             color: Colors.white,
             fontWeight: FontWeight.w500

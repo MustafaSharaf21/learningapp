@@ -40,6 +40,16 @@ dependencies:
   video_player: ^2.8.6
   youtube_player_flutter: ^9.0.1
   flip_card: ^0.6.0
+  intl: ^0.18.1
+  clipboard: ^0.1.3
+  font_awesome_flutter: ^10.7.0 #for Icons
+  http: ^1.2.1
+  url_launcher: ^6.3.0
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  flutter_bloc: ^8.1.6
+  flutter_cached_pdfview: ^0.4.2
+  flutter_otp_text_field: ^1.1.0+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -54,13 +64,11 @@ dev_dependencies:
   cupertino_icons: ^1.0.2
   youtube_player_flutter: ^9.0.1
   flutter_riverpod: ^2.5.1 #for state management
-  font_awesome_flutter: ^10.7.0 #for Icons
   miniplayer: ^1.0.1 #To display the video in small size
   path_provider: ^2.1.2 #To save the video to the user's device
   permission_handler: ^11.3.0 #To save the video to the user's device
   timeago: ^3.6.1 #To display the date the video was published
   youtube_explode_dart: ^2.1.0
-  intl: ^0.18.1
   intl_phone_field: ^3.2.0 #for phone Textfield
   curved_navigation_bar: ^1.0.3
   lottie: ^3.1.0 #tfor animation

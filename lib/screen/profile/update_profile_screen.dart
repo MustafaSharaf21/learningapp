@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-import 'package:learningapp/generated/l10n.dart';
 import 'dart:io';
+
 import '../../data/http.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
     }
 
     // URL لواجهة برمجة التطبيقات الخاصة بك
-    var uri = Uri.parse('http://192.168.118.128:8000/api/profile');
+    var uri = Uri.parse('http://192.168.43.63:8000/api/profile');
     var request = http.MultipartRequest('POST', uri)
       ..headers['Authorization'] = 'Bearer$token' // إضافة رأس التوثيق
       ..fields['mobile_number'] = phoneController.text // حقل رقم الجوال
@@ -63,7 +63,7 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).Edit_Profile),
+        title: Text('Edit Profile'),
       ),
       body: Column(
         children: [
@@ -73,15 +73,15 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
                   context: context,
                   builder: (BuildContext context) {
                     return SimpleDialog(
-                      title:  Text(S.of(context).Select_Image_Source),
+                      title: const Text('Select Image Source'),
                       children: <Widget>[
                         SimpleDialogOption(
                           onPressed: () { Navigator.pop(context, ImageSource.camera); },
-                          child:  Text(S.of(context).Camera),
+                          child: const Text('Camera'),
                         ),
                         SimpleDialogOption(
                           onPressed: () { Navigator.pop(context, ImageSource.gallery); },
-                          child: Text(S.of(context).Gallery),
+                          child: const Text('Gallery'),
                         ),
                       ],
                     );
@@ -103,13 +103,13 @@ class _ProfilePageState extends State<UpdateProfileScreen> {
           TextField(
             controller: phoneController,
             decoration: InputDecoration(
-              labelText: S.of(context).Phone_Number,
+              labelText: 'Phone Number',
             ),
             keyboardType: TextInputType.phone,
           ),
           ElevatedButton(
             onPressed: _saveProfile,
-            child: Text(S.of(context).Save),
+            child: Text('Save'),
           ),
         ],
       ),

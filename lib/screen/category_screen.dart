@@ -23,9 +23,9 @@ class _CategoryState extends State<Category> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title:const Text("Category"),backgroundColor: Kcolor,),
-      body: Container(padding:const EdgeInsets.only(top: 8),
-        child: GridView.builder(gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount( crossAxisSpacing: 5,mainAxisSpacing: 30,crossAxisCount: 3), itemCount: category.length,itemBuilder: (context,i){
+    return Scaffold(appBar: AppBar(title: Text("Category"),backgroundColor: Kcolor,),
+      body: Container(padding: EdgeInsets.only(top: 8),
+        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisSpacing: 5,mainAxisSpacing: 30,crossAxisCount: 3), itemCount: category.length,itemBuilder: (context,i){
           return
             GestureDetector(
               onTap: (){
@@ -34,10 +34,10 @@ class _CategoryState extends State<Category> {
                 });
               },
               child: Container(decoration: BoxDecoration(
-                  color:const Color(0xFFF8F8F7),
+                  color: Color(0xFFF8F8F7),
 
                   borderRadius: BorderRadius.circular(8)
-              ), height: 180,margin:const EdgeInsets.only(left: 0,right: 0),
+              ), height: 180,margin: EdgeInsets.only(left: 0,right: 0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -48,7 +48,7 @@ class _CategoryState extends State<Category> {
                           height: 130,
                           //width: 120,
                           alignment: Alignment.center,
-                          margin:const EdgeInsets.only(left:0,
+                          margin:EdgeInsets.only(left:0,
                             // right: index==images.length -1 ?20:0),
                           ),
                           // padding: EdgeInsets.symmetric(horizontal: 20),
@@ -66,7 +66,7 @@ class _CategoryState extends State<Category> {
                         ),
                       ),
                     ),
-                    Text(category[i]["title"],style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                    Text(category[i]["title"],style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),

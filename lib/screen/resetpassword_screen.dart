@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learningapp/generated/l10n.dart';
 import 'verifycode_screen.dart';
 class ResetPassword extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -8,8 +7,7 @@ class ResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).Reenter_Password,
-        style: const TextStyle(
+        title: Text('Reset Password',style: TextStyle(
             color: Colors.grey
         ),),
         centerTitle: true,
@@ -19,12 +17,11 @@ class ResetPassword extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const SizedBox(height: 25,),
-                Text(S.of(context).NewPassword,
-              style: const TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
-              const SizedBox(height: 15,),
-                Text(S.of(context).Please_Enter_new_Password,textAlign: TextAlign.center,),
-              const SizedBox(height: 50,),
+              SizedBox(height: 25,),
+              Text("NewPassword",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
+              SizedBox(height: 15,),
+              Text("Please Enter new Password",textAlign: TextAlign.center,),
+              SizedBox(height: 50,),
               // OtpTextField(
               //   focusedBorderColor: Color(0xFF399679),
               //   fieldWidth: 50,
@@ -42,35 +39,35 @@ class ResetPassword extends StatelessWidget {
               //     Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword(),));
               //   }, // end onSubmit
               // ),
-              const SizedBox(height: 35,),
+              SizedBox(height: 35,),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: S.of(context).password,
-                  hintText: S.of(context).password,
+                  labelText: 'password',
+                  hintText: " PassWord",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-                  suffixIcon:const Icon(Icons.lock,color: Color(0xFF399679),),
+                  suffixIcon: Icon(Icons.lock,color: Color(0xFF399679),),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 27,),
+              SizedBox(height: 27,),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: S.of(context).Confirm_Password,
-                  hintText: S.of(context).Confirm_Password,
+                  labelText: ' Confirm password',
+                  hintText: " Confirm  Password",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-                  suffixIcon:const Icon(Icons.lock,color: Color(0xFF399679),),
+                  suffixIcon: Icon(Icons.lock,color: Color(0xFF399679),),
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               GestureDetector(child: Container(
                 alignment: Alignment.center,
                 width: 200,
                 height:50,
-                decoration: BoxDecoration( color:const Color(0xFF399679),
+                decoration: BoxDecoration( color: Color(0xFF399679),
                     borderRadius: BorderRadius.circular(100)),
 
-                child: Text(S.of(context).Save,style: const TextStyle(fontSize: 18,color: Colors.black),),
+                child: Text("Save",style: TextStyle(fontSize: 18,color: Colors.black),),
               ),
                   onTap:(){
 

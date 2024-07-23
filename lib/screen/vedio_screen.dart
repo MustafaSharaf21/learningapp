@@ -15,8 +15,13 @@ class Vedio extends StatefulWidget {
 class _CourcesState extends State<Vedio> {
   List<dynamic> videos = [];
   List<String> videoUrls = [
-    'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
-    'https://youtu.be/I7XVS0EySXs?si=_nhennZES6cGMOSQ',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
+    'https://youtu.be/I7XVS0EySXs',
 
   ];
   bool isLoading = true;

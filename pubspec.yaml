@@ -121,6 +121,8 @@ flutter:
     - assets/images/advertisements.png
     - assets/images/img.png
     - assets/images/emptyImage.jpg
+    - assets/images/sy.png
+    - assets/images/images (3).png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

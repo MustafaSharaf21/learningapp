@@ -19,6 +19,9 @@ import 'screen/profile/update_profile_screen.dart';
 import 'screen/testMySelf/test_myself.dart';
 import 'screen/welcome_screen.dart';
 
+
+
+
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,6 +86,12 @@ class _LearningAppState extends State<LearningApp> {
       },
     );
   }
-
 }
+
+
+
+
+
+
+
 

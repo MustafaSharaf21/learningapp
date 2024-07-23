@@ -632,30 +632,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // Future<void> signup1() async {
-  // String apiUrl='http://192.168.43.63:8000/api/register';
-  // int? id = roles[selectedGender];
-  // try{
-  //   var response = await http.post(Uri.parse(apiUrl),
-  //   body: json.encode({
-  //     'name':full_Name.text,
-  //     'email':email.text,
-  //     'password':password.text,
-  //     'confirm_password':confirmpassword.text,
-  //     'role_id':id
-  //   }),
-  //   );
-  //   if (response.statusCode==200){
-  //     print('User registered successfully');
-  //     navigatorToRegister2();
-  //   }else{
-  //     print(res);
-  //     print('Failed to register user');
-  //   }
-  // }catch(e){
-  //   print(e.toString());
-  // }
-  // }
   signup() async {
     int? id = roles[selectedGender];
     int?countryId=selectedCountryId;
@@ -677,9 +653,15 @@ class _RegisterPageState extends State<RegisterPage> {
       Map<String, dynamic> res = jsonDecode(value.body);
       print(res);
       if (value.statusCode == 200 || value.statusCode == 201) {
-        token = res['data']['token'];
+         var rememberToken = res['data']['user']['remember_token'];
+        token = rememberToken; // استخدام remember_token بدلاً من token
+
+        print('Remember Token: $rememberToken');
+        print('Token: $token'); // طباعة token للتحقق
+
         GetStorage _box = GetStorage();
-        _box.write('token', token);
+        _box.write('remember_token', rememberToken);
+        _box.write('token', token); // تخزين token
         Get.snackbar(
             ' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,
@@ -772,49 +754,6 @@ class Specialist {
     required this.name,
   });
 }
-/* GestureDetector(
-                  onTap: () {
-                    if (_formkey.currentState!.validate()) {
-                      signup();
-                  Get.to(
 
-                    RegisterPage2()
-                  );
-                    }
-                  },
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                      child: Lottie.asset(
-                        'assets/images/next2.json', height: 150, width: 150,)
-                  ),
-                ),*/
-// MultiSelectDialogField(
-// chipDisplay: MultiSelectChipDisplay.none(),
-// items: _items,
-// title: Text(S.of(context).specialization),
-// searchable: true,
-// selectedColor: Kcolor,
-// buttonText: Text(
-// S.of(context).Favorite_specialization,
-// style: const TextStyle(
-// fontSize: 15,
-// color: Color(0xFF464241),
-// fontFamily: 'Cairo'),
-//
-// ),
-// buttonIcon: const Icon(
-// Icons.arrow_drop_down,
-// color: Color(0xFF464241),
-// size: 30,
-// ),
-// onConfirm: (results) {
-// setState(() {
-// _selectedSpecialist = results.cast<Specialist>();
-// for (var specialist in _selectedSpecialist) {
-// print(specialist.id);  // Assuming 'name' is a property of 'Specialist'
-// }
-// });
-// },
-// ),
 
 //eee

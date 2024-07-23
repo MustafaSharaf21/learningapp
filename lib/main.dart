@@ -47,7 +47,7 @@ class _LearningAppState extends State<LearningApp> {
         HomePage.id:(context)=> HomePage(),
         SplashPage.id:(context)=> SplashPage(),
         Category.id:(context)=> Category(),
-        UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
+       // UpdateProfileScreen.id:(context)=> UpdateProfileScreen(),
         TestMySelf.id:(context)=> TestMySelf(),
         myContents.id:(context)=> myContents(),
         welcomeScreen.id:(context)=> welcomeScreen(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/core/constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerPage extends StatefulWidget {
@@ -20,7 +21,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   void play(String videoUrl) {
     final convertUrl = YoutubePlayer.convertUrlToId(videoUrl);
-    if (convertUrl == null) return;
+    if (convertUrl == null) {
+      print('Failed to convert URL to ID');
+      return;
+    }
+    print('Video ID: $convertUrl');
     _controller = YoutubePlayerController(
       initialVideoId: convertUrl,
       flags: const YoutubePlayerFlags(
@@ -30,11 +35,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
       ),
     )..addListener(() {
       if (mounted) {
-        print('set');
         setState(() {});
       }
     });
   }
+
 
   @override
   void deactivate() {
@@ -59,7 +64,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Kcolor,
         title: const Text('Youtube Player'),
       ),
       body: ListView(
@@ -88,7 +93,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   setState(() {});
                 },
                 iconSize: 42,
-                color: _controller.value.isPlaying ? Colors.red : Colors.green,
+                color: _controller.value.isPlaying ? Colors.red : Kcolor,
                 icon: Icon(
                   _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
                 ),

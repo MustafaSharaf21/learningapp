@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import '../../data/http.dart';
 import 'result_page.dart';
 import 'question_widget.dart';
-import 'quiz_list.dart';
+import 'dart:convert';
 
 class QuizPage extends StatefulWidget {
-  final Quiz quiz;
+  final int id;
 
-  QuizPage({required this.quiz});
+  QuizPage({required this.id});
 
   @override
   _QuizPageState createState() => _QuizPageState();
@@ -16,20 +17,50 @@ class _QuizPageState extends State<QuizPage> {
   int currentQuestionIndex = 0;
   int correctAnswers = 0;
   int wrongAnswers = 0;
+  List<Map<String, dynamic>> questionsData = []; // استخدام dynamic بدلاً من Object
+  bool isLoading = true;
 
-  final List<Map<String, Object>> questionsData = [
-    {
-      'question': "What is 2 + 2?",
-      'answers': ["3", "4", "5"],
-      'correct': 1,
-    },
-    {
-      'question': "What is the capital of France?",
-      'answers': ["London", "Berlin", "Paris"],
-      'correct': 2,
-    },
+  @override
+  void initState() {
+    super.initState();
+    fetchQuestions();
+  }
 
-  ];
+  Future<void> fetchQuestions() async {
+    try {
+      var response = await HttpHelper.gettData(url: 'Quiz/getquestions/${widget.id}');
+      var responseBody = jsonDecode(response.body);
+
+      if (responseBody['status'] == 'Success') {
+        List<dynamic> questionsJson = responseBody['data']['original']['questions'];
+        setState(() {
+          questionsData = questionsJson.map((question) {
+            List<String> answers = [];
+            int correctAnswerIndex = 0;
+
+            List<dynamic> answersJson = question['answers'];
+            answersJson.asMap().forEach((index, answer) {
+              answers.add(answer['text']);
+              if (answer['is_correct'] == 1) {
+                correctAnswerIndex = index;
+              }
+            });
+
+            return {
+              'question': question['text'],
+              'answers': answers,
+              'is_correct': correctAnswerIndex,
+            }; // لا حاجة لتحويل النوع هنا
+          }).toList();
+
+          isLoading = false;
+        });
+
+      }
+    } catch (error) {
+      print('Error fetching questions: $error');
+    }
+  }
 
   void handleAnswer(bool isCorrect) {
     setState(() {
@@ -48,6 +79,7 @@ class _QuizPageState extends State<QuizPage> {
             builder: (context) => ResultPage(
               correctAnswers: correctAnswers,
               totalQuestions: questionsData.length,
+              quizId: widget.id, // تمرير الـ quizId هنا
             ),
           ),
         );
@@ -59,17 +91,31 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.quiz.title),
+        title: Text('Quiz'),
       ),
-      body: Column(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Correct: $correctAnswers',style: TextStyle(color: Colors.green,fontWeight: FontWeight.w600,fontSize: 17.5),),
-                Text('Wrong: $wrongAnswers',style: TextStyle(color: Colors.red,fontWeight: FontWeight.w600,fontSize: 17.5),),
+                Text(
+                  'Correct: $correctAnswers',
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17.5),
+                ),
+                Text(
+                  'Wrong: $wrongAnswers',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17.5),
+                ),
               ],
             ),
           ),

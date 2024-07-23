@@ -31,9 +31,9 @@ class Datum {
   final String description;
   final dynamic image;
   final String status;
-  final String userId;
-  final String specializationId;
-  final String countryId;
+  final int userId;
+  final int specializationId;
+  final int countryId;
   final DateTime createdAt;
   final DateTime updatedAt;
 

@@ -263,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Future<void> getAllCourse() async {
     var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/course/show/1'),
+      Uri.parse('http://192.168.118.128:8000/api/course/show/1'),
       headers: {
         "Authorization": "Bearer $token",
       },
@@ -278,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   Future<void> getAllDocs() async {
     var response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/Home/Getdocuments_tapbar'),
+      Uri.parse('http://192.168.118.128:8000/api/Home/Getdocuments_tapbar'),
       headers: {"Authorization": "Bearer $token"},
     );
     if (response.statusCode == 200) {

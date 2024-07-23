@@ -176,7 +176,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
 
   Future<void> fetchCourses() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/Quiz/getmycourses'),
+      Uri.parse('http://192.168.118.128:8000/api/Quiz/getmycourses'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -253,7 +253,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.43.63:8000/api/Quiz/createquiz'),
+        Uri.parse('http://192.168.118.128:8000/api/Quiz/createquiz'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',

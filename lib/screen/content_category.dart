@@ -125,7 +125,7 @@ class _CoursesPageState extends State<CoursesPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.network(
-                            'http://192.168.43.63:8000' +courseImage,
+                            'http://192.168.118.128:8000' +courseImage,
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,

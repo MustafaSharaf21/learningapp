@@ -44,7 +44,7 @@ class _ExampleState extends State<allCategory> {
             itemBuilder: (context, index) {
               final lastUpdate = lastUpdatedCourses[index];
               final imageUrl = lastUpdate['image'] != null
-                  ? 'http://192.168.118.128:8000' + lastUpdate['image']
+                  ? 'http://192.168.43.63:8000' + lastUpdate['image']
                   : 'assets/images/default.jpg';
               return GestureDetector(
                 onTap: () {
@@ -77,7 +77,7 @@ class _ExampleState extends State<allCategory> {
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 lastUpdate['image'] != null
-                                    ? 'http://192.168.118.128:8000' +
+                                    ? 'http://192.168.43.63:8000' +
                                         lastUpdate['image']
                                     : 'assets/images/default.jpg',
                               ),
@@ -147,7 +147,7 @@ class _ExampleState extends State<allCategory> {
               itemBuilder: (context, index) {
                 final randomcourses = randomRelatedCourses[index];
                 final imageUrl = randomcourses['image'] != null
-                    ? 'http://192.168.118.128:8000' + randomcourses['image']
+                    ? 'http://192.168.43.63:8000' + randomcourses['image']
                     : 'assets/images/vedio.jpg';
                 return GestureDetector(
                   onTap: () {
@@ -180,7 +180,7 @@ class _ExampleState extends State<allCategory> {
                                 fit: BoxFit.cover,
                                 image:  NetworkImage(
                                   randomcourses['image'] != null
-                                      ? 'http://192.168.118.128:8000' +
+                                      ? 'http://192.168.43.63:8000' +
                                       randomcourses['image']
                                       : 'assets/images/artificalIntelligence.png',
                                 ),
@@ -245,7 +245,7 @@ class _ExampleState extends State<allCategory> {
             itemBuilder: (context, index) {
               final trendCourses = trendCountryCourses[index];
               final imageUrl = trendCourses['image'] != null
-                  ? 'http://192.168.118.128:8000' + trendCourses['image']
+                  ? 'http://192.168.43.63:8000' + trendCourses['image']
                   : 'assets/images/artificalIntelligence.png';
               return GestureDetector(
                 onTap: () {
@@ -278,7 +278,7 @@ class _ExampleState extends State<allCategory> {
                               fit: BoxFit.cover,
                               image: NetworkImage(
                                 trendCourses['image'] != null
-                                    ? 'http://192.168.118.128:8000' +
+                                    ? 'http://192.168.43.63:8000' +
                                     trendCourses['image']
                                     : 'assets/images/artificalIntelligence.png',
                               ),
@@ -342,7 +342,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchLastUpdatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.118.128:8000/api/Home/last_updated_courses'),
+        Uri.parse('http://192.168.43.63:8000/api/Home/last_updated_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -362,7 +362,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchrandomRelatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.118.128:8000/api/Home/rand_related_courses'),
+        Uri.parse('http://192.168.43.63:8000/api/Home/rand_related_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -381,7 +381,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchTrendCountryCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.118.128:8000/api/Home/trend_Country_courses'),
+        Uri.parse('http://192.168.43.63:8000/api/Home/trend_Country_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {

@@ -35,7 +35,7 @@ class _CourcesState extends State<Vedio> {
   Future<void> fetchVideos() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.118.128:8000/api/Home/Getvideos_tapbar'),
+        Uri.parse('http://192.168.43.63:8000/api/Home/Getvideos_tapbar'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -56,20 +56,20 @@ class _CourcesState extends State<Vedio> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: videos.length,
-            itemBuilder: (context, index) {
-            final video = videos[index];
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => VideoPlayerPage(
-                videoUrl: videoUrls[index],
-                ),)
+        scrollDirection: Axis.vertical,
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          final video = videos[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VideoPlayerPage(
+                      videoUrl: videoUrls[index],
+                    ),)
               );
             },
             child: Padding(
@@ -90,13 +90,13 @@ class _CourcesState extends State<Vedio> {
                           children: [
                             Text(
                               video['name'],
-                              style:const TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            SizedBox(height: 5),
                             Text(
                               'Type: ${video['type']}',
                               style: TextStyle(
@@ -104,7 +104,7 @@ class _CourcesState extends State<Vedio> {
                                 fontSize: 12,
                               ),
                             ),
-                            const Spacer(),
+                            Spacer(),
                             Text(
                               ' ${video['url']}',
                               style: TextStyle(
@@ -136,3 +136,4 @@ class _CourcesState extends State<Vedio> {
 }
 
 
+//

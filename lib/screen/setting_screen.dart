@@ -875,7 +875,7 @@ class _SettingState extends State<Setting> {
                       confirmTextColor: Colors.white,
                       onConfirm: () async {
                         await http.post(
-                            Uri.parse('http://192.168.118.128:8000/api/logout'),
+                            Uri.parse('http://192.168.43.63:8000/api/logout'),
                             headers: {
                               'Authorization': 'Bearer $token'
                             }).then((value) {

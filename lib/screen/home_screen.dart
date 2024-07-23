@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
+import 'package:learningapp/screen/chating_screen.dart';
 import 'package:learningapp/screen/favorit_screen.dart';
 import 'package:learningapp/screen/library_screen.dart';
 import 'package:learningapp/screen/live_screen.dart';
@@ -245,7 +246,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           Category(),
           Library(),
           TestMySelf(),
-          LiveScreen()
+          LiveScreen(),
+          ChattingScreen()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -282,6 +284,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           BottomNavigationBarItem(
             icon: Icon(Icons.live_tv),
             label: 'Live',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_bubble_outline_sharp),
+            label: 'chating',
           ),
         ],
       ),

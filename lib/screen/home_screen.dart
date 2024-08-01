@@ -21,7 +21,7 @@ import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
 
-void main() => runApp(HomePage());
+void main() => runApp(HomePage());//qq
 
 class HomePage extends StatelessWidget {
   static String id = "HomePage";

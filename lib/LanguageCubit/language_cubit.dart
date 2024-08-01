@@ -2,8 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../screen/shared/shared.dart';
+import 'language_state.dart';
 
-part 'language_state.dart';
+part '../screen/add_course_page/language_state.dart';
 
 class LanguageCubit extends Cubit<LanguageState> {
   LanguageCubit() : super(LanguageInitial());
@@ -25,3 +26,4 @@ class LanguageCubit extends Cubit<LanguageState> {
     }
   }
 }
+

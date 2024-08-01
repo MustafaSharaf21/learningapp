@@ -32,9 +32,9 @@ class _ExampleState extends State<allCategory> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          buildSection('stay updated', lastUpdatedCourses),
-          buildSection('in your profession', randomRelatedCourses),
-          buildSection('trend in your country', trendCountryCourses),
+          buildSection('Stay updated', lastUpdatedCourses),
+          buildSection('In your profession', randomRelatedCourses),
+          buildSection('Trend in your country', trendCountryCourses),
         ],
       ),
     );
@@ -60,7 +60,7 @@ class _ExampleState extends State<allCategory> {
               itemBuilder: (context, index) {
                 final course = courses[index];
                 final imageUrl = course['image'] != null
-                    ? 'http://192.168.43.63:8000' + course['image']
+                    ? '$imgURL' + course['image']
                     : 'assets/images/default.jpg';
 
                 final flipCardKey = GlobalKey<FlipCardState>();
@@ -222,7 +222,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchLastUpdatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/last_updated_courses'),
+        Uri.parse('$baseurl'+'Home/last_updated_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -242,7 +242,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchrandomRelatedCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/rand_related_courses'),
+        Uri.parse('$baseurl'+'Home/rand_related_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -262,7 +262,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchTrendCountryCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/trend_Country_courses'),
+        Uri.parse('$baseurl'+'Home/trend_Country_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
@@ -279,4 +279,3 @@ class _ExampleState extends State<allCategory> {
     }
   }
 }
-//mustafa

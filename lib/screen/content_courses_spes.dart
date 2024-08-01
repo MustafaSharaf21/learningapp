@@ -134,7 +134,7 @@ class _ContentCoursesSpesState extends State<ContentCoursesSpes> {
                           ),
                           SizedBox(height: 3,),
                           Text('EDUspark'),
-                        ],
+                        ],//uu
                       ),
                     ],
                   ),

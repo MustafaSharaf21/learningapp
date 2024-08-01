@@ -269,14 +269,6 @@ class S {
       args: [],
     );
   }
-  String get Courses {
-    return Intl.message(
-      'Courses',
-      name: 'Courses',
-      desc: '',
-      args: [],
-    );
-  }
 
   /// `Favorite specialization                `
   String get Favorite_specialization {

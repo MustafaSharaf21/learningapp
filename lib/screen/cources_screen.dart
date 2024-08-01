@@ -88,7 +88,7 @@ class _CourcesState extends State<Cources> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        widget.data[index].image != null ? 'http://192.168.43.63:8000' + widget.data[index].image : 'assets/images/creatTest3.jpg',
+                        widget.data[index].image != null ? 'http://192.168.118.128:8000' + widget.data[index].image : 'assets/images/creatTest3.jpg',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,

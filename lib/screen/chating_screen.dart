@@ -125,7 +125,7 @@ class _ChattingScreenState extends State<ChattingScreen> {
   fetchChatting() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/chat/getusers'),
+        Uri.parse('http://192.168.118.128:8000/api/chat/getusers'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

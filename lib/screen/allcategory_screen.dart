@@ -381,7 +381,7 @@ class _ExampleState extends State<allCategory> {
   Future<void> fetchTrendCountryCourses() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Home/trend_Country_courses'),
+        Uri.parse('http://192.168.118.128:8000/api/Home/trend_Country_courses'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {

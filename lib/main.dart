@@ -126,7 +126,7 @@ class _LearningAppState extends State<LearningApp> {
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,//
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,

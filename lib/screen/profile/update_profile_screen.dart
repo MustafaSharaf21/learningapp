@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/screen/home_screen.dart';
 import 'package:learningapp/screen/login_screen.dart';
 import 'package:learningapp/screen/profile/profile_screen.dart';
@@ -112,7 +113,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         Get.snackbar(
           ' ', res['data']['message'].toString(),
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.black,
+          backgroundColor: Kcolor,
           colorText: Colors.white,
         );
         Get.to(() => HomePage());

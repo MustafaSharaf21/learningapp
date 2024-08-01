@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:learningapp/data/http.dart';
 import 'package:learningapp/data/models/course/cources.dart';
 
 import 'content_courses_spes.dart';
@@ -88,7 +89,7 @@ class _CourcesState extends State<Cources> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        widget.data[index].image != null ? 'http://192.168.43.63:8000' + widget.data[index].image : 'assets/images/creatTest3.jpg',
+                        widget.data[index].image != null ? '$imgURL' + widget.data[index].image : 'assets/images/creatTest3.jpg',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,

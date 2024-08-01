@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
+import 'package:learningapp/screen/Blog/get_posts.dart';
 import 'package:learningapp/screen/chating_screen.dart';
 import 'package:learningapp/screen/favorit_screen.dart';
 import 'package:learningapp/screen/library_screen.dart';
@@ -244,10 +246,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ),
           ),
           Category(),
-          Library(),
           TestMySelf(),
           LiveScreen(),
-          ChattingScreen()
+          ChattingScreen(),
+          GetPosts()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -274,20 +276,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             label: 'Category',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_library_outlined),
-            label: 'Library',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Test Myself',
+            icon: Icon(Icons.quiz_outlined),
+            label: 'Quiz',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.live_tv),
             label: 'Live',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline_sharp),
-            label: 'chating',
+            icon: Icon( FontAwesomeIcons.whatsapp,),
+            label: 'Chat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.fileAlt),
+            label: 'Blog',
           ),
         ],
       ),

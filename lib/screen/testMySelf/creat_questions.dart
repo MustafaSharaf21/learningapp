@@ -176,7 +176,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
 
   Future<void> fetchCourses() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/Quiz/getmycourses'),
+      Uri.parse('$baseurl'+'Quiz/getmycourses'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -193,7 +193,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
             .toList();
       });
     } else {
-      print('Error fetching specializations');
+      print('Error fetching Courses');
     }
   }
 
@@ -253,7 +253,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.43.63:8000/api/Quiz/createquiz'),
+        Uri.parse('$baseurl'+'Quiz/createquiz'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
@@ -266,7 +266,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
         print(res); // Debugging: check server response
 
         if (res['status'] == 'Success') {
-          Get.snackbar('Success', 'Quiz created successfully', backgroundColor: Colors.green, colorText: Colors.white);
+          Get.snackbar('Success', 'Quiz created successfully', backgroundColor: Kcolor, colorText: Colors.white);
           Get.to(QuizList());
         } else {
           Get.snackbar('Error', 'Failed to create quiz', backgroundColor: Colors.red, colorText: Colors.white);

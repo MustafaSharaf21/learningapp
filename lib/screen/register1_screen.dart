@@ -700,7 +700,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchCountries() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getCountries'),
+      Uri.parse('$baseurl'+'getCountries'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -722,7 +722,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
   Future<void> fetchSpesialization() async {
     final response = await http.get(
-      Uri.parse('http://192.168.43.63:8000/api/getSpecializations'),
+      Uri.parse('$baseurl'+'getSpecializations'),
       headers: {
         'Authorization': 'Bearer $token',
       },

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/screen/profile/update_profile_screen.dart';
 import 'package:learningapp/screen/profile/widgets/profile_menu.dart';
 
@@ -51,7 +52,7 @@ class _ProfilePageState extends State<profilepage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.network(
-                        'http://192.168.43.63:8000' +
+                        '$imgURL' +
                             (prof['data']['image'] ?? ''),
                         fit: BoxFit.cover,
                       ),
@@ -176,13 +177,9 @@ class _ProfilePageState extends State<profilepage> {
           : Center(child: CircularProgressIndicator()),
     );
   }
-
   fetchUserProfile() async {
     try {
-      final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/profile'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
+      final response = await HttpHelper.gettData(url: 'profile');
       if (response.statusCode == 200 || response.statusCode == 201) {
         setState(() {
           prof = jsonDecode(response.body);
@@ -191,15 +188,16 @@ class _ProfilePageState extends State<profilepage> {
           'Success',
           prof['data']['name'] ?? 'Unknown',
           snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.black,
+          backgroundColor: Kcolor,
           colorText: Colors.white,
         );
       } else {
-        print('Error');
+        print('Error: ${response.statusCode}');
       }
     } catch (e) {
       print('Error: $e');
     }
   }
 }
+
 //eline

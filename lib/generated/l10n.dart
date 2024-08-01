@@ -887,6 +887,14 @@ class S {
       args: [],
     );
   }
+  String get MY_Library {
+    return Intl.message(
+      'My Library',
+      name: 'MY_Library',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Add course`
   String get Add_course {

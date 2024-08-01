@@ -71,7 +71,7 @@ class _QuizListState extends State<QuizList> {
   Future<void> fetchQuizes() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.43.63:8000/api/Quiz/getquizzes'),
+        Uri.parse('$baseurl'+'Quiz/getquizzes'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {

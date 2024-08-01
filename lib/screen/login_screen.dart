@@ -303,7 +303,7 @@ class _LoginPageState extends State<LoginPage> {
         _box.write('token', token);
         Get.snackbar(' ', res['data']['message'].toString(),
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.black,
+            backgroundColor: Kcolor,
             colorText: Colors.white);
         print(res);
         print(token);

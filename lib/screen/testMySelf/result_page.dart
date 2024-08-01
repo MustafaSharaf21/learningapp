@@ -2,17 +2,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http; // تأكد من إضافة مكتبة http
-import 'dart:math';
+import 'package:http/http.dart' as http;
 import 'package:learningapp/core/constants.dart';
-import '../../data/http.dart'; // استدعاء HttpHelper
+import '../../data/http.dart';
 
 class ResultPage extends StatefulWidget {
   final int correctAnswers;
   final int totalQuestions;
   final int quizId; // أضف هذا إذا كنت تحتاج للـ quizId
 
-  ResultPage({required this.correctAnswers, required this.totalQuestions, required this.quizId}); // أضف الـ quizId هنا
+  ResultPage({required this.correctAnswers, required this.totalQuestions, required this.quizId});
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -21,6 +20,7 @@ class ResultPage extends StatefulWidget {
 class _ResultPageState extends State<ResultPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late BuildContext dialogContext; // لتخزين السياق لمربع الحوار
 
   @override
   void initState() {
@@ -35,36 +35,64 @@ class _ResultPageState extends State<ResultPage> with SingleTickerProviderStateM
         setState(() {});
       });
     _controller.forward().then((value) {
-      // استدعاء دالة إرسال النتيجة
       sendResult(widget.quizId, (widget.correctAnswers / widget.totalQuestions * 100).toInt());
 
       showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Text('!تهانينا', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          content: Text('.لقد أكملت الاختبار'),
-          actions: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/');
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/High five-bro.png',
-                      width: 165,
-                      height: 125,
-                    ),
-                    SizedBox(width: 2),
-                    Text('Finish'),
-                  ],
-                ),
-              ),
+        builder: (context) {
+          dialogContext = context; // تخزين السياق لمربع الحوار
+          return AlertDialog(
+            title: Text(
+              '!تهانينا',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.right,
             ),
-          ],
-        ),
+            content: Text(
+              '.لقد أكملت الاختبار',
+              textAlign: TextAlign.right,
+            ),
+            actions: [
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/High five-bro.png',
+                    width: 110,
+                    height: 110,
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          // إغلاق مربع الحوار عند الضغط على زر Finish
+                          Navigator.of(dialogContext).pop();
+                        },
+                        child: Text(
+                          'Finish',
+                          style: TextStyle(fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // إغلاق مربع الحوار عند الضغط على زر Get my certificate
+                          Navigator.of(dialogContext).pop();
+                          Navigator.pushReplacementNamed(context, '/');
+                        },
+                        child: Text(
+                          'Get my certificate',
+                          style: TextStyle(fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       );
     });
   }
@@ -102,8 +130,8 @@ class _ResultPageState extends State<ResultPage> with SingleTickerProviderStateM
         title: Text('Result'),
       ),
       body: Container(
-        height: MediaQuery.sizeOf(context).height,
-        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(top: 89),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

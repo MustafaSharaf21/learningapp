@@ -855,6 +855,41 @@ class _SettingState extends State<Setting> {
                 ],
               ),
             ),
+            GestureDetector(
+                child: Container(
+                  child: Row(
+                    children: [
+                      Container(
+                          width: 27,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Icon(Icons.person)),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        S.of(context).MY_Library,
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  width: 335,
+                  height: 50,
+                  margin: const EdgeInsets.only(left: 12, top: 8),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xD5E5E4E4)),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const profilepage(),
+                      ));
+                }),
             Container(
               width: 335,
               height: 60,
@@ -875,7 +910,7 @@ class _SettingState extends State<Setting> {
                       confirmTextColor: Colors.white,
                       onConfirm: () async {
                         await http.post(
-                            Uri.parse('http://192.168.43.63:8000/api/logout'),
+                            Uri.parse('$baseurl'+'logout'),
                             headers: {
                               'Authorization': 'Bearer $token'
                             }).then((value) {

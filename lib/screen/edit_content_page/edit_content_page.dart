@@ -264,35 +264,49 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     );
   }
 
+  // Future<void> getAllCourse() async {
+  //   var response = await http.get(
+  //     Uri.parse('http://192.168.43.93:8000/api/course/show/1'),
+  //     headers: {
+  //       "Authorization": "Bearer ${box.read('token')}",
+  //     },
+  //   );
+  //   if (response.statusCode == 200) {
+  //     print(response.body);
+  //     setState(() {
+  //       course = Course.fromJson(json.decode(response.body));
+  //       courseLoading=false;
+  //       print("Test ${course.data.toString()}");
+  //     });
+  //   }
+  // }
+
+
   Future<void> getAllCourse() async {
-    var response = await http.get(
-      Uri.parse('http://192.168.118.128:8000/api/course/show/1'),
-      headers: {
-        "Authorization": "Bearer ${box.read('token')}",
-      },
-    );
-    if (response.statusCode == 200) {
-      print(response.body);
-      setState(() {
-        course = Course.fromJson(json.decode(response.body));
-        courseLoading=false;
-        print("Test ${course.data.toString()}");
-      });
+    try {
+      var response = await HttpHelper.gettData(url: 'course/show/1');
+      if (response.statusCode == 200) {
+        setState(() {
+          course = Course.fromJson(json.decode(response.body));
+          courseLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error fetching courses: $e');
     }
   }
 
   Future<void> getAllDocs() async {
-
-    var response = await http.get(
-      Uri.parse('http://192.168.118.128:8000/api/Home/Getdocuments_tapbar'),
-      headers: {"Authorization": "Bearer $token"},
-    );
-    if (response.statusCode == 200) {
-      setState(() {
-        docs = Docs.fromJson(json.decode(response.body));
-        docsLoading=false;
-        print("Test ${docs.data[0].name}");
-      });
+    try {
+      var response = await HttpHelper.gettData(url: 'Home/Getdocuments_tapbar');
+      if (response.statusCode == 200) {
+        setState(() {
+          docs = Docs.fromJson(json.decode(response.body));
+          docsLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error fetching documents: $e');
     }
   }
 }

@@ -100,7 +100,7 @@ class _LearningAppState extends State<LearningApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LanguageCubit, LanguageState>(
+    return BlocBuilder(
       builder: (context, state) {
         return GetMaterialApp(
           theme: ThemeData(
@@ -122,7 +122,7 @@ class _LearningAppState extends State<LearningApp> {
             OnBoardingView.id: (context) => const OnBoardingView(),
           },
           initialRoute: welcomeScreen.id,
-          locale: state is LanguageSuccess ? Locale(state.language) : null,
+        //  locale: state is LanguageSuccess ? Locale(state.language) : null,
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

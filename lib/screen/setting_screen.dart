@@ -604,9 +604,10 @@ import 'package:http/http.dart' as http;
 import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/add_course_page/add_course_page.dart';
 import 'package:learningapp/screen/profile/profile.dart';
+import '../LanguageCubit/language_cubit.dart';
 import '../const.dart';
 import '../core/constants.dart';
-import '../core/cubitLanguage/language_cubit.dart';
+
 import '../data/http.dart';
 import 'login_screen.dart';
 import 'my_constants.dart';

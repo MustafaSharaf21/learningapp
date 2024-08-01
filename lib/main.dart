@@ -110,7 +110,7 @@ class _LearningAppState extends State<LearningApp> {
           ),
           debugShowCheckedModeBanner: false,
           routes: {
-            Profile.id: (context) => const Profile(),
+
             profilepage.id: (context) => const profilepage(),
             RegisterPage.id: (context) => RegisterPage(),
             LoginPage.id: (context) => LoginPage(),

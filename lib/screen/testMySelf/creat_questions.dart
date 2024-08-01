@@ -64,7 +64,7 @@ class _CreatQuestionState extends State<CreatQuestion> {
                                 icon: const Icon(Icons.arrow_drop_down, color: Kcolor),
                                 dropdownColor: Colors.white,
                                 hint: Text(
-                                  selectedCourses ?? S.of(context).Courses,
+                                  selectedCourses ?? "S.of(context).Courses",
                                   style: const TextStyle(
                                     fontSize: 16,
                                     color: Color(0xFF464241),

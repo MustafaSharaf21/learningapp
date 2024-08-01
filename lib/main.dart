@@ -10,7 +10,6 @@ import 'package:learningapp/screen/profile/profile_screen.dart';
 import 'package:learningapp/screen/register1_screen.dart';
 import 'package:learningapp/screen/shared/shared.dart';
 import 'package:learningapp/screen/splash_screen.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:learningapp/screen/testMySelf/creat_questions.dart';
 import 'LanguageCubit/language_cubit.dart';
@@ -111,7 +110,6 @@ class _LearningAppState extends State<LearningApp> {
           ),
           debugShowCheckedModeBanner: false,
           routes: {
-
             profilepage.id: (context) => const profilepage(),
             RegisterPage.id: (context) => RegisterPage(),
             LoginPage.id: (context) => LoginPage(),
@@ -128,7 +126,7 @@ class _LearningAppState extends State<LearningApp> {
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,//
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,

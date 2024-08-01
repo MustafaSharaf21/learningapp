@@ -12,7 +12,6 @@ import 'package:learningapp/screen/shared/shared.dart';
 import 'package:learningapp/screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:learningapp/screen/testMySelf/creat_questions.dart';
-import 'LanguageCubit/language_cubit.dart';
 import 'feuture/OnBoarding/presentation/on_boarding_view.dart';
 import 'screen/category_screen.dart';
 import 'screen/my_constants.dart';
@@ -77,10 +76,11 @@ void main() async {
   await CacheNetwork.cacheInitialization();
 
   runApp(
-    BlocProvider(
-      create: (context) => LanguageCubit(),
-      child: const LearningApp(),
-    ),
+    // BlocProvider(
+    //   create: (context) => LanguageCubit(),
+    //   child: const LearningApp(),
+    // ),
+    LearningApp(),
   );
 }
 
@@ -94,7 +94,7 @@ class LearningApp extends StatefulWidget {
 class _LearningAppState extends State<LearningApp> {
   @override
   void initState() {
-    BlocProvider.of<LanguageCubit>(context).loadLanguage();
+    // BlocProvider.of<LanguageCubit>(context).loadLanguage();
     super.initState();
   }
 

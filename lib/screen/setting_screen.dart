@@ -604,7 +604,7 @@ import 'package:http/http.dart' as http;
 import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/add_course_page/add_course_page.dart';
 import 'package:learningapp/screen/profile/profile.dart';
-import '../LanguageCubit/language_cubit.dart';
+// import '../LanguageCubit/language_cubit.dart';
 import '../const.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
@@ -749,7 +749,7 @@ class _SettingState extends State<Setting> {
                         builder: (context) => const myContents(),
                       ));
                 }),
-            Container(
+           /* Container(
               width: 335,
               height: 50,
               margin: const EdgeInsets.only(left: 12, top: 8),
@@ -812,7 +812,7 @@ class _SettingState extends State<Setting> {
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ),
-            ),
+            )*/
             Container(
               width: 335,
               height: 50,

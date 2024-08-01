@@ -12,6 +12,7 @@ import 'package:learningapp/screen/shared/shared.dart';
 import 'package:learningapp/screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:learningapp/screen/testMySelf/creat_questions.dart';
+import 'LanguageCubit/language_cubit.dart';
 import 'feuture/OnBoarding/presentation/on_boarding_view.dart';
 import 'screen/category_screen.dart';
 import 'screen/my_constants.dart';
@@ -76,11 +77,10 @@ void main() async {
   await CacheNetwork.cacheInitialization();
 
   runApp(
-    // BlocProvider(
-    //   create: (context) => LanguageCubit(),
-    //   child: const LearningApp(),
-    // ),
-    LearningApp(),
+    BlocProvider(
+      create: (context) => LanguageCubit(),
+      child: const LearningApp(),
+    ),
   );
 }
 
@@ -94,13 +94,13 @@ class LearningApp extends StatefulWidget {
 class _LearningAppState extends State<LearningApp> {
   @override
   void initState() {
-    // BlocProvider.of<LanguageCubit>(context).loadLanguage();
+    BlocProvider.of<LanguageCubit>(context).loadLanguage();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<LanguageCubit, LanguageState>(
       builder: (context, state) {
         return GetMaterialApp(
           theme: ThemeData(
@@ -110,6 +110,7 @@ class _LearningAppState extends State<LearningApp> {
           ),
           debugShowCheckedModeBanner: false,
           routes: {
+            Profile.id: (context) => const Profile(),
             profilepage.id: (context) => const profilepage(),
             RegisterPage.id: (context) => RegisterPage(),
             LoginPage.id: (context) => LoginPage(),
@@ -122,7 +123,7 @@ class _LearningAppState extends State<LearningApp> {
             OnBoardingView.id: (context) => const OnBoardingView(),
           },
           initialRoute: welcomeScreen.id,
-        //  locale: state is LanguageSuccess ? Locale(state.language) : null,
+          locale: state is LanguageSuccess ? Locale(state.language) : null,
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

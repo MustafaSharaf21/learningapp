@@ -7,6 +7,7 @@ import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
 import 'package:learningapp/screen/Blog/get_posts.dart';
 import 'package:learningapp/screen/chating_screen.dart';
+import 'package:learningapp/screen/favorit_screen.dart';
 import 'package:learningapp/screen/library_screen.dart';
 import 'package:learningapp/screen/live_screen.dart';
 import 'package:learningapp/screen/setting_screen.dart';
@@ -21,7 +22,7 @@ import 'saerch_screen.dart';
 import 'vedio_screen.dart';
 import 'package:http/http.dart' as http;
 
-void main() => runApp(HomePage());//qq
+void main() => runApp(HomePage());
 
 class HomePage extends StatelessWidget {
   static String id = "HomePage";

@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 import '../../screen/shared/shared.dart';
 
-part '../screen/add_course_page/language_state.dart';
+part 'language_state.dart';
 
 class LanguageCubit extends Cubit<LanguageState> {
   LanguageCubit() : super(LanguageInitial());

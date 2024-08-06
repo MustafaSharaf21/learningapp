@@ -68,11 +68,11 @@ class _ContentCoursesState extends State<ContentCourses> {
       appBar: AppBar(
         title: Text(
           'Content for Course ${widget.courseId}',
-          style: TextStyle(color: Kcolor),
+          style: const TextStyle(color: Kcolor),
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
         itemCount: videos.length,
         itemBuilder: (context, index) {
@@ -97,13 +97,13 @@ class _ContentCoursesState extends State<ContentCourses> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 26,),
+                            const SizedBox(height: 26,),
                             Padding(
                               padding: const EdgeInsets.only(
                                   bottom: 12.0, right: 7),
                               child: Text(
                                 videos[index]['name'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -111,7 +111,7 @@ class _ContentCoursesState extends State<ContentCourses> {
                               ),
                             ),
 
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
                       ),
@@ -130,8 +130,8 @@ class _ContentCoursesState extends State<ContentCourses> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 3,),
-                          Text('EDUspark'),
+                          const SizedBox(height: 3,),
+                          const Text('EDUspark'),
                         ],
                       ),
                     ],

@@ -9,6 +9,7 @@ import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/core/widgets/buildInputDecoration.dart';
 import 'package:learningapp/core/widgets/header_painater.dart';
 import '../data/http.dart';
+import '../data/models/Getx_Controller.dart';
 import '../generated/l10n.dart';
 import 'foreger_password_screen.dart';
 import 'home_screen.dart';
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
-    ); //jkjkmm
+    );
 
     await FirebaseAuth.instance.signInWithCredential(credential);
     print(credential);
@@ -47,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final iconColor = Theme.of(context).iconTheme.color;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -75,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: email,
-                      decoration: buildInputDecoration(
+                      decoration: buildInputDecoration(context,
                           Icons.email, S.of(context).email),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -107,8 +109,8 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             icon: Icon(secureText
                                 ? Icons.visibility_off
-                                : Icons.visibility)),
-                        prefixIcon: const Icon(Icons.lock),
+                                : Icons.visibility), color: iconColor),
+                        prefixIcon:  Icon(Icons.lock, color: iconColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: const BorderSide(color: Kcolor, width: 1),
@@ -292,15 +294,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   login() async {
+
     await HttpHelper.postData(
         url: 'login',
         body: {'email': email.text, 'password': password.text}).then((value) {
       Map<String, dynamic> res = jsonDecode(value.body);
       print(res);
       if (value.statusCode == 200 || value.statusCode == 201) {
+       /* print( res['data']['role_id ']);
+        print(res['data']['token']);*/
         token = res['data']['token'];
         GetStorage _box = GetStorage();
         _box.write('token', token);
+        int roleId = res['data']['role_id '];
+        Get.find<UserRoleController>().setRoleId(roleId);
         Get.snackbar(' ', res['data']['message'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Kcolor,
@@ -317,4 +324,55 @@ class _LoginPageState extends State<LoginPage> {
       }
     });
   }
+
+
+  /*login() async {
+    await HttpHelper.postData(
+        url: 'login',
+        body: {'email': email.text, 'password': password.text}
+    ).then((value) {
+      Map<String, dynamic> res = jsonDecode(value.body);
+      print(res);
+      if (value.statusCode == 200 || value.statusCode == 201) {
+        token = res['data']['token'];
+        GetStorage _box = GetStorage();
+        _box.write('token', token);
+
+        // تأكد من أن role_id ليس null
+        if (res['data']['role_id'] != null) {
+          int roleId = res['data']['role_id'];
+          Get.find<UserRoleController>().setRoleId(roleId);
+        } else {
+          // التعامل مع الحالة التي يكون فيها role_id غير موجود أو null
+          // يمكنك إما تعيين قيمة افتراضية أو إظهار رسالة خطأ
+          Get.snackbar('Error', 'Role ID is missing.',
+              backgroundColor: Colors.black,
+              colorText: Colors.white
+          );
+          return;
+        }
+
+        Get.snackbar(' ', res['data']['message'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Kcolor,
+            colorText: Colors.white
+        );
+        print(res);
+        print(token);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MyHomePage())
+        );
+      } else {
+        print(res);
+        Get.snackbar('Error', res['message'].toString(),
+            backgroundColor: Colors.black,
+            colorText: Colors.white
+        );
+      }
+    });
+  }*/
+
+
+
+
 }

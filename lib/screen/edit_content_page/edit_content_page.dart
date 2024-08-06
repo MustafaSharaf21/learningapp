@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
 import 'package:learningapp/screen/setting_screen.dart';
-import '../../const.dart';
 import '../../data/http.dart';
 import '../../data/models/doc/doc.dart';
 import '../allcategory_screen.dart';
@@ -14,7 +12,7 @@ import '../cources_screen.dart';
 import '../documentation_screen.dart';
 import '../saerch_screen.dart';
 import '../vedio_screen.dart';
-import 'package:http/http.dart' as http;
+
 
 
 class HomePage extends StatelessWidget {

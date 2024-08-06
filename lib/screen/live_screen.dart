@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:learningapp/data/models/Getx_Controller.dart';
 import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
@@ -30,24 +30,27 @@ class _LiveScreenState extends State<LiveScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final roleId = Get.find<UserRoleController>().roleId.value;
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
+          roleId == 2
+              ? IconButton(
+               onPressed: () {
+               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CreateLive(),
-                ),
-              );
-            },
-            icon: const Icon(
+                  builder: (context) => const CreateLive(),
+                  ),
+                );
+              },
+               icon: const Icon(
               Icons.add,
               color: Colors.white,
             ),
-          ),
+          )
+              :const SizedBox.shrink(),
         ],
         backgroundColor: Kcolor,
         elevation: 0,
@@ -166,15 +169,15 @@ class _LiveScreenState extends State<LiveScreen> {
                             },
                             child:  Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.link,
                                   size: 25,
                                   color: Kcolor,
                                 ),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                   S.of(context).Copy_The_Live_Link,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 18,
                                     color: Kcolor,
                                     fontFamily: 'Cairo',
@@ -231,30 +234,7 @@ class _LiveScreenState extends State<LiveScreen> {
     );
   }
 
-  /*fetchLive() async {
-    try {
-      final response = await http.get(
-        Uri.parse('http://192.168.118.128:8000/api/live/getlives'),
-        headers: {'Authorization': 'Bearer $token'},
-      );
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        setState(() {
-          live = jsonDecode(response.body)['data'];
-        });
-        Get.snackbar(
-          'Success',
-          'Data fetched successfully',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.black,
-          colorText: Colors.white,
-        );
-      } else {
-        print('Error: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }*/
+
   fetchLive() async {
     try {
       final response = await http.get(
@@ -272,7 +252,7 @@ class _LiveScreenState extends State<LiveScreen> {
             'Success',
             'Data fetched successfully',
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.greenAccent,
             colorText: Colors.white,
           );
         } else {

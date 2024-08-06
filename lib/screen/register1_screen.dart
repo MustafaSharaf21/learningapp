@@ -11,6 +11,7 @@ import '../core/constants.dart';
 import '../core/widgets/buildInputDecoration.dart';
 import '../core/widgets/header_painater.dart';
 import '../data/http.dart';
+import '../data/models/Getx_Controller.dart';
 import '../generated/l10n.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -44,7 +45,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   //List<String>genderList=['Teacher','Student'];
   final Map<String, int>roles = {'Student': 3, 'Teacher': 2};
-  /*String? selectedGender;*/
   String? selectedRole;
   int? selectedRoleId;
   int? countryId;
@@ -74,8 +74,10 @@ class _RegisterPageState extends State<RegisterPage> {
   String? selectedCountry;
   String? selectedSpe;
   List<String> CountryList = [];
+
   @override
   Widget build(BuildContext context) {
+    final iconColor = Theme.of(context).iconTheme.color;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -112,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 Container(
-                  width: 325,
+                  width: 350,
                   height: 65,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
@@ -120,17 +122,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10, top: 5),
-                        child: Icon(Icons.person, color: Color(0xFF413F3F)),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Icon(Icons.person,  color: iconColor),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, top: 5),
                         child: DropdownButton<String>(
                           borderRadius: BorderRadius.circular(30),
-                          // underline:const Divider( thickness:0,height:0),
-                          icon: const Icon(
-                            Icons.arrow_drop_down, color: Color(0xFF464241),
+                          icon:  Icon(
+                            Icons.arrow_drop_down,  color: iconColor,
                             size: 30,),
                           dropdownColor:Colors.white,
                           hint: Text(
@@ -175,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     controller: full_Name,
                     keyboardType: TextInputType.text,
-                    decoration: buildInputDecoration(Icons.person, S
+                    decoration: buildInputDecoration(context,Icons.person, S
                         .of(context)
                         .Full_Name),
                     validator: (value) {
@@ -194,7 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
-                    decoration: buildInputDecoration(Icons.email, S
+                    decoration: buildInputDecoration(context,Icons.email, S
                         .of(context)
                         .email),
                     validator: (value) {
@@ -234,8 +235,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             });
                           },
                           icon: Icon(secureText ? Icons.visibility_off : Icons
-                              .visibility)),
-                      prefixIcon: const Icon(Icons.lock),
+                              .visibility),  color: iconColor,),
+                      prefixIcon: Icon(Icons.lock, color: iconColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(color: Kcolor, width: 1),
@@ -291,8 +292,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             });
                           },
                           icon: Icon(secureText2 ? Icons.visibility_off : Icons
-                              .visibility)),
-                      prefixIcon: const Icon(Icons.lock),
+                              .visibility), color: iconColor),
+                      prefixIcon:  Icon(Icons.lock, color: iconColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: const BorderSide(color: Kcolor,
@@ -342,12 +343,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     onChanged: (value) {
                       value.completeNumber;
                     },
-                    decoration: buildInputDecoration(
+                    decoration: buildInputDecoration(context,
                         Icons.phone, S.of(context).Phone_Number),
                   ),
                 ),
                 Container(
-                  width: 300,
+                  width: 350,
                   height: 65,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
@@ -355,9 +356,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10, top: 5),
-                        child: Icon(Icons.location_city, color: Color(0xFF413F3F)),
+                       Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Icon(Icons.location_city,  color: iconColor),
                       ),
                       Flexible(
                         child: Padding(
@@ -365,7 +366,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child:DropdownButton<int>(
                             borderRadius: BorderRadius.circular(30),
                             underline: const Divider(thickness: 0, height: 0),
-                            icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
+                            icon:  Icon(Icons.arrow_drop_down,  color: iconColor),
                             dropdownColor: Color(0xFFB2CCC8),
                             hint: Text(
                               selectedCountry ?? S.of(context).Country,
@@ -394,11 +395,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                ),const SizedBox(
+                ),
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
-                  width: 300,
+                  width: 350,
                   height: 65,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
@@ -406,9 +408,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: Row(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(left: 10, top: 5),
-                        child: Icon( Icons.school_sharp, color: Color(0xFF413F3F)),
+                        child: Icon( Icons.school_sharp,  color: iconColor),
                       ),
                       Flexible(
                         child: Padding(
@@ -416,7 +418,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child:DropdownButton<int>(
                             borderRadius: BorderRadius.circular(30),
                             underline: const Divider(thickness: 0, height: 0),
-                            icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF464241)),
+                            icon:  Icon(Icons.arrow_drop_down,  color: iconColor),
                             dropdownColor: Color(0xFFB2CCC8),
                             hint: Text(
                               selectedSpe ?? S.of(context).specialization,
@@ -632,9 +634,10 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  signup() async {
+ /* signup() async {
     int? id = roles[selectedGender];
     int?countryId=selectedCountryId;
+    Get.find<UserRoleController>().setRoleId(selectedRoleId!);
 
     await HttpHelper.postData(url: 'register', body: {
       'name': full_Name.text,
@@ -670,6 +673,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
         print(res);
         print(token);
+
         Get.to((HomePage()));
       } else {
         print(res);
@@ -682,7 +686,63 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     });
 
+  }*/
+  signup() async {
+
+    int? id = roles[selectedGender];
+    int? countryId = selectedCountryId;
+    Get.find<UserRoleController>().setRoleId(selectedRoleId!);
+
+    await HttpHelper.postData(url: 'register', body: {
+      'name': full_Name.text,
+      'email': email.text,
+      'password': password.text,
+      'confirm_password': confirmpassword.text,
+      'role_id': idd.text,
+      'country_id': countryIdd.text,
+      'specialization_id[]': SpeIdd.text,
+      'gender': gender.text,
+      'birth_date': birthDate.text,
+      'mobile_number': phone.text
+    }).then((value) {
+      Map<String, dynamic> res = jsonDecode(value.body);
+      print(res);
+      if (value.statusCode == 200 || value.statusCode == 201) {
+        var rememberToken = res['data']['user']['remember_token'];
+        token = rememberToken; // استخدام remember_token بدلاً من token
+
+        print('Remember Token: $rememberToken');
+        print('Token: $token'); // طباعة token للتحقق
+
+        GetStorage _box = GetStorage();
+        _box.write('remember_token', rememberToken);
+        _box.write('token', token); // تخزين token
+        Get.snackbar(
+            ' ',
+            res['status'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.black,
+            colorText: Colors.white
+        );
+        print(res);
+        print(token);
+
+        Get.to((HomePage()));
+      } else {
+        print(res);
+        Get.snackbar(
+            'Error',
+            res['status'].toString(),
+            backgroundColor: Colors.black,
+            colorText: Colors.white
+        );
+      }
+    });
   }
+
+
+
+
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
       context: context,
@@ -711,8 +771,8 @@ class _RegisterPageState extends State<RegisterPage> {
         countries = jsonDecode(response.body);
         countryItems = (countries['data'] as List)
             .map((country) => DropdownMenuItem<int>(
-          value: country['id'],
-          child: Text(country['name']),
+              value: country['id'],
+              child: Text(country['name']),
         ))
             .toList();
       });
@@ -733,8 +793,8 @@ class _RegisterPageState extends State<RegisterPage> {
         Specializations = jsonDecode(response.body);
         SpecializationItems = (Specializations['data'] as List)
             .map((Specialize) => DropdownMenuItem<int>(
-          value: Specialize['id'],
-          child: Text(Specialize['name']),
+              value: Specialize['id'],
+            child: Text(Specialize['name']),
         ))
             .toList();
       });
@@ -756,4 +816,3 @@ class Specialist {
 }
 
 
-//eee

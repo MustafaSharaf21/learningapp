@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
 import '../screen/category_screen.dart';
@@ -94,7 +95,7 @@ class _CoursesPageState extends State<CoursesPage> {
         backgroundColor: Kcolor,
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
         itemCount: courses.length,
         itemBuilder: (context, index) {
@@ -133,12 +134,12 @@ class _CoursesPageState extends State<CoursesPage> {
                           children: [
                             Text(
                               courseName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               coursedesc,
                               maxLines: 2,
@@ -148,7 +149,7 @@ class _CoursesPageState extends State<CoursesPage> {
                                 fontSize: 12,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -163,18 +164,18 @@ class _CoursesPageState extends State<CoursesPage> {
                                       Icon(
                                         isJoined ? Icons.check : Icons.join_inner_sharp,
                                         size: 20,
-                                        color: Color(0xffEC7D7F),
+                                        color: const Color(0xffEC7D7F),
                                       ),
-                                      SizedBox(width: 8),
+                                      const SizedBox(width: 8),
                                       Text(
                                         isJoined ? 'Joined' : 'Join',
-                                        style: TextStyle(fontSize: 14),
+                                        style: const TextStyle(fontSize: 14),
                                       ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(width: 8),
-                                Text("Author"),
+                                const SizedBox(width: 8),
+                                Text(S.of(context).author),
                               ],
                             ),
                           ],

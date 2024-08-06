@@ -7,7 +7,7 @@ import '../../core/constants.dart';
 import '../../core/widgets/buildInputDecoration.dart';
 import '../../data/http.dart';
 import '../../generated/l10n.dart';
-import '../my_constants.dart';
+import '../my_contants.dart';
 
 class ContactPage extends StatefulWidget {
    ContactPage({super.key,required this.courseId});
@@ -158,7 +158,7 @@ class _ContactPageState extends State<ContactPage> {
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
+                                  decoration: buildInputDecoration(context,
                                       Icons.person, S.of(context).Full_Name),
                                 ),
                               ),

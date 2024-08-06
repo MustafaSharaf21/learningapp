@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/models/course/cources.dart';
+import 'package:learningapp/generated/l10n.dart';
 import 'package:learningapp/screen/Blog/get_posts.dart';
 import 'package:learningapp/screen/chating_screen.dart';
 import 'package:learningapp/screen/favorit_screen.dart';
@@ -39,6 +40,7 @@ class HomePage extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -66,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     getAllCourse();
     getAllDocs();
     _tabController = TabController(length: 4, vsync: this);
-    Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_imagePageController.hasClients) {
         _currentIndex = (_imagePageController.page!.toInt() + 1) % _imageList.length;
         _imagePageController.animateToPage(
           _currentIndex,
-          duration: Duration(milliseconds: 350),
+          duration: const Duration(milliseconds: 350),
           curve: Curves.easeIn,
         );
       }
@@ -89,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEAEAEA),
+      backgroundColor: const Color(0xFFEAEAEA),
       body: PageView(
         controller: _mainPageController,
         onPageChanged: (index) {
@@ -106,34 +108,34 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: IconButton(
-                        icon: Icon(Icons.settings),
+                        icon: const Icon(Icons.settings),
                         onPressed: () {
-                          Get.to(Setting());
+                          Get.to(const Setting());
                         },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 1.5),
                       child: IconButton(
-                        icon: Icon(Icons.notifications),
+                        icon: const Icon(Icons.notifications),
                         onPressed: () {},
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 2),
                       child: IconButton(
-                        icon: Icon(Icons.search),
+                        icon: const Icon(Icons.search),
                         onPressed: () {
                           Get.to(SearchPage());
                         },
                       ),
                     ),
                     Expanded(child: Container()),
-                    Text("Eline"),
+                    const Text("Eline"),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: GestureDetector(
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           backgroundColor: Color(0xFF399679),
                         ),
                         onTap: () {},
@@ -152,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       controller: _imagePageController,
                       itemCount: _imageList.length,
                       itemBuilder: (context, index) => Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(
@@ -167,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 SliverPersistentHeader(
                   delegate: _SliverAppBarDelegate(
                     TabBar(
-                      indicator: BoxDecoration(
+                      indicator: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                             color: Colors.transparent,
@@ -175,10 +177,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      labelColor: Color(0xFF399679),
+                      labelColor: const Color(0xFF399679),
                       unselectedLabelColor: Colors.grey,
                       controller: _tabController,
-                      labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 8.0),
                       tabs: [
                         Tab(
                           child: Container(
@@ -187,8 +189,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                               border: Border.all(color: Kcolor, width: 1.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-                            child: Text("all"),
+                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                            child: Text(S.of(context).All),
                           ),
                         ),
                         Tab(
@@ -198,8 +200,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                               border: Border.all(color: Kcolor, width: 1.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-                            child: Text("courses"),
+                            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+                            child: Text(S.of(context).courses),
                           ),
                         ),
                         Tab(
@@ -209,10 +211,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                               border: Border.all(color: Kcolor, width: 1.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                             child: Text(
-                              "video",
-                              style: TextStyle(fontSize: 14),
+                            S.of(context).video,
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ),
                         ),
@@ -222,8 +224,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                               border: Border.all(color: Kcolor, width: 1.5),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                            child: Text("pdf"),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                            child: Text(S.of(context).Pdf),
                           ),
                         ),
                       ],
@@ -234,21 +236,21 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               ];
             },
             body: isLoadingCourses || isLoadingDocs
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : TabBarView(
               controller: _tabController,
               children: [
-                allCategory(),
+                const allCategory(),
                 Cources(course.data),
-                Vedio(),
+                const Vedio(),
                 documentation(docs.data),
               ],
             ),
           ),
-          Category(),
-          TestMySelf(),
-          LiveScreen(),
-          ChattingScreen(),
+          const Category(),
+          const TestMySelf(),
+          const LiveScreen(),
+          const ChattingScreen(),
           GetPosts()
         ],
       ),
@@ -261,12 +263,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             _currentIndex = index;
             _mainPageController.animateToPage(
               index,
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut,
             );
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',

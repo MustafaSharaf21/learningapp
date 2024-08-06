@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learningapp/core/constants.dart';
 import 'package:learningapp/data/http.dart';
+
 import 'package:learningapp/generated/l10n.dart';
 import '../../core/widgets/buildInputDecoration.dart';
 import 'home_screen.dart';
@@ -44,6 +45,7 @@ class _CreateLiveState extends State<CreateLive> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Kcolor,
       body: Stack(
@@ -178,7 +180,7 @@ class _CreateLiveState extends State<CreateLive> {
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
+                                  decoration: buildInputDecoration(context,
                                       Icons.title, S.of(context).Title),
                                 ),
                               ),
@@ -202,7 +204,7 @@ class _CreateLiveState extends State<CreateLive> {
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
+                                  decoration: buildInputDecoration(context,
                                       Icons.access_time,S.of(context).Time),
                                 ),
                               ),
@@ -225,7 +227,7 @@ class _CreateLiveState extends State<CreateLive> {
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
+                                  decoration: buildInputDecoration(context,
                                       Icons.date_range, S.of(context).Date),
                                 ),
                               ),
@@ -242,7 +244,7 @@ class _CreateLiveState extends State<CreateLive> {
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
+                                  decoration: buildInputDecoration(context,
                                       Icons.link, S.of(context).Add_link),
                                 ),
                               ),
@@ -383,7 +385,6 @@ class _CreateLiveState extends State<CreateLive> {
   }
 
   createLive() async {
-
     await HttpHelper.postData(url: 'live/createlive', body: {
       'title':titleLive.text,
       'time_start':timeLive.text,
@@ -401,7 +402,7 @@ class _CreateLiveState extends State<CreateLive> {
         Get.snackbar(
             ' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.greenAccent,
             colorText: Colors.white
         );
         print(res);
@@ -411,7 +412,7 @@ class _CreateLiveState extends State<CreateLive> {
         print(res);
         Get.snackbar(
             'Error', res['status'].toString(),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.greenAccent,
             colorText: Colors.white
 
         );

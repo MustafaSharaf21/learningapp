@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "Cannot_enter_a_past_date":
             MessageLookupByLibrary.simpleMessage("Cannot enter a past date"),
+        "Category": MessageLookupByLibrary.simpleMessage("Category"),
         "Chatting": MessageLookupByLibrary.simpleMessage("Chatting"),
         "Check": MessageLookupByLibrary.simpleMessage("Check"),
         "Check_Email": MessageLookupByLibrary.simpleMessage("Check Email"),
@@ -40,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Close": MessageLookupByLibrary.simpleMessage("Close"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "Content_for_Course":
+            MessageLookupByLibrary.simpleMessage("Content for Course"),
         "Copy_The_Live_Link":
             MessageLookupByLibrary.simpleMessage("Copy The Live Link"),
         "Country": MessageLookupByLibrary.simpleMessage(
@@ -148,6 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter an email"),
         "here_we_will_put_description": MessageLookupByLibrary.simpleMessage(
             "here we will put description"),
+        "info": MessageLookupByLibrary.simpleMessage("info"),
         "log_out": MessageLookupByLibrary.simpleMessage("log out"),
         "name": MessageLookupByLibrary.simpleMessage("EDUspark"),
         "password": MessageLookupByLibrary.simpleMessage("password"),

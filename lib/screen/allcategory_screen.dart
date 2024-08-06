@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flip_card/flip_card.dart';
+import 'package:learningapp/generated/l10n.dart';
 
 import '../data/http.dart';
 import 'content_courses.dart';
@@ -48,11 +49,11 @@ class _ExampleState extends State<allCategory> {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             textAlign: TextAlign.right,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: const EdgeInsets.symmetric(horizontal: 15),
             height: 180,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -94,11 +95,11 @@ class _ExampleState extends State<allCategory> {
     return Container(
       width: 142,
       decoration: BoxDecoration(
-        color: Color(0xFFF8F8F7),
+        color: const Color(0xFFF8F8F7),
         borderRadius: BorderRadius.circular(8),
       ),
       height: 180,
-      margin: EdgeInsets.only(left: 10, right: 15),
+      margin: const EdgeInsets.only(left: 10, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -108,7 +109,7 @@ class _ExampleState extends State<allCategory> {
               height: 130,
               width: 120,
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(6),
@@ -121,7 +122,7 @@ class _ExampleState extends State<allCategory> {
           ),
           Text(
             truncateWithEllipsis(16, course['name'] ?? 'Unknown'),
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.bold,
               fontSize: 12,
@@ -131,14 +132,14 @@ class _ExampleState extends State<allCategory> {
             children: [
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.auto_fix_high,
                     color: Color(0xFF399679),
                     size: 18,
                   ),
                   Text(
                     truncateWithEllipsis(16, course['author_name']?.toString() ?? 'Unknown'),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
@@ -146,7 +147,7 @@ class _ExampleState extends State<allCategory> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
                   flipCardKey.currentState?.toggleCard();
@@ -154,10 +155,10 @@ class _ExampleState extends State<allCategory> {
                 child: Row(
                   children: [
                     Text(
-                      "info",
-                      style: TextStyle(color: Colors.grey),
+                     S.of(context).info,
+                      style: const TextStyle(color: Colors.grey),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.warning,
                       color: Color(0xFF399679),
                       size: 18,
@@ -176,23 +177,23 @@ class _ExampleState extends State<allCategory> {
     return Container(
       width: 142,
       decoration: BoxDecoration(
-        color: Color(0xFFF8F8F7),
+        color: const Color(0xFFF8F8F7),
         borderRadius: BorderRadius.circular(8),
       ),
       height: 180,
-      margin: EdgeInsets.only(left: 10, right: 15),
+      margin: const EdgeInsets.only(left: 10, right: 15),
       child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SizedBox(height: 10), // Add spacing at the top
+                const SizedBox(height: 10), // Add spacing at the top
                 Flexible(
                   child: SingleChildScrollView(
                     child: Text(
                       course['description'] ?? 'No description available.',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -204,7 +205,7 @@ class _ExampleState extends State<allCategory> {
             top: 0,
             right: 0,
             child: IconButton(
-              icon: Icon(Icons.close, color: Colors.grey, size: 18),
+              icon: const Icon(Icons.close, color: Colors.grey, size: 18),
               onPressed: () {
                 flipCardKey.currentState?.toggleCard();
               },

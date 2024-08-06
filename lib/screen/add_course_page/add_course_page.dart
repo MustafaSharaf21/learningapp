@@ -102,7 +102,7 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                       ),
                     ),
                     const Text(
-                      'Add course',
+                      'Create course',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -191,11 +191,11 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                     fit: BoxFit.fill,
                                   )
                                       :const Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                    children: [
+                                       mainAxisAlignment:
+                                       MainAxisAlignment.center,
+                                       crossAxisAlignment:
+                                       CrossAxisAlignment.center,
+                                       children: [
                                       Icon(
                                         Icons.camera_alt_outlined,
                                         size: 24,
@@ -225,12 +225,12 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
                                   keyboardType: TextInputType.text,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return S.of(context).Enter_a_name;
+                                      return "Name";
                                     }
                                     return null;
                                   },
-                                  decoration: buildInputDecoration(
-                                      Icons.person, S.of(context).Full_Name),
+                                  decoration: buildInputDecoration(context,
+                                      Icons.library_books_sharp," Name"),
                                 ),
                               ),
                               Padding(
@@ -489,9 +489,10 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
         'name': courseNameCtrl.text,
         'specialization_id': speIdd.text,
         'description': descriptionCtrl.text,
-        'status': 'accepted',
+        'status': 'pending',
         'country_id': countryIdd.text,
       });
+
       request.files
           .add(await http.MultipartFile.fromPath('image', image!.path));
       request.headers.addAll(headers);
@@ -505,6 +506,10 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
       }
     }
   }
+
+
+
+
 
   File? image;
   final _pickedFile = ImagePicker();
@@ -552,3 +557,5 @@ class _AddCoursesPageState extends State<AddCoursesPage> {
     Navigator.pop(context);
   }
 }
+
+

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:learningapp/generated/l10n.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
 import 'content_category.dart';
@@ -27,16 +28,16 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Category"),
+        title: Text(S.of(context).Category),
         backgroundColor: Colors.white,
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : GestureDetector(
         child: Container(
-          padding: EdgeInsets.only(top: 8,right: 9,left: 9),
+          padding: const EdgeInsets.only(top: 8,right: 9,left: 9),
           child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisSpacing: 5,
               mainAxisSpacing: 30,
               crossAxisCount: 3,
@@ -64,19 +65,19 @@ class _CategoryState extends State<Category> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
                   height: 180,
-                  margin: EdgeInsets.only(left: 0, right: 0),
+                  margin: const EdgeInsets.only(left: 0, right: 0),
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Center(
                         child: Text(
                           category[i]["name"],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black, // اللون الأسود للنص
                             fontWeight: FontWeight.bold,
                           ),
@@ -110,4 +111,3 @@ class _CategoryState extends State<Category> {
     }
   }
 }
-/////

@@ -7,6 +7,7 @@ import 'package:learningapp/core/constants.dart';
 import '../../data/http.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+import '../../data/models/Getx_Controller.dart';
 import 'creat_post.dart';
 import 'get_comments.dart';
 
@@ -29,20 +30,24 @@ class _GetPostsState extends State<GetPosts> {
 
   @override
   Widget build(BuildContext context) {
+    final roleId = Get.find<UserRoleController>().roleId.value;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Kcolor,
         title: Text('Posts'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CreatePostPage()),
-              );
+
+          roleId == 2
+              ?IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreatePostPage()),
+               );
             },
-          ),
+          ):
+          const SizedBox.shrink(),
         ],
       ),
       body: isLoading

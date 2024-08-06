@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "Cannot_enter_a_past_date":
             MessageLookupByLibrary.simpleMessage("لا يمكن إدخال تاريخ سابق"),
+        "Category": MessageLookupByLibrary.simpleMessage("الفئة"),
         "Chatting": MessageLookupByLibrary.simpleMessage("مشاركة"),
         "Check": MessageLookupByLibrary.simpleMessage("فحص"),
         "Check_Email":
@@ -41,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "Content_for_Course":
+            MessageLookupByLibrary.simpleMessage("محتوى الكورس"),
         "Copy_The_Live_Link":
             MessageLookupByLibrary.simpleMessage("انسخ رابط اللايف"),
         "Country": MessageLookupByLibrary.simpleMessage(
@@ -147,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل البريد الإلكتروني"),
         "here_we_will_put_description":
             MessageLookupByLibrary.simpleMessage("هنا سوف نضع الوصف"),
+        "info": MessageLookupByLibrary.simpleMessage("معلومات"),
         "log_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "name": MessageLookupByLibrary.simpleMessage("تعليم"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),

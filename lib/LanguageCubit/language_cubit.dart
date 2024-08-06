@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../screen/shared/shared.dart';
 
 part 'language_state.dart';

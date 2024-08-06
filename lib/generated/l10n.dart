@@ -879,14 +879,6 @@ class S {
       args: [],
     );
   }
-  String get MY_Library {
-    return Intl.message(
-      'My Library',
-      name: 'MY_Library',
-      desc: '',
-      args: [],
-    );
-  }
 
   /// `Add course`
   String get Add_course {
@@ -1023,6 +1015,36 @@ class S {
     return Intl.message(
       'Learning with pleasure whenever you are',
       name: 'Learning_with_pleasure_whenever_you_are',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `info`
+  String get info {
+    return Intl.message(
+      'info',
+      name: 'info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get Category {
+    return Intl.message(
+      'Category',
+      name: 'Category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Content for Course`
+  String get Content_for_Course {
+    return Intl.message(
+      'Content for Course',
+      name: 'Content_for_Course',
       desc: '',
       args: [],
     );

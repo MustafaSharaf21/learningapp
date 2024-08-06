@@ -47,13 +47,14 @@ class _ChattingScreenState extends State<ChattingScreen> {
           ? ListView.builder(
             itemCount:chat.length,
             itemBuilder: (context, index) {
-            var liveItem = chat[index];
+            var chatItem = chat[index];
+            final chatImage = chatItem['image'] ?? 'assets/images/emptyImage.jpg';
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 height: 80,
                 width: 390,
-               decoration: const BoxDecoration(boxShadow: [
+                decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                     blurRadius: 40, color: Colors.grey, spreadRadius: 0)
               ]),
@@ -64,24 +65,39 @@ class _ChattingScreenState extends State<ChattingScreen> {
                       horizontal: 10, vertical: 10),
                   child: Row(
                     children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        clipBehavior: Clip.antiAlias,
-                        decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(1000)),
-                        child:image==null?Image.asset('assets/images/emptyImage.jpg',
-                          fit: BoxFit.cover,):Image.file(image!,fit: BoxFit.cover,),),
-                       Padding(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network(
+                              '$imgURL'+chatImage,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                                  'assets/images/emptyImage.jpg',
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
                         padding: const EdgeInsets.all(6.0),
                         child:
                             Column(
                               children: [
-                                     const SizedBox(height: 7,),
-                                     SizedBox(
+                                    const SizedBox(height: 7,),
+                                    SizedBox(
                                       height: 30,
                                       width: 200,
-                                      child: Text( liveItem['name'] ?? '',
+                                      child: Text( chatItem['name'] ?? '',
                                       style:const TextStyle(fontSize: 18,
                                                       color: Colors.black
                                       ),)),
@@ -90,7 +106,7 @@ class _ChattingScreenState extends State<ChattingScreen> {
                       ),
                       GestureDetector(
                               onTap: (){
-                                _openWhatsApp(liveItem['mobile_number'] ?? '');
+                                _openWhatsApp(chatItem['mobile_number'] ?? '');
                               },
                               child: const Icon(FontAwesomeIcons.whatsapp,
                                 color:Color(0xFF25D366),

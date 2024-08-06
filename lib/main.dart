@@ -13,9 +13,10 @@ import 'package:learningapp/screen/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:learningapp/screen/testMySelf/creat_questions.dart';
 import 'LanguageCubit/language_cubit.dart';
+import 'data/models/Getx_Controller.dart';
 import 'feuture/OnBoarding/presentation/on_boarding_view.dart';
 import 'screen/category_screen.dart';
-import 'screen/my_constants.dart';
+import 'screen/my_contants.dart';
 import 'screen/profile/update_profile_screen.dart';
 import 'screen/testMySelf/test_myself.dart';
 import 'screen/welcome_screen.dart';
@@ -72,6 +73,7 @@ class _LearningAppState extends State<LearningApp> {
 }
 */
 void main() async {
+  Get.put(UserRoleController());
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await CacheNetwork.cacheInitialization();
@@ -117,7 +119,7 @@ class _LearningAppState extends State<LearningApp> {
             SplashPage.id: (context) => const SplashPage(),
             Category.id: (context) => const Category(),
             TestMySelf.id: (context) => const TestMySelf(),
-            myContents.id: (context) => const myContents(),
+            myContents.id: (context) =>  myContents(),
             welcomeScreen.id: (context) => const welcomeScreen(),
             OnBoardingView.id: (context) => const OnBoardingView(),
           },
@@ -126,7 +128,7 @@ class _LearningAppState extends State<LearningApp> {
           localizationsDelegates: const [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,//
+            GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,

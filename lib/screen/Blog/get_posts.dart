@@ -36,8 +36,10 @@ class _GetPostsState extends State<GetPosts> {
         backgroundColor: Kcolor,
         title: Text('Posts'),
         actions: [
-
-          roleId == 2
+          Obx(() {
+            final roleId = Get.find<UserRoleController>().roleId.value;
+            print('roleId------------------: $roleId');
+            return  roleId == 2
               ?IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
@@ -46,8 +48,9 @@ class _GetPostsState extends State<GetPosts> {
                   MaterialPageRoute(builder: (context) => CreatePostPage()),
                );
             },
-          ):
-          const SizedBox.shrink(),
+          ):const SizedBox.shrink();}),
+
+
         ],
       ),
       body: isLoading

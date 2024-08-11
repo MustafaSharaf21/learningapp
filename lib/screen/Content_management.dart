@@ -5,6 +5,7 @@ import 'package:learningapp/screen/my_contants.dart';
 import '../core/constants.dart';
 import '../data/http.dart';
 import '../data/models/Getx_Controller.dart';
+import 'Update_Course_Screen.dart';
 import 'add_course_page/add_course_page.dart';
 import 'package:http/http.dart' as http;
 
@@ -67,13 +68,13 @@ class _ContentManagementState extends State<ContentManagement> {
       ),
       body: createCourse.isNotEmpty
           ? ListView.builder(
-        itemCount: createCourse.length,
-        itemBuilder: (context, index) {
+             itemCount: createCourse.length,
+             itemBuilder: (context, index) {
           var createCourseItem = createCourse[index];
-          final courseImage =
-              createCourseItem['image'] ?? 'assets/images/creatTest1.jpg';
+          final courseImage = createCourseItem['image'] ?? 'assets/images/creatTest1.jpg';
           final courseId = createCourseItem['id'] ?? '';
-          Get.find<UserRoleController>().setRoleId(courseId);
+          print("createCourseItem['id']---------$courseId");
+          Get.find<UserRoleController>().setcourseId(courseId);
           return GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -114,6 +115,18 @@ class _ContentManagementState extends State<ContentManagement> {
                                 onSelected: (String value) {
                                   if (value == 'delete') {
                                     deleteCourse(courseId, index);
+                                  } else if (value == 'update') {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpdateCoursePage(course: createCourseItem),
+                                      ),
+                                    ).then((value) {
+                                      if (value == true) {
+                                        fetchCreateCourse();
+                                      }
+                                    });
                                   }
                                 },
                                 itemBuilder: (BuildContext context) =>
@@ -241,7 +254,7 @@ class _ContentManagementState extends State<ContentManagement> {
   Future<void> fetchCreateCourse() async {
     try {
       final response = await http.get(
-        Uri.parse('$baseurl' + 'course/show'),
+        Uri.parse('$baseurl' + 'course/showc'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {

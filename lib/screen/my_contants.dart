@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +7,9 @@ import '../core/constants.dart';
 import '../data/http.dart';
 import 'package:http/http.dart' as http;
 import '../data/models/Getx_Controller.dart';
+import 'Update_content_screen.dart';
 import 'content_courses.dart';
 import 'create_myContents.dart';
-
 
 class myContents extends StatefulWidget {
   static String id = "myContents";
@@ -32,6 +31,7 @@ class _myContentsState extends State<myContents> {
       showCheckboxes = true; // عرض مربعات الاختيار
     });
   }
+
   void _openContent(String type, String url) {
     if (type == 'video') {
       Navigator.push(
@@ -52,12 +52,13 @@ class _myContentsState extends State<myContents> {
 
   List<dynamic> myContents = [];
   List videos = [];
+
   @override
   void initState() {
-    fetchmyContents();
-    fetchVideos();
     super.initState();
+    fetchContents();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +70,7 @@ class _myContentsState extends State<myContents> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  createMyContents(),
+                  builder: (context) => createMyContents(),
                 ),
               );
             },
@@ -82,25 +83,28 @@ class _myContentsState extends State<myContents> {
         backgroundColor: Kcolor,
         elevation: 0,
         centerTitle: true,
-        title:  const Text(
+        title: const Text(
           "My Contents",
-          style: TextStyle(
-              color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
-      body:myContents.isNotEmpty
+      body: myContents.isNotEmpty
           ? ListView.builder(
-            itemCount: myContents.length,
-            itemBuilder: (context, index) {
-             var myContentsItem = myContents[index];
-             int contentId=myContentsItem['id'] ?? '';
-             String typeId = myContentsItem['type_id'].toString();
-             String contentType = typeId == '1' ? 'video' : 'pdf';
-            return GestureDetector(
-                 onTap: () {
-               _openContent(videos[index]['type'], videos[index]['url']);
-             },
-              child: Padding(
+        itemCount: myContents.length,
+        itemBuilder: (context, index) {
+          var myContentsItem = myContents[index];
+          //final courseId= myContentsItem['course_id'] ?? '';
+          //Get.find<UserRoleController>().setcourseId(courseId);
+          int contentId = myContentsItem['id'] ?? '';
+          String typeId = myContentsItem['type_id'].toString();
+          String contentType = typeId == '1' ? 'video' : 'pdf';
+          return GestureDetector(
+            onTap: () {
+              if (index < videos.length) {
+                _openContent(videos[index]['type'], videos[index]['url']);
+              }
+            },
+            child: Padding(
               padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
               child: Container(
                 height: 100,
@@ -127,12 +131,25 @@ class _myContentsState extends State<myContents> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
                             children: [
                               PopupMenuButton<String>(
                                 onSelected: (String value) {
                                   if (value == 'delete') {
                                     deleteContent(contentId, index);
+                                  } else if (value == 'update') {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UpdateContentPage(contents: myContentsItem),
+                                      ),
+                                    ).then((value) {
+                                      if (value == true) {
+                                        fetchContents();
+                                      }
+                                    });
                                   }
                                 },
                                 itemBuilder: (BuildContext context) =>
@@ -145,24 +162,27 @@ class _myContentsState extends State<myContents> {
                                     value: "delete",
                                     child: Text("delete"),
                                   ),
+
+
+
+
                                 ],
                               ),
-                              // SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                               Column(
                                 children: [
-                                  const SizedBox(height: 10,),
+                                  const SizedBox(height: 10),
                                   SizedBox(
                                     height: 40,
                                     width: 185,
-                                      child: Text(
-                                        myContentsItem['name'] ?? '',
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                    child: Text(
+                                      myContentsItem['name'] ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -172,19 +192,19 @@ class _myContentsState extends State<myContents> {
                             children: [
                               Row(
                                 children: [
-                                  const SizedBox(width: 15,),
+                                  const SizedBox(width: 15),
                                   SizedBox(
-                                      height: 20,
-                                      width: 160,
-                                      child: Text(
-                                        contentType,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                    height: 20,
+                                    width: 160,
+                                    child: Text(
+                                      contentType,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                               Row(
@@ -192,15 +212,17 @@ class _myContentsState extends State<myContents> {
                                   Icon(
                                     Icons.mode_standby,
                                     size: 12,
-                                    color: myContentsItem['status'] == 'pending'
+                                    color: myContentsItem['status'] ==
+                                        'pending'
                                         ? Colors.red
-                                        : myContentsItem['status'] == 'accepted'
+                                        : myContentsItem['status'] ==
+                                        'accepted'
                                         ? Colors.green
-                                        : Colors.grey, // default color if status is neither pending nor accepted
+                                        : Colors.grey,
                                   ),
                                   SizedBox(
                                     height: 20,
-                                    width:50,
+                                    width: 50,
                                     child: Text(
                                       myContentsItem['status'] ?? '',
                                       style: const TextStyle(
@@ -210,10 +232,8 @@ class _myContentsState extends State<myContents> {
                                       ),
                                     ),
                                   ),
-
                                 ],
                               ),
-
                             ],
                           ),
                         ],
@@ -225,43 +245,49 @@ class _myContentsState extends State<myContents> {
                         Container(
                           color: Colors.white,
                           child: SizedBox(
-                            width: videos[index]['type'] == 'video' ? 100 : 100,
-                            height: videos[index]['type'] == 'video' ? 70 : 70,
+                            width: 100,
+                            height: 70,
                             child: Image.asset(
-                              videos[index]['type'] == 'video'
-                                   ?'assets/images/video_14044100.png'
-                                  :'assets/images/edit(2).png',
+                              videos.isNotEmpty &&
+                                  videos[index]['type'] == 'video'
+                                  ? 'assets/images/video_14044100.png'
+                                  : 'assets/images/edit(2).png',
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 3,),
+                        const SizedBox(height: 3),
                         const Text('EDUspark'),
-                      ],//uu
+                      ],
                     ),
-
                   ],
                 ),
               ),
-          ));
-
+            ),
+          );
         },
-      ): const Center(child: CircularProgressIndicator()),
-
+      )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
-//${widget.courseId}
-  fetchmyContents() async {
+
+  void fetchContents() async {
+    await fetchmyContents();
+    await fetchVideos();
+  }
+
+  Future<void> fetchmyContents() async {
     final courseId = Get.find<UserRoleController>().courseId.value;
     try {
       final response = await http.get(
-        Uri.parse('$baseurl'+'content/show/${courseId}'),
+        Uri.parse('$baseurl' + 'content/show/${courseId}'),
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Response body: ${response.body}'); // طباعة الاستجابة الكاملة
+        print('Response body: ${response.body}');
         var responseData = jsonDecode(response.body);
-        if (responseData is Map<String, dynamic> && responseData.containsKey('data')) {
+        if (responseData is Map<String, dynamic> &&
+            responseData.containsKey('data')) {
           setState(() {
             myContents = responseData['data'];
           });
@@ -293,7 +319,6 @@ class _myContentsState extends State<myContents> {
         final data = json.decode(response.body)['data'] as List;
         setState(() {
           videos = data;
-          //isLoading = false;
         });
       } else {
         print('Error: ${response.reasonPhrase}');
@@ -310,7 +335,7 @@ class _myContentsState extends State<myContents> {
         headers: {'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print('Response body: ${response.body}'); // طباعة الاستجابة الكاملة
+        print('Response body: ${response.body}');
         var responseData = jsonDecode(response.body);
         if (responseData['status'] == 'Success') {
           setState(() {
@@ -333,7 +358,4 @@ class _myContentsState extends State<myContents> {
       print('Error: $e');
     }
   }
-
-
 }
-

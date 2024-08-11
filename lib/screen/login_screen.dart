@@ -308,6 +308,7 @@ class _LoginPageState extends State<LoginPage> {
         _box.write('token', token);
         int roleId = res['data']['role_id '];
         Get.find<UserRoleController>().setRoleId(roleId);
+        print('Login roleId -------------------: $roleId');
         Get.snackbar(' ', res['data']['message'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Kcolor,

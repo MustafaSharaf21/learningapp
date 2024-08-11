@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import '../../data/http.dart';
 import 'result_page.dart';
 import 'question_widget.dart';
@@ -19,12 +20,23 @@ class _QuizPageState extends State<QuizPage> {
   int wrongAnswers = 0;
   List<Map<String, dynamic>> questionsData = []; // استخدام dynamic بدلاً من Object
   bool isLoading = true;
-
+  final AudioPlayer _correctPlayer = AudioPlayer();
+  final AudioPlayer _incorrectPlayer = AudioPlayer();
   @override
   void initState() {
     super.initState();
     fetchQuestions();
+    _loadAudio();
+  }Future<void> _loadAudio() async {
+    try {
+      await _correctPlayer.setAsset('assets/sound/duolingo_correct.mp3');
+      await _incorrectPlayer.setAsset('assets/sound/duolingo_incorrect.mp3');
+      print('Audio files loaded successfully.');
+    } catch (e) {
+      print('Error loading audio files: $e');
+    }
   }
+
 
   Future<void> fetchQuestions() async {
     try {
@@ -66,8 +78,14 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       if (isCorrect) {
         correctAnswers++;
+        _correctPlayer.play().catchError((e) {
+          print('Error playing correct sound: $e');
+        });
       } else {
         wrongAnswers++;
+        _incorrectPlayer.play().catchError((e) {
+          print('Error playing incorrect sound: $e');
+        });
       }
 
       if (currentQuestionIndex < questionsData.length - 1) {
@@ -79,13 +97,14 @@ class _QuizPageState extends State<QuizPage> {
             builder: (context) => ResultPage(
               correctAnswers: correctAnswers,
               totalQuestions: questionsData.length,
-              quizId: widget.id, // تمرير الـ quizId هنا
+              quizId: widget.id,
             ),
           ),
         );
       }
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -25,7 +25,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
       });
     }
   }
-//el
+
   Future<void> _createPost() async {
     if (_textController.text.isEmpty || _imageFile == null) {
       Get.snackbar('Error', 'Please provide both text and image.',
